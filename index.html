@@ -1,15 +1,64 @@
 <!doctype html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dominik Schreiber</title>
+<style>
+/* ===== page =========================================================== */
+.page {
+  margin: 0;
+}
+/* ===== view =========================================================== */
+.view {
+  display: none;
+  flex-direction: column;
+  padding: 0 1rem;
+}
+@media (min-width: 640px) {
+  .view {
+    padding: 0 calc(50vw - 320px);
+  }
+}
+@media (min-width: 1024px) {
+  .view {
+    padding: 0 calc(50vw - 512px);
+  }
+}
+@media (min-width: 1440px) {
+  .view {
+    padding: 0 calc(50vw - 720px);
+  }
+}
+.view:target {
+  display: flex;
+}
+</style>
 </head>
-<body>
-<h1>Dominik Schreiber</h1>
-<p>Dominik is the software architect of Unified Rendering, a mature web-based UI-framework at <a href="https://sap.com">SAP</a>. He's a proud and loving husband and dad, well-versed pianist/bassist, and christ follower in the leadership team of <a href="https://efg-ludwigshafen.de">EFG Ludwigshafen</a>.
-<p>Find Dominik on<ul>
-<li><a href="https://github.com/dominikschreiber">GitHub</a>
-<li><a href="https://twitter.com/domischreib">Twitter</a>
-<li><a href="https://stackoverflow.com/users/1168892">Stack Overflow</a>
-</ul>
+<body class="page">
+<article class="view" id="!/">
+  <h1>Dominik Schreiber</h1>
+  <p>Dominik is the software architect of Unified Rendering, a mature web-based UI-framework at <a href="https://sap.com">SAP</a>. He's a proud and loving husband and dad, well-versed pianist/bassist, and christ follower in the leadership team of <a href="https://efg-ludwigshafen.de">EFG Ludwigshafen</a>.
+  <p>Find Dominik on<ul>
+    <li><a href="https://github.com/dominikschreiber">GitHub</a>
+    <li><a href="https://twitter.com/domischreib">Twitter</a>
+    <li><a href="https://stackoverflow.com/users/1168892">Stack Overflow</a></ul>
+</article>
+<script>
+var $targets = document.querySelectorAll('[id^="!/"]');
+var target_ids = Array.from($targets).map(function($target) { return $target.id; });
+
+function on_hashchange() {
+  if (target_ids.indexOf(location.hash.slice(1)) === -1) {
+    location.hash = target_ids.length > 0 ? target_ids[0] : '';
+  }
+}
+
+window.addEventListener('hashchange', on_hashchange);
+on_hashchange();
+</script>
+<noscript>
+<style>.view{display: flex}</style>
+</noscript>
 </body>
 </html>
