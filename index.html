@@ -1,64 +1,152 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dominik Schreiber</title>
-<style>
-/* ===== page =========================================================== */
-.page {
-  margin: 0;
-}
-/* ===== view =========================================================== */
-.view {
-  display: none;
-  flex-direction: column;
-  padding: 0 1rem;
-}
-@media (min-width: 640px) {
-  .view {
-    padding: 0 calc(50vw - 320px);
-  }
-}
-@media (min-width: 1024px) {
-  .view {
-    padding: 0 calc(50vw - 512px);
-  }
-}
-@media (min-width: 1440px) {
-  .view {
-    padding: 0 calc(50vw - 720px);
-  }
-}
-.view:target {
-  display: flex;
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dominik Schreiber</title>
+  <style>
+    /* ===== variables ====================================================== */
+    :root {
+      /* global element */
+      --element-rowheight: 2rem;
+      --element-height: 1.625rem;
+      --element-horizontalpadding: .5rem;
+      --element-spacing: .5rem;
+      --element-color: #233;
+
+      --element-fontsize-medium: 1rem;
+      --element-fontsize-h1: calc(2 * var(--element-fontsize-medium));
+      /* page */
+      --page-horizontalpadding: calc(2 * var(--element-horizontalpadding));
+      /* view */
+      --view-horizontalpadding: var(--page-horizontalpadding);
+      /* list */
+      --list-item-height: var(--element-height);
+      --list-item-spacing: var(--element-spacing);
+      /* text */
+      --text-rowheight: var(--element-rowheight);
+      --text-height: var(--element-height);
+      --text-color: var(--element-color);
+      --text-lineheight: 1.4;
+      --text-fontsize-medium: var(--element-fontsize-medium);
+      --text-fontsize-h1: var(--element-fontsize-h1);
+      /* link */
+      --link-color: #699;
+    }
+    /* ===== page =========================================================== */
+    .page {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+    }
+
+    /* ===== view =========================================================== */
+    .view {
+      display: none;
+      flex-direction: column;
+      padding: 0 var(--view-horizontalpadding);
+    }
+
+    @media (min-width: 640px) {
+      .view {
+        padding: 0 calc(50vw - 320px);
+      }
+    }
+
+    .view:target {
+      display: flex;
+    }
+
+    /* ===== grid =========================================================== */
+    .grid {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .grid__row {
+      display: flex;
+      flex-direction: row;
+    }
+    /* ===== list =========================================================== */
+    .list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .list__item {
+      line-height: var(--list-item-height);
+    }
+
+    .list__item[data-icon]::before {
+      content: attr(data-icon);
+      margin-right: var(--list-item-spacing);
+    } 
+    /* ===== text =========================================================== */
+    .text {
+      margin: calc((var(--text-rowheight) - var(--text-height)) / 2) 0;
+      padding: calc((var(--text-height) - var(--text-lineheight) * var(--text-fontsize-medium)) / 2) 0;
+      line-height: var(--text-lineheight);
+      color: var(--text-color);
+      font-size: var(--text-fontsize-medium);
+    }
+
+    .text--h1 {
+      font-size: var(--text-fontsize-h1);
+    }
+    /* ===== link =========================================================== */
+    .link {
+      color: var(--link-color);
+    }
+  </style>
 </head>
+
 <body class="page">
-<article class="view" id="!/">
-  <h1>Dominik Schreiber</h1>
-  <p>Dominik is the software architect of Unified Rendering, a mature web-based UI-framework at <a href="https://sap.com">SAP</a>. He's a proud and loving husband and dad, well-versed pianist/bassist, and christ follower in the leadership team of <a href="https://efg-ludwigshafen.de">EFG Ludwigshafen</a>.
-  <p>Find Dominik on<ul>
-    <li><a href="https://github.com/dominikschreiber">GitHub</a>
-    <li><a href="https://twitter.com/domischreib">Twitter</a>
-    <li><a href="https://stackoverflow.com/users/1168892">Stack Overflow</a></ul>
-</article>
-<script>
-var $targets = document.querySelectorAll('[id^="!/"]');
-var target_ids = Array.from($targets).map(function($target) { return $target.id; });
+  <div class="view" id="!/">
+    <div class="grid">
+      <div class="grid__row">
+        <div class="grid__column">
+          <div class="text text--h1" role="heading" aria-level="1">Dominik Schreiber</div>
+          <div class="text">Dominik is the software architect of Unified Rendering, a mature
+            web-based UI-framework at <a class="link" href="https://sap.com">SAP</a>. He's a
+            proud and loving husband and dad, well-versed pianist/bassist, and
+            christ follower in the leadership team of
+            <a class="link" href="https://efg-ludwigshafen.de">EFG Ludwigshafen</a>.</div>
+          <div class="text">Find Dominik on</div>
+          <div class="list">
+              <div class="list__item" data-icon="&#x2022;"><a class="link" href="https://github.com/dominikschreiber">GitHub</a></div>
+              <div class="list__item" data-icon="&#x2022;"><a class="link" href="https://twitter.com/domischreib">Twitter</a></div>
+              <div class="list__item" data-icon="&#x2022;"><a class="link" href="https://stackoverflow.com/users/1168892">Stack Overflow</a></div>
+            </ul>
+          </div>
+        </div>
+        <!--div class="grid__column">
+          <div class="list">
+            <div class="list__item"><a href="#!/blog">Blog</a></div>
+            <div class="list__item"><a href="#!/contact">Contact</a></div>
+          </div>
+        </div-->
+      </div>
+    </div>
+    <script>
+      var $targets = document.querySelectorAll('[id^="!/"]');
+      var target_ids = Array.from($targets).map(function ($target) { return $target.id; });
 
-function on_hashchange() {
-  if (target_ids.indexOf(location.hash.slice(1)) === -1) {
-    location.hash = target_ids.length > 0 ? target_ids[0] : '';
-  }
-}
+      function on_hashchange() {
+        if (target_ids.indexOf(location.hash.slice(1)) === -1) {
+          location.hash = target_ids.length > 0 ? target_ids[0] : '';
+        }
+      }
 
-window.addEventListener('hashchange', on_hashchange);
-on_hashchange();
-</script>
-<noscript>
-<style>.view{display: flex}</style>
-</noscript>
+      window.addEventListener('hashchange', on_hashchange);
+      on_hashchange();
+    </script>
+    <noscript>
+      <style>
+        .view {
+          display: flex
+        }
+      </style>
+    </noscript>
 </body>
+
 </html>
