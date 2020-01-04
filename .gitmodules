@@ -1,0 +1,3 @@
+[submodule "mustardseed"]
+	path = mustardseed
+	url = git@github.com:dominikschreiber/mustardseed
