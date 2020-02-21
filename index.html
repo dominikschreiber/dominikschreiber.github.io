@@ -1,10 +1,48 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dominik Schreiber</title>
+  <style>.button {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 2rem;
+	padding: 0 1rem;
+	text-decoration: none;
+	border: 0.0625rem solid #132532;
+	border-radius: 0.25rem;
+	color: #132532;
+	background-color: #ebebeb;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: #d2d2d2;
+}
+
+.button:active {
+	border-color: #1a7bbd;
+	color: #fff;
+	background-color: #55ace8;
+}
+
+.button--large {
+	min-height: 3rem;
+	padding: 0.5rem 2rem;
+}
+
+.button--outline {
+	background-color: transparent;
+}
+
+.button__subtitle {
+	font-weight: 600;
+}
+</style>
   <style>.grid {
 	display: grid;
 	width: 100%;
@@ -75,10 +113,19 @@
 	padding-left: 2rem;
 	padding-right: 2rem;
 	box-shadow: 0 0 0.125rem #0003, 0 0 4rem #0001;
+	box-sizing: border-box;
 }
 
 .pageheader img {
 	max-height: 4rem;
+}
+
+.pageheader a {
+	text-decoration: none;
+}
+
+.pageheader * + * {
+	margin-left: 1rem;
 }
 
 .pageheader--sectionaligned {
@@ -97,6 +144,10 @@
 	.pageheader {
 		padding-left: 4rem;
 		padding-right: 4rem;
+	}
+
+	.pageheader * + * {
+		margin-left: 2rem;
 	}
 
 	.pageheader--sectionaligned {
@@ -178,6 +229,52 @@
 	border-color: #1a7bbd;
 }
 </style>
+  <style>.text h1 {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.text h2 {
+	font-size: 1.618rem;
+	font-weight: bold;
+}
+
+.text h3 {
+	font-size: 1.618rem;
+	color: #666;
+	font-weight: bold;
+}
+
+.text p,
+.text ul,
+.text ol,
+.text blockquote {
+	width: 30rem;
+	line-height: 1.4;
+	text-align: justify;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+	box-sizing: border-box;
+}
+
+.text blockquote {
+	margin-top: 0;
+	padding: .5rem 0 .5rem 1rem;
+	color: #456;
+	background-image: linear-gradient(0deg, #456 0, #456 100%);
+	background-position: left;
+	background-repeat: repeat-y;
+	background-size: .125rem;
+}
+
+.text blockquote * {
+	max-width: 100%;
+}
+
+.text blockquote :last-child {
+	margin-bottom: 0;
+}</style>
   <style>.view {
 	display: none;
 	padding-top: 6rem;
@@ -191,34 +288,688 @@
 }
 </style>
   <style>
+  a {
+    color: #123;
+  }
+  a:hover {
+    color: #456;
+  }
   .pageheader img {
     border-radius: .125rem;
-    box-shadow:  0 0 0 .125rem white, 0 0 0 .25rem black;
+    box-shadow:  0 0 0 .125rem white, 0 0 0 .25rem #123;
+  }
+  .pageheader img:hover {
+    box-shadow: 0 0 0 .125rem white, 0 0 0 .25rem #456;
   }
   p, ul { margin-top: 0 }
-  #home { align-items: flex-start; }
+  html[lang="en"] [href^="#!/de/"],
+  html[lang="en"] [id^="#!/de/"],
+  html[lang="de"] [href^="#!/en/"],
+  html[lang="de"] [id^="#!/en/"] {
+    display: none;
+  }
   </style>
 </head>
 
 <body class="page">
   <header class="pageheader pageheader--sectionaligned">
-    <a href="#!/home"><img src="dominik.jpg"></a>
+    <a id="pageheader_homelink" href="#!/en/home"><img src="dominik.jpg"></a>
+    <a href="#!/de/predigt">Predigten</a>
   </header>
-  <section class="view" id="!/home" data-title="Home">
-    <article id="home" class="section">
+  <!-- #!/en/home -->
+  <section class="view" id="!/en/home" data-title="Home">
+    <article class="section section--home text">
       <h1>Dominik Schreiber</h1>
-      <p class="text">Dominik is the software architect of Unified Rendering, a
-        mature web-based UI-framework at <a href="https://sap.com">SAP</a>. He's
-        a husband, dad of two, well-versed pianist/bassist, and christ follower
-        in the leadership team of <a href="https://efg-ludwigshafen.de">EFG
-        Ludwigshafen</a>.
-      <p class="text">Find Dominik on<ul>
-        <li class="text"><a href="https://github.com/dominikschreiber">GitHub</a></li>
-        <li class="text"><a href="https://twitter.com/domischreib">Twitter</a></li>
-        <li class="text"><a href="https://stackoverflow.com/users/1168892">Stack Overflow</a></li>
-      </ul>
+      <p>Dominik is the software architect of Unified Rendering, a mature web-based UI-framework at <a href="https://sap.com">SAP</a>. He's a husband, dad of two, well-versed pianist/bassist, and christ follower in the leadership team of <a href="https://efg-ludwigshafen.de">EFG Ludwigshafen</a>.</p>
+      <p>Find Dominik on<ul>
+        <li><a href="https://github.com/dominikschreiber">GitHub</a></li>
+        <li><a href="https://twitter.com/domischreib">Twitter</a></li>
+        <li><a href="https://stackoverflow.com/users/1168892">Stack Overflow</a></li>
+      </ul></p>
     </article>
   </section>
+  <!-- #!/de/home -->
+  <section class="view" id="!/de/home" data-title="Home">
+    <article class="section section--home text">
+      <h1>Dominik Schreiber</h1>
+      <p>Dominik ist der Software Architekt von Unified Rendering, einem breit verwendeten, web-basierten UI-Framework  von <a href="https://sap.com">SAP</a>. Er ist Ehemann, Vater zweier Kinder, freudiger Pianist/Bassist, und Christ  im Leitungs-Team der <a href="https://efg-ludwigshafen.de">EFG Ludwigshafen</a>.</p>
+      <p>Dominik ist auf<ul>
+        <li><a href="https://github.com/dominikschreiber">GitHub</a></li>
+        <li><a href="https://twitter.com/domischreib">Twitter</a></li>
+        <li><a href="https://stackoverflow.com/users/1168892">Stack Overflow</a></li>
+      </ul></p>
+    </article>
+  </section>
+  <!-- #!/de/predigt -->
+  <section class="view" id="!/de/predigt" data-title="Predigten">
+    <article class="section text">
+      <h1>Predigten</h1>
+      <h2>Stell dich deinen Emotionen</h2>
+      <p style="font-style: italic">Predigt vom 16.2.20 in der EFG Ludwigshafen</p>
+      <p>Mein Anliegen heute ist, dir eine Sache besonders deutlich zu machen: der große Gott, der Allmächtige, der liebende Vater möchte dir in schweren Emotionen in einer Weise begegnen, die sonst nicht greifbar wäre. Deshalb kannst du dich, gemeinsam mit ihm, auch solchen Emotionen stellen, anstatt sie unter den Tisch zu kehren. Gott möchte dich in Emotionen begleiten, du darfst an seiner Hand daran wachsen.</p>
+      <p><a href="#!/de/predigt/2020-02-16_Stell-dich-deinen-Emotionen">Mehr lesen…</a></p>
+
+      <h2>Wenn Jesus kommt</h2>
+      <p style="font-style: italic">Predigt vom 24.12.19 in der EFG Ludwigshafen</p>
+      <p>Heute ist <em>Heilig Abend</em>.</p>
+      <ul>
+        <li>Der Abend vor Weihnachten.</li>
+        <li>Der Abend, an dem die Familien zusammen kommen.</li>
+        <li>Der Abend, an dem der Vorweihnachtsstress endlich vorbei ist.</li>
+        <li>Der Abend, an dem es endlich die Geschenke gibt.</li>
+      </ul>
+      <p>Ich will dich heute dahin mitnehmen, was Weihnachten eigentlich ist, dass diese Dinge nur eine Randerscheinung des größten Ereignisses der Menschheitsgeschichte sind.</p>
+      <p><a href="#!/de/predigt/2019-12-24_Wenn-Jesus-kommt">Mehr lesen…</a></p>
+
+      <h2>Wer auf Jesus wartet</h2>
+      <p style="font-style: italic">Predigt vom 22.12.19 in der EFG Ludwigshafen</p>
+      <p>Ich möchte heute mit euch</p>
+      <ul>
+        <li>von Simeon, dem alten Mann, der in Jesus den lange ersehnten Retter erkennt, Warten lernen.</li>
+        <li>Von Maria und Joseph werden wir lernen, uns Gottes Wirken unterzuordnen. Und</li>
+        <li>von der Prophetie, die Simeon über Jesus ausspricht, wollen wir mehr darüber lernen, wer Jesus ist, und was in dieser Zeit passiert ist – und heute passiert.</li>
+      </ul>
+      <p><a href="#!/de/predigt/2019-12-22_Wer-auf-Jesus-wartet">Mehr lesen…</a></p>
+
+      <h2>Ältesten-/Diakonenamt und Einflussname der Urgemeinde</h2>
+      <p style="font-style: italic">Bibelarbeit vom 3.12.19 für die Gemeindeleitungssitzung der EFG Ludwigshafen</p>
+      <p>Zwei der Hausaufgaben-Fragen von Jürgen haben eher den Charakter einer Bibelarbeit: “Wie hat christliche Gemeinde früher Einfluss auf die Menschen gehabt?” und “Aufgaben und Verantwortung von Ältesten und Diakonen”. Diesen beiden Fragen möchte ich mich mit der heutigen Andacht widmen. Später werden wir gemeinsam auf Jürgens Fragen zur Bestandsaufnahme und zur Vision eingehen.</p>
+      <p>In einer Viertelstunde kann ich die Fragen definitiv nicht umfassend beantworten. Aber ich hoffe ich kann einen Eindruck von der damaligen Zeit, den damaligen Gegebenheiten und den daraus für uns folgenden Anregungen schaffen.</p>
+      <p><a href="#!/de/predigt/2019-12-03_Altesten-Diakonenamt-und-Einflussname-der-Urgemeinde">Mehr lesen…</a></p>
+      
+      <h2>Gebet in göttlicher Autorität</h2>
+      <p>Predigt vom 29.9.19 in der EFG Ludwigshafen</p>
+      <p>Ich möchte heute mit euch herleiten, dass wir durch Jesus Christus eine neue Schöpfung sind, die endlich der ursprünglichen Bestimmung der Menschheit &ndash; göttliche Autorität über die Schöpfung ausüben &ndash; nachkommen kann. Ich möchte euch zeigen, wie diese Erkenntnis unser Leben, und insbesondere unser Gebetsleben verändert: wir sind nicht länger Bittsteller, bleiben nicht in einer Position des Bittens stecken, sondern sind mit göttlicher Autorität ausgestattet, seinen Willen zu erkennen, ihn schöpferisch auszusprechen, und in seiner Autorität auszuüben. Und wir beten, bis wir seinen Willen Wirklichkeit werden sehen.</p>
+      <p><a href="#!/de/predigt/2019-09-29_Gebet-in-gottlicher-Autoritat">Mehr lesen…</a></p>
+    </article>
+  </section>
+  <!-- #!/de/predigt/2020-02-16_Stell-dich-deinen-Emotionen -->
+  <section class="view" id="!/de/predigt/2020-02-16_Stell-dich-deinen-Emotionen" data-title="Stell dich deinen Emotionen">
+    <article class="section text">
+      <h1>Stell dich deinen Emotionen</h1>
+      <p style="font-style: italic">Predigt vom 16.2.20 in der EFG Ludwigshafen</p>
+      <p style="font-style: italic">Anhören auf <a href="https://efg-ludwigshafen.de/#!/sermon/2020-02-16_Dominik-Schreiber_Stell-dich-deinen-Emotionen_jesusfolger_3.mp3">efg-ludwigshafen.de</a></p>
+
+      <p>Mein Anliegen heute ist, dir eine Sache besonders deutlich zu machen: der große Gott, der Allmächtige, der liebende Vater möchte dir in schweren Emotionen in einer Weise begegnen, die sonst nicht greifbar wäre. Deshalb kannst du dich, gemeinsam mit ihm, auch solchen Emotionen stellen, anstatt sie unter den Tisch zu kehren. Gott möchte dich in Emotionen begleiten, du darfst an seiner Hand daran wachsen.</p>
+      
+      <h2>Rückblick</h2>
+      <p>Eine kurze Einordnung, wie wir genau heute auf dieses Thema zu sprechen kommen:</p>
+      <p>Wir sind mitten drin in der Predigtreihe “#jesusfolger”. Gerade haben wir uns für zwei tolle Predigten über “Dankbarkeit” und die Frage “Warum bin ich gerne Christ?” aus der Predigtreihe ausgeklinkt, aber jetzt tauchen wir mit zwei weiteren Predigten zum Thema Leben mit Jesus, Jüngerschaft, wieder voll ein.</p>
+      
+      <h3>SEIN Jünger sein</h3>
+      <p>Begonnen haben wir mit der Predigt “SEIN Jünger sein”, in der Thomas Weber der Frage nachgegangen ist, was eigentlich ein Jünger ist. Sein Fazit war, dass Jünger Jesu zu sein heißt, Christ zu sein. Daraus folgten fünf Beobachtungen:</p>
+      <ul>
+        <li>Ein Christ zu sein heißt: Christus zu vertrauen.</li>
+        <li>Ein Christ zu sein heißt: auf Christus zu hören.</li>
+        <li>Ein Christ zu sein heißt: von Christus zu lernen.</li>
+        <li>Ein Christ zu sein heißt: Christus zu gehorchen.</li>
+        <li>Ein Christ zu sein heißt demnach: ein Jünger Christi zu sein.</li>
+      </ul>
+
+      <h3>Der Jünger und sein Meister</h3>
+      <p>Darauf aufbauend dachte Hans-Erhard Wilms unter dem Titel “Der Jünger und sein Meister” mit uns über die Beziehung nach, die ein Christ mit Jesus, seinem Meister, lebt. Diese Beziehung ist von Jesus geprägt: Er verzichtet dreifach:</p>
+      <ul>
+        <li>auf seine Position als Sohn Gottes,</li>
+        <li>auf seine Privilegien,</li>
+        <li>auf seni Ansehen.</li>
+      </ul>
+      <p>Durch ihn können und sollen wir ihn widerspiegeln. Nachfolge Jesu geht nicht ohne Selbstverleugnung, weil auch Jesus sich selbst verleugnet hat. Dabei war Jesus frei von Empfindlichkeiten wie Eifersucht und Neid, und er spricht uns die Einladung aus, Bitterkeit durch Gnade zu überwinden.</p>
+      <p>Soweit als ganz kurzen Rückblick. Wenn du eine dieser Predigten verpasst hast lege ich dir unsere Homepage <a href="https://efg-ludwigshafen.de">www.efg-ludwigshafen.de</a> sehr ans Herz: dort kannst du die Predigten nachhören.</p>
+
+      <h2>Motivation</h2>
+      <p>Nun zu heute: “Stell dich deinen Emotionen” ist die Aufforderung, einen großen Teil deines Lebens nicht auszuklammern und zu unterdrücken, sondern Gott gerade dort zu begegnen, wo du selbst dich nur ungern aufhältst: in schwer auszuhaltenden Gefühlen und Emotionen, die du nur allzu leicht unterdrückst. Das Leben eines Jüngers, eines Jesusfolgers, blüht gerade dann auf, wenn er allen Bereichen, auch den unangenehmen, Seite an Seite mit Jesus Christus begegnet.</p>
+
+      <h3>Risikogruppe: Deutsch</h3>
+      <p>Wir Deutsche sind besonders gut darin, keine Emotionen zuzulassen. Außer beim Fußball: da darf gejubelt, gesungen, geschrien, gefeiert und geweint werden.</p>
+      <p>Aber überall sonst haben wir einen weltweit bekannten Ruf: wir denken rational, entscheiden niemals aus dem Bauch heraus, sind pünktlich und genau. Deswegen bauen wir Autos, Kraftwerke und Brücken in der ganzen Welt. Feiern und Trauern überlassen wir lieber den anderen, wir ruhen ganz in uns selbst.</p>
+      
+      <h3>Risikogruppe: Männer</h3>
+      <p>Wir Männer sind da doppelt gut drin:</p>
+      <blockquote>
+        <p>Schatz, wie gehts dir? <em>Hm.</em> Wie war dein Tag? <em>Hm.</em> Also mir haben sie heute im Büro so übel mitgespielt, da geh ich keinen Tag mehr hin. <em>Hm.</em> Schatz, sag doch auch mal was. <em>Hm.</em> Magst n Bier? <em>Hmmm.</em></p>
+      </blockquote>
+      <p>Wer kennt nicht solche Dialoge? Als Mann hat man’s auch wirklich nicht leicht. Als wär’s nicht schwer genug, drei gerade Sätze auf der Arbeit raus zu bringen, will die Frau dann auch noch reden. Über Gefühle. Kenn ick: Hunger, Durst, Müde. Alles andere ist anstrengend.</p>
+      <p>Natürlich überzeichne ich hier, und sicher geht es vielen Frauen ähnlich, aber macht es das besser?</p>
+
+      <h3>Risikogruppe: ich</h3>
+      <p>Dass ich hier vorne stehe und zum Thema Emotionen predige heißt sicher nicht, dass ich dir in irgen- detwas auch nur einen einzigen Schritt voraus wäre. Der Umgang mit Emotionen, wie Nachfolge Jesu generell, ist ein lebenslanger Lernprozess, und wenn jemand den Eindruck macht er hätte hier die Weisheit mit Löffeln gefressen, rate ich dir, besonders detailiert zu prüfen.</p>
+      <p>Ich bin weit davon entfernt, meine Emotionen angemessen auszudrücken, ihnen den passenden Platz einzuräumen, sie zuzulassen ohne mich von ihnen leiten zu lassen.</p>
+      <p>Aber ich weiß und habe erfahren, dass Jesus mich mit meinen Emotionen nicht allein lässt, und darüber möchte ich heute mit dir reden. Ich möchte dir zwei Personen aus der Bibel vorstellen: Petrus, einen der engsten Jünger Jesu, und Elia, einen der größten Propheten aus dem alten Testament.</p>
+      <ul>
+        <li>Beide sind große Vorbilder im Glauben,</li>
+        <li>beide neigten zu starken Emotionen, und</li>
+        <li>mit beiden geht Gott über viele Jahre einen Weg, indem er ihnen auf besondere Weise in ihren Emotionen  begegnet, und auf dem sie immer mehr gefestigt und in Gottes Liebe verwurzelt werden.</li>
+      </ul>
+      <p>Jesus, der sich über alles nach Nähe mit dir sehnt, möchte dich, wie die beiden, mitnehmen auf den Weg, deine Emotionen kennen zu lernen, und ihn darin zu erleben.</p>
+      <p>Am Ende werde ich Zettel mit den wichtigsten Bibelstellen der Predigt durch die Reihen gehen lassen. An vielen Stellen schildere ich nur kurz eine Begebenheit und lade dich herzlich ein, zu Hause noch mal in den Stellen zu schmökern: die Abschnitte davor und danach, oder Parallelstellen und Kommentare, die du vielleicht in deiner Bibel stehen hast. Vielleicht wollt ihr auch in eurem nächsten Hauskreis über Petrus und Elia nachdenken, dann habt ihr hier einen guten Ausgangspunkt.</p>
+
+      <h2>Petrus: vom kurzentschlossenen Simon zum unverrückbaren Fels</h2>
+      <p>Es fällt schwer, die Berichte vom Wirken Jesu zu lesen, ohne immer wieder auf eine herausragende Person der Kirchengeschichte aufmerksam gemacht zu werden: Schim’on bar Jona (MT 16,17), einen Fischer am See Genezareth. Jesus nennt ihn später den “Fels, auf den er seine Gemeinde bauen wird” (MT 16,18), hebräisch “Kephas”, griechisch “Petrus”.</p>
+      <p>Mit ihm geschehen die größten “Aha-Momente” der Evangelien:</p>
+      <ul>
+        <li>Nachdem die Leute Jesus für alle möglichen Propheten halten ist es Petrus, der ihn als Messias, als den im alten Testament versprochenen Retter, erkennt und bekennt (MK 8,27-29).</li>
+        <li>Im Sturm, als Jesus nach einer durchbeteten Nacht über das Wasser zum Boot der Jünger kommt, ist es Petrus, der bittet, aufs Wasser gerufen zu werden, und ohne Zögern aus dem Boot steigt (MT 14,25-29).</li>
+        <li>Als Jesus auf einem hohen Berg im Beisein der großen Propheten des alten Testaments, Elia und Mose, von Gott ein weiteres Mal als sein geliebter Sohn bestätigt wird, ist es Petrus, der seiner Überwältigung Worte verschafft und für Jesus, Elia und Mose drei Hütten bauen will (MT 17,1-8).</li>
+      </ul>
+      <p>Wenn man eins sagen kann, dann, dass Petrus sein Herz auf der Zunge trägt und keine Sekunde zögert, seinen Emotionen Worte zu verschaffen, und nach ihnen zu handeln.</p>
+      <p>Mit ihm geschehen aber auch die größten Tiefschläge der Evangelien, aus genau dem gleichen Grund:</p>
+      <ul>
+        <li>Jesus erklärt klar und offen, dass er sterben und auferstehen muss, und es ist Petrus, der ihn zur Seite nimmt, und ihn mit aller Macht davon abbringen will – worauf Jesus ihm mit dem unglaublichen Ausspruch “Geh weg von mir, Satan!” begegnet (MK 8,31-33).</li>
+        <li>Petrus, der nach dem letzten Abendmahl noch inbrünstig verkündet hat, er werde Jesus nicht verraten, auch wenn er sterben müsste (MT 26,35), verrät Jesus, mit Ansage, im Hof des Hohenpriesters, gleich dreimal (MK 14,66-72).</li>
+        <li>Als Jesus im Garten Getsemane, Blut und Wasser schwitzend, mit dem Vater um seinen Kreuzestod ringt, und nur Petrus, Jakobus und Johannes ihn begleiten – eben jene drei die ihn zuvor mit Mose und Elia auf dem Berg erlebt haben – schlafen die drei ein, statt zu wachen und zu beten, und es ist Petrus, der von Jesus deswegen zur Rede gestellt wird (MT 26,37-44).</li>
+        <li>Dann erscheint Judas mit der Tempelwache, und es ist Petrus, der ein Schwert dabei hat, Malchus, dem Diener des Hohenpriesters, das rechte Ohr abschlägt, und dafür von Jesus scharf zurechtgewiesen wird (JH 18,10-11).</li>
+      </ul>
+      <p>Auch hier ist Petrus langsam zum Hören, dafür schnell zum Reden und schnell zum Zorn (Jak 1,19 abgewandelt).</p>
+      <p>Ist es nicht interessant, dass Jesus aus allen Menschen gerade Schim’on bar Jona, einen emotional aufgeladenen, ungebildeten Fischer auswählt, um seine Gemeinde auf ihn zu bauen? Erinner dich daran, wenn du das nächste Mal schlecht von dir denkst: Jesus liebt nicht Perfektion, er liebt Hingabe. Du musst vor ihm nicht perfekt sein, aber du musst dich ihm hingeben. Das heißt es, Jünger zu sein: von ganzem Herzen, mit jeder Faser deines Körpers, auf Jesus ausgerichtet sein. Die Frucht des Heiligen Geistes (Gal 5,22-23), die guten Eigenschaften, die du an dir vielleicht vermisst, kommt dann von ganz alleine (JH 15,5).</p>
+      <p>Und es ist interessant, dass Jesus mit Petrus nicht beim emotional aufgeladenen Fischer stehen bleibt, sondern ihn liebevoll zu dem Fels formt, auf den er seine Gemeinde bauen will. Die dreifache Verleugnung im Hof des Hohenpriesters greift Jesus in seiner letzten Begegnung mit Petrus und den Jüngern auf, indem er Petrus dreimal nach seiner Liebe fragt (JH 21,15-17):</p>
+      <blockquote>
+        <p>Als sie gegessen hatten, sagte Jesus zu Simon Petrus: “Simon, Sohn des Johannes, liebst du mich mehr als irgendein anderer hier?” Petrus gab ihm zur Antwort: “Ja, Herr, du weißt, dass ich dich lieb habe.” Darauf sagte Jesus zu ihm: “Sorge für meine Lämmer!” Jesus fragte ihn ein zweites Mal: “Simon, Sohn des Johannes, liebst du mich?” Petrus antwortete: “Ja, Herr, du weißt, dass ich dich lieb habe.” Da sagte Jesus zu ihm: “Hüte meine Schafe!” Jesus fragte ihn ein drittes Mal: “Simon, Sohn des Johannes, hast du mich lieb?” Petrus wurde traurig, weil Jesus ihn nun schon zum dritten Mal fragte: “Hast du mich lieb?” – “Herr, du weißt alles”, erwiderte er. “Du weißt, dass ich dich lieb habe.” Darauf sagte Jesus zu ihm: “Sorge für meine Schafe!” (JH 21,15-17)</p>
+      </blockquote>
+      <p>Diese Stelle ist einer eigenen Predigt würdig. Ich möchte heute eins herausstellen: Petrus hatte schon mit seinem Leben als Jünger abgeschlossen, und wollte wieder Fischen gehen (V.3).</p>
+      <p>Jesus holt ihn ohne Verurteilungen in seinem Schmerz über sein Versagen und in seinem Selbstvorwürfen ab, und baut stückweise Petrus’ Vertrauen in sich, seinen Auftrag und die ihm verliehene Autorität wieder auf. Und es geht direkt weiter:</p>
+      <blockquote>
+        <p>“Ich möchte dir etwas sagen: Als du noch jung warst, hast du dir den Gürtel selbst umgebunden und bist gegangen, wohin du wolltest. Doch wenn du einmal alt bist, wirst du deine Hände ausstrecken, und ein anderer wird dir den Gürtel umbinden und dich dahin führen, wo du nicht hingehen willst.” Jesus deutete damit an, auf welche Weise Petrus sterben würde und dass durch seinen Tod die Herrlichkeit Gottes offenbart würde. Er schloss, indem er sagte: “Folge mir nach!” (V.18-19)</p>
+      </blockquote>
+      <p>Im ersten Moment klingt das sehr hart: “Ein anderer wird dir den Gürtel umbinden und dich dahin führen, wo du nicht hingehen willst.” Aber ich glaube gerade damit tut Jesus Petrus den größten seelsorgerlichen Dienst: Petrus wird die Chance bekommen, die Schmach, Jesus verleugnet zu haben, den Schwanz eingezogen zu haben, nicht für seinen Freund dagewesen zu sein, abzuwischen. So hart das klingen mag, ist es für Petrus die größte Erlösung, nicht auf ewig “der Versager” zu sein.</p>
+      <p>Dann endet alles, wie es angefangen hat: “Folge mir nach!” (MT 4,18-20) fordert Jesus Petrus auf. Das ist nach allen Hochs und Tiefs das, was bleibt: ein Leben in Beziehung mit Jesus, in dem Petrus seinen Meister Dinge tun sieht und sie dann auch tut, in dem Petrus so viel Zeit mit seinem Meister verbringt, dass er wird wie er.</p>
+      <p>Das ist auch Jesu Aufforderung an dich: “Folge mir nach!” Nichts, was du getan hast, nichts, was du nicht getan hast, nichts was man dir angetan hat, nichts, was man dir nicht getan hat, könnte größer sein als die Liebe Jesu zu dir. Wenn Jesus so liebevoll und einfühlsam mit diesem Petrus umgeht, der ihn verleugnet, missachtet und abgeschrieben hat, will er erst recht liebevoll und einfühlsam mit deiner Situation umgehen. Du sollst nicht darin bleiben, das war auch nicht Jesu Ziel mit Petrus, sondern du darfst aus allem ausbrechen, was dich an Taten, Überzeugungen und Gedanken belastet, und darfst ganz frei Jesus, deinem liebenden Meister nachfolgen.</p>
+      <p>Bei Petrus endet es nicht mit dem “Folge mir nach!”. Petrus wird tatsächlich der Fels, auf den die Gemeinde gebaut ist:</p>
+      <ul>
+        <li>Ihm gelingt die Einordnung des Wirkens des Heiligen Geistes beim Pfingstereignis (Apg 2,14,21).</li>
+        <li>Auf wen sein Schatten fällt, der wird geheilt (Apg 5,15-16).</li>
+        <li>Er bekommt gezeigt, dass Jesu Gute Botschaft auch Nichtjuden gilt, erlebt, wie die ersten Nichtjuden Jesus aufnehmen und den Heiligen Geist bekommen, und besteht mit dem Bericht davon gegen alle Kritik der Judenchristen. (Apg 10,1-11,18)</li>
+        <li>Schenkt man den außerbiblischen Schriften der Bischöfe Clemens von Rom und Dionysius von Korinth Glauben, hat Petrus zuletzt erlebt, was Jesus ihm vorhergesagt hat: den Märtyrertod zur Zeit des Kaisers Nero, der einer der größten Christenverfolger war. Der Legende nach starb Petrus ebenfalls am Kreuz, jedoch auf eigenen Wunsch hin mit dem Kopf nach unten (Joachim Gnilka: Petrus und Rom, 2002, S.111, Anmerkung 6)</li>
+      </ul>
+      <p>Ich wünsche dir sicher nicht den Märtyrertod – wobei: vielleicht doch? – aber ich will dir Mut machen: auch bei dir wird es nicht bei der Aufforderung “Folge mir nach!” bleiben. Auch du wirst erleben, wie Jesus liebevoll in dein Leben eingreift, es auf das Reich Gottes ausrichtet, und die Frucht des Heiligen Geistes,</p>
+      <ul>
+        <li>Liebe,</li>
+        <li>Freude,</li>
+        <li>Friede,</li>
+        <li>Geduld,</li>
+        <li>Freundlichkeit,</li>
+        <li>Güte,</li>
+        <li>Treue,</li>
+        <li>Rücksichtnahme,</li>
+        <li>Selbstbeherrschung,</li>
+      </ul>
+      <p>ganz nebenbei Einzug in dein Leben hält, weil du Beziehung mit Jesus Christus lebst.</p>
+
+      <h2>Elia: Himmelhoch jauchzend – zu Tode betrübt</h2>
+      <p>Ich will dir noch eine zweite Persönlichkeit vorstellen: Elia, aus Tischbe in Gilead. <em>Den</em> Propheten des Alten Testaments. Ich möchte seine Geschichte erzählen, und ermutige dich sehr, dir heute Nachmittag einen Kaffee zu machen, dir eine Bibel zu schnappen, dich in einen Sessel fallen zu lassen, und die drei Kapitel zu lesen, die ich jetzt nur nacherzähle. Wenn du schon dabei bist, lies noch mehr, denn da ist es gerade richtig spannend. Und Elias Schüler Elischa, der dann in den nächsten Kapitel mit auftritt, ist meine persönliche Lieblingsperson in der Bibel, es ist einfach spannend, zu sehen was in dieser Zeit passiert ist. Besser als jeder Krimi. Ich werde in 1. Könige 17 anfangen und die Moral von der Geschicht aus Kapitel 19 ziehen. Das ist für dich zum Schmökern ein guter Start.</p>
+      <p>Eine kurze Beschreibung des Drumherum: die Israeliten sind vor 600 Jahren mit Mose aus Ägypten ausgezogen, hatten von Gott eingesetzte Anführer, die Richter, und erbeten sich dann von Gott einen König. Saul, David und Salomo herrschen als Könige über das gesamte Reich, dann stürzt Israel in einen Bürgerkrieg und teilt sich in das Nordreich Israel und das Südreich Juda. Die Könige von Nord- und Südreich übertreffen sich bis auf wenige Ausnahmen darin, von Gott abzufallen und die Kulte der umliegenden Völker zu übernehmen. Gott schickt immer wieder Propheten, um sein Wort weiterzugeben. (siehe https://biblehub.com/timeline/)</p>
+      <p>Gerade ist Ahab König über das Nordreich Israel, und er treibt es schlimmer als alle Könige vor ihm. Er wird nur übertroffen von seiner Frau, Isebel, die mit ihm einen Kult der grausamsten Götzenanbetung in Israel etabliert (1.Kön 16,29-34).</p>
+      <p>Elia, der Prophet Gottes, prophezeiht eine mehrjährige Dürre, die prompt eintrifft. Bei uns ist es im Sommer auch mal heiß, aber eine Dürre, über mehrere Jahre, war und ist für ein ganzes Volk lebensbedrohlich: die Ernte geht ein, Essen wird knapp, Tiere und Menschen verdursten, das Leben kommt zum Erliegen. In dieser Zeit wird Elia von Gott versorgt: erst durch Raben, die ihm Brot und Fleisch bringen (1.Kön 17,1-6), später durch eine Witwe und ihren Sohn mit einem durch Gott nie leer werdenden Topf Mehl und Krug Öl, bei denen Elia unterkommt (V.8-16). Der Junge stirbt, und auf Elias Gebet hin erweckt Gott ihn wieder zum Leben (V.17-23).</p>
+      <p>Im dritten Jahr der Dürre schickt Gott Elia zu Ahab. Isebel hat inzwischen alle Propheten Gottes umbringen lassen, aber Obadja, der gläubige Palastvorsteher, konnte 100 Propheten verstecken und retten. Elia trifft Ahab, hält ihm seinen Götzendienst vor, und lädt das gesamte Volk und die Baalspriester auf den Berg Karmel. Dort soll sich ein für allemal der wahre Gott zeigen: Jahwe oder Baal. Elia tritt allein und furchtlos vor die Menschenmenge, den 450 Propheten des Götzen entgegen (1.Kön 18,1-24).</p>
+      <blockquote>
+        <p>Elia stellte sich vor das Volk und sagte: “Wie lange wollt ihr noch hin- und herschwanken? Wenn der Herr Gott ist, folgt ihm! Wenn aber Baal Gott ist, dann folgt ihm!” Doch das Volk schwieg. Da sagte Elia zu ihnen: “Ich bin als einziger Prophet des Herrn übrig geblieben, Baal dagegen hat 450 Propheten. Holt zwei Stiere. Die Propheten Baals sollen sich einen aussuchen, ihn in Stücke zerschneiden und auf das Holz legen, doch ohne es anzuzünden. Ich werde den anderen Stier vorbereiten und auf das Holz legen, es aber ebenfalls nicht anzünden. Dann ruft ihr den Namen eures Gottes an, und ich werde den Namen des Herrn anrufen. Der Gott, der mit Feuer antwortet, ist der wahre Gott!” Und das Volk antwortete: “Das ist gut.” (V.21-24)</p>
+      </blockquote>
+      <p>Dieses Gottesurteil geht aus, wie es nur ausgehen kann: beim Opfer der Baalspropheten passiert den ganzen Tag nichts. Elia beginnt sogar, die Propheten zu verspotten. Später ruft Elia Gott an, und der antwortet mit Feuer vom Himmel. Damit ist Gott klar als der wahre Gott bezeugt, das Volk wirft sich vor ihm nieder, und Elia lässt alle Baalspropheten töten (V.25-40).</p>
+      <p>Zuletzt bittet Elia Gott um Regen, und nach der dreijährigen Dürre regnet es noch am selben Tag. Elia wird dabei so von der Kraft des Herrn ergriffen, dass er die 30 Kilometer vom Berg Karmel zur Hauptstadt Jesreel schneller läuft als Ahab sie mit dem Wagen fährt (V.41-46).</p>
+      <p>Ich erzähle die ganze Geschichte um eins deutlich zu machen: Elia war <em>der Prophet</em>:</p>
+      <ul>
+        <li>Wenn irgendjemand Gott mächtig hat wirken sehen, dann Elia.</li>
+        <li>Wenn irgendjemand Gottes übernatürliche Versorgung erlebt hat, dann Elia.</li>
+        <li>Wenn sich irgendjemand seiner Berufung sicher sein konnte, dann Elia.</li>
+      </ul>
+      <p>Als Jesus mit Petrus, Jakobus und Johannes auf dem Berg der Verklärung ist, sind mit ihm Mose und … <em>Elia</em> (MT 17,1-8). <em>Elia</em> ist zusammen mit Henoch, einem der Urväter der Menschheitsgeschichte, der einzige Mensch, der ohne zu sterben in den Himmel aufgenommen wurde (2.Kön 2,11, Hebr 11,5).</p>
+      <p>Halte dir das für die nächsten Verse vor Augen:</p>
+      <blockquote>
+        <p>Ahab erzählte Isebel alles, was Elia getan hatte und wie er alle Baalspropheten mit dem Schwert getötet hatte. Daraufhin schickte Isebel einen Boten zu Elia und ließ ihm ausrichten: “Die Götter sollen auch mich töten, wenn ich nicht morgen um diese Zeit das Gleiche mit dir tue, wie du es mit ihnen gemacht hast.” Da bekam Elia Angst und floh um sein Leben. Er ging nach Beerscheba in Juda; dort ließ er seinen Diener zurück. Er aber ging allein eine Tagesstrecke weit in die Wüste. Schließlich sank er unter einem Ginsterstrauch nieder, der dort stand, und wollte nur noch sterben. <em>“Ich habe genug, Herr”, sagte er. “Nimm mein Leben, denn ich bin nicht besser als meine Vorfahren.”</em> Dann legte er sich hin und schlief unter einem Strauch ein. (1.Kön 19,1-5a)</p>
+      </blockquote>
+      <p>Gerade noch in den höchsten Höhen, voller Adrenalin, von Gott getragen, das Volk auf seiner Seite, macht Elia eine Drohung von Isebel, die gerade allen Rückhalt im Volk verloren hat, deren Propheten gerade alle getötet wurden, beinahe depressiv.</p>
+      <p>Kennst du das auch? Gerade noch läuft alles rund, du hast das Leben im Griff, Gott tut große Dinge, ihr seid euch ganz nah. Und dann: ein Schlag, ein Kommentar, ein Gedanke, der sich heimlich einnistet. Das nagt so sehr an dir, dass alles, was gerade noch herausragendes passiert ist, jetzt jede Bedeutung verloren hat, und nur noch dieses falsche Flüstern Raum hat? Ich kenne das.</p>
+      <p>Deswegen sage ich dir und mir: Gott lässt uns in diesen Schlägen nicht allein. Gerade da will er dir und mir nahe kommen. In diesen Situationen geht das in einer Weise, wie es in meinen Höhenflügen nicht möglich wäre. Schau, wie Gott Elia begegnet:</p>
+      <blockquote>
+        <p>Doch plötzlich berührte ihn ein Engel und sagte zu ihm: “Steh auf und iss!” (V.5b)</p>
+      </blockquote>
+      <p>Ich behaupte: wenn wir das machen würden, “Steh auf und iss!”, wären viele Probleme gleich halb so groß. Sowohl im wörtlichen Sinne, denn Aufstehen ist gesund und essen hebt den Blutzuckerspiegel. Aber noch mehr im göttlichen Sinne: “steh auf” aus deinen Gedanken, schieb sie von dir weg, hör auf, schlecht von dir zu denken. Denn wenn du das tust verbündest du dich mit dem Ankläger, dem Teufel, der rund um die Uhr Schlechtes über dich vor Gott vorträgt (Offb 12,10). “Iss” stattdessen die Gedanken Gottes über dich. Halte dir seine Zusagen ständig vor Augen (Ps 119,97), sprich mit ihm wie ein Kind mit seinem Vater spricht (MT 6,9-13), forsche in der Bibel. Er hat gute Gedanken über dich:</p>
+      <blockquote>
+        <p>Denn ich weiß wohl, was ich für Gedanken über euch habe, spricht der HERR: Gedanken des Friedens und nicht des Leides, dass ich euch gebe Zukunft und Hoffnung. (Jer 29,11)</p>
+      </blockquote>
+      <p>Bei Elia bleibt es nicht beim “Steh auf und iss!”. Gott ruft Elia zum Berg Horeb und fragt “Was tust du hier, Elia?”. Elia klagt:</p>
+      <blockquote>
+        <p>Elia antwortete: “Ich habe dem Herrn, Gott, dem Allmächtigen, von ganzem Herzen gedient. Denn die Israeliten haben ihren Bund mit dir gebrochen, deine Altäre niedergerissen und deine Propheten getötet. Ich allein bin übrig geblieben, und jetzt wollen sie auch mich umbringen.” (1.Kön 19,10)</p>
+      </blockquote>
+      <p>Gott hört sich die Klage Elias an, und geht dann selbst an Elia vorbei. Nicht im Sturm, nicht im Erdbeben, nicht im Feuer. Sondern im leisen Säuseln kommt er zu Elia. Und fragt erneut: “Was tust du hier, Elia?” Elia bringt seine Klage erneut vor, und Gott geht auf wundervolle Weise darauf ein: er gibt Elia den klaren Auftrag, in allen Bereichen seine Nachfolge zu regeln.</p>
+      <blockquote>
+        <p>Da sprach der Herr zu ihm: “Geh zurück auf dem Weg, den du gekommen bist, durch die Wüste nach Damaskus. Wenn du dort bist, salbe Hasaël zum König von Aram. Dann salbe Jehu, den Sohn Nimschis, zum König von Israel, und salbe Elisa, den Sohn Schafats aus Abel-Mehola, an deiner Stelle zum Propheten. Wer Hasaël entkommt, den wird Jehu töten, und wer Jehu entkommt, den wird Elisa umbringen! Doch 7.000 Menschen in Israel will ich verschonen: alle, die sich nie vor Baal niedergeworfen und ihn geküsst haben.” (V.15-18)</p>
+      </blockquote>
+      <p>Gott ist sehr klar in seinem Auftrag. Und der deckt alle Bereiche von Elias Leben ab. Mehr noch: er greift Elias “ich bin ja so allein” direkt auf. Gott hat nämlich nicht nur die 100 Propheten in Obadjas Versteck bewahrt, sondern insgesamt 7.000 Menschen, die sich nicht den Götzen zugewendet haben. Von denen hat Elia nichts gewusst. Aber Gott hat ihn niemals allein gelassen.</p>
+      <p>Diese Gottesbegegnung, im leisen Säuseln mit Gott zu reden, hätte Elia niemals gehabt, wenn er nach dem Gottesurteil am Karmel Isebel selbstbewusst ins Gesicht gelacht hätte. Diesen Auftrag, der sein restliches Leben regelt, hätte er nicht bekommen, wenn er vorschnell aufgegeben hätte. Diesen Zuspruch, dass mit ihm 7.000 Israeliten treu bei Gott geblieben sind, hätte Elia nie bekommen, wenn er die schweren Emotionen nicht zugelassen hätte, die nach der Drohung Isebels in ihm aufkamen.</p>
+      <p>Diese Tatsache spreche ich auch dir zu: wenn du dich mit Gott deinen Emotionen stellst anstatt sie zu unterdrücken wirst du Gott in einer intimen und liebevollen Weise kennenlernen, wie es bei Schönwetter nicht möglich wäre. Wenn du Jesus, der selbst alle emotionalen Höhen und Tiefen erlebt hat, in deine Emotionen einlädst, wird er sich deiner annehmen, und dir zum Durchbruch verhelfen.</p>
+      <h2>Du: Zusammenfassung</h2>
+      <p>Lass mich zusammenfassen:</p>
+      <p>Ich tue mich schwer mit Emotionen. Und da schließe ich von mir auf andere, wenigstens auf Männer und Deutsche. Wir lernen eher, Emotionen runterzuschlucken und rational zu handeln.</p>
+      <p>Jesu Umgang mit Petrus zeigt aber etwas anderes: Petrus kurzentschlossenes Handeln, seine vorschnellen Äußerungen, bringen ihn ein ums andere Mal in die höchsten Höhen und tiefsten Tiefen seiner Beziehung mit Jesus. Aber Jesus geht liebevoll auf ihn ein, holt ihn in seinen Emotionen ab und baut ihn so sehr auf, dass er der Fels wird, auf den Jesus seine Gemeinde baut.</p>
+      <p>Alles gipfelt in Jesu Aufforderung “Folge mir nach!”, die ebenso mir und dir gilt: du bist aufgefordert, Jesus nachzufolgen. Und wie bei Petrus wird das nicht ohne Frucht bleiben, sondern die Beziehung mit Jesus wird dich zu ihm hin verändern, du wirst Gott in deinem Leben mächtig wirken sehen, und ganz nebenbei wirst du wie Jesus und die Frucht des Heiligen Geistes wächst in dir.</p>
+      <p>Bei Elia sehen wir, wie der große Prophet, der alles mit Gott erlebt hat, von der Drohung einer machtlosen Götzendienerin so nachhaltig eingeschüchtert ist, dass er sich den Tod wünscht. Und wir sehen, wie Gott ihm in dieser Depression begegnet, ihn voller Liebe annimmt, mächtig an ihm vorbeizieht, und seine Angst schon zuvor siebentausendfach entkräftet hat.</p>
+      <p>Für mich und dich nehme ich daraus mit, Gott in deine Emotionen einzuladen. Er will dir dort in einer Weise begegnen, die bei Schönwetter nicht möglich wäre. Er will dir dort zum Durchbruch verhelfen, und dir zeigen, wie er alles von langer Hand geplant hat – viel besser als du es je für möglich gehalten hättest.</p>
+      <p>Bist du bereit, Gott deine schweren Emotionen hinzulegen? Bist du bereit, Jesus an dir arbeiten zu lassen? Wirst du Jesus nachfolgen?</p>        
+    </article>
+  </section>
+  <!-- #!/de/predigt/2019-12-24_Wenn-Jesus-kommt -->
+  <section class="view" id="!/de/predigt/2019-12-24_Wenn-Jesus-kommt" data-title="Wenn Jesus kommt">
+    <article class="section text">
+      <h1>Wenn Jesus Kommt</h1>
+      <p style="font-style: italic">Predigt vom 24.12.19 in der EFG Ludwigshafen</p>
+      <p style="font-style: italic">Anhören auf <a href="https://efg-ludwigshafen.de/#!/sermon/2019-12-24_Dominik-Schreiber_Wenn-Jesus-kommt.mp3">efg-ludwigshafen.de</a></p>
+
+      <p>Heute ist <em>Heilig Abend</em>.</p>
+      <ul>
+        <li>Der Abend vor Weihnachten.</li>
+        <li>Der Abend, an dem die Familien zusammen kommen.</li>
+        <li>Der Abend, an dem der Vorweihnachtsstress endlich vorbei ist.</li>
+        <li>Der Abend, an dem es endlich die Geschenke gibt.</li>
+      </ul>
+      <p>Ich will dich heute dahin mitnehmen, was Weihnachten eigentlich ist, dass diese Dinge nur eine Randerscheinung des größten Ereignisses der Menschheitsgeschichte sind. Am Ende verstehst du hoffentlich,</p>
+      <ol type="1">
+        <li>dass Weihnachten <em>der größte Hack</em> in der Geschichte der Welt ist,</li>
+        <li>dass Jesus <em>genau für dich</em> in die Welt gekommen ist, und</li>
+        <li>dass welche Freude freigesetzt wird, wenn Jesus in dein Leben kommt.</li>
+      </ol>
+      <h2>Weihnachten: Der große Hack</h2>
+      <p>Wir sagen “euch ist heute der Heiland geboren, welcher ist Christus, der Herr, in der Stadt Davids” (Lk 2,11). Und nach zwei Semestern Theologiestudium oder einem ganzen Leben in der Gegenwart Gottes reicht dieser eine Satz, um zusammenzufassen, was an Weihnachten passiert. Aber da steckt eine ganze Bibel an Hintergrundwissen drin. Lass mich deshalb bei Adam und Eva beginnen – oder eigentlich: noch davor.</p>
+      <p>Bei Gott denken wir schnell an den “lieben Gott”, den alten Mann auf der Wolke, der immer mal tatterig hinter ein paar Sonnenstrahlen hervorlinst und die Welt sich vor sich hin drehen lässt. Wir könnten nicht falscher liegen. Ja, Gott <em>ist die Liebe</em>, das ist ein ihn stark definierender Charakterzug. Aber Gott <em>ist auch heilig</em>. Vor ihm können gewisse Dinge nicht bestehen, sie werden hinweggefegt, wenn sie vor ihn kommen. Dinge, wie Betrug, Fluch, Gehässigkeit, Blutvergießen, oder Stolz (Rö 2).</p>
+      <p>Es war Gottes Plan von Anfang an, dass jeder Mensch – du und ich – mit ihm Gemeinschaft haben. So hat Gott uns geschaffen, und er hat gesagt “es ist sehr gut” (1.Mo 1,31). Aber mit Adam und Eva, und ihrer Entscheidung, Gottes einzige Regel “Du darfst essen von allen Bäumen im Garten, aber von dem Baum der Erkenntnis des Guten und Bösen sollst du nicht essen;” (1.Mo 2,16b-17a) zu durchbrechen, ist die Sünde in das Leben jedes Menschen gekommen – etwas, das vor Gott nicht bestehen kann, und durch das wir vor ihm hinweggefegt würden.</p>
+      <p>Aus uns selbst heraus können wir diesen Zyklus nicht durchbrechen. Es braucht einen Mensch,</p>
+      <ul>
+        <li>der nicht von Adam und Eva abstammt,</li>
+        <li>der alle Versuchungen erlebt, die ein Mensch erleben kann,</li>
+        <li>der in allem standhaft bleibt, nicht eine einzige Sache begeht, die vor Gott nicht bestehen kann,</li>
+        <li>der sich dann opfert, um die Schuld zu sühnen, die jeder Mensch seit Adam und Eva mit sich trägt.</li>
+      </ul>
+      <p>Erst dann können wir, wenn wir dieses Opfer für uns in Anspruch nehmen, vor Gott treten, ohne dass wir mit aller Sünde an uns vergehen, weil für die Sünde ja bezahlt worden ist, und wir wirklich davon befreit wurden.</p>
+      <p>Gott sei Dank (!) sehnt er sich mehr nach uns als wir nach ihm. Denn Gott hatte einen Plan, wie genau dieser Hack durchgezogen werden könnte: indem sein einziger Sohn, durch den Heiligen Geist mit einer Jungfrau gezeugt, als Mensch zur Welt kommt, all diesen Anforderungen genügt, und so ein für alle Mal den ewigen Tod besiegt – einen Weg schafft, wie wir wirklich gerecht vor Gott treten können.</p>
+      <p>Mit Weihnachten ging der Plan in seine heiße Phase: Jesus ist dieser einzige Sohn, ist dieser einzige Weg aus dem Zyklus, in dem wir seit Adam und Eva stecken. <em>Deswegen</em> nennen wir ihn Heiland, Christus, Retter oder Messias. Heute feiern wir Gott dafür, dass er diesen Plan umgesetzt hat.</p>
+      <h2>Jesus: kommt in dein Leben</h2>
+      <p>Ihr habt den Herbergsvater in dem Video eben gesehen. Wie der arme Mann einfach nur schlafen wollte, und wieder und wieder und wieder geweckt wurde. Mit jedem Mal wütender lässt er die Dinge über sich ergehen. Bis er dann loszieht, um dem nachtschwärmerischen Treiben in seinem Stall ein für alle Mal ein Ende zu bereiten.</p>
+      <p>Und dann geschieht etwas wunderbares: der Mann hat eine Begegnung mit Jesus. Dem Jesus, den wir gerade als Retter aus dem ewigen Sünden-Zyklus kennen gelernt haben. Der liegt da, frisch geboren, in einer Krippe in einem Stall – heute vielleicht in einem verbeulten Benzintank auf einem Schrottplatz, der notdürftig mit zerfetzten Autositz-Teilen gepolstert ist. Um ihn herum stehen</p>
+      <ul>
+        <li>seine Eltern, ein unverheiratetes Paar, bei dem nach geltendem Recht wenigstens der Mutter die Todesstrafe droht (5.Mo 22,21),</li>
+        <li>die Hirten – heute im besten Fall Asylanten auf der Abschiebungs-Liste, und</li>
+        <li>die Weisen – heute vielleicht eigenbrötlerische Wissenschaftler, die Prophezeihungen auf alten Steintafeln von fremden Kulturen entziffert haben, und jetzt glauben, dass nach dem Maya-Kalender am 21.12.2012 die Welt untergeht.</li>
+      </ul>
+      <p>Aber inmitten dieser eigentümlichen Umstände verändert die Begegnung mit dem Sohn Gottes alles:</p>
+      <ul>
+        <li>Die Wut weicht göttlicher Liebe,</li>
+        <li>die Müdigkeit weicht göttlicher Kraft,</li>
+        <li>die lumpigen Umstände weichen göttlichem Glanz.</li>
+      </ul>
+      <p>Diese Dinge geschehen nicht aus dem Herbergsvater selbst heraus. Sie geschehen aus der Begegnung mit Jesus, der als Sohn Gottes</p>
+      <ul>
+        <li>in die ärmlichsten Umstände,</li>
+        <li>zu den kaputtesten Leuten,</li>
+        <li>in die verlorensten Zeiten kommt.</li>
+      </ul>
+      <p>Und damit sind wir im Heute. Ich darf dir sagen: Jesus kommt heute in die ärmlichsten Umstände, zu den kaputtesten Leuten, in diese verlorene Zeit. Er sehnt sich nach Gemeinschaft mit <em>dir</em>. Deswegen dieser ganze Plan mit Jungfrauengeburt, Versuchung, Standhaftigkeit, Opfer, Tod und Auferstehung. Jesus kommt heute und möchte Gemeinschaft mit <em>dir</em>.</p>
+      <p>Vielleicht kennst du Jesus schon, vielleicht lebst du schon Gemeinschaft mit ihm. Dann sage ich dir: da ist mehr drin! Beim Gott, der im Überfluss gibt (Joël 2,24), gibt es ganze Dimensionen eurer Gemeinschaft, die du noch nicht erkundet hast. Rede mit ihm darüber. Bitte ihn, dir in ganz neuer Weise zu begegnen.</p>
+      <p>Und vielleicht kennst du Jesus noch nicht. Dann lädt er dich gerade heute, gerade an Weihnachten ein, an seine Krippe zu kommen, ihm als in Windeln gewickelten Retter zu begegnen, und endlich, <em>endlich</em> in Gemeinschaft mit Gott leben zu können – das, wozu du geschaffen bist, das wozu du berufen bist. Wenn du sagst “Dominik, ich möchte dieser Einladung nachkommen”, dann komm doch im Anschluss an den Gottesdienst zu mir nach vorne, ich möchte gern mit dir beten.</p>
+
+      <h2>Jesus ist kommen, Grund ewiger Freude</h2>
+      <p>Diese Erkenntnis, Jesus ist gekommen, um den ewigen Sünden-Zyklus zu durchbrechen, und er tut es für mich, ist umwerfend. Ich weiß, wir Deutsche haben’s nicht so mit feiern, wir gehen zum Lachen in den Keller, und gejubelt wird nur beim Fußball. Aber wenn irgendetwas, <em>irgendetwas</em> Freude in uns auslösen könnte, dann doch, dass wir einen Weg haben, aus dem ewigen Getrenntsein von Gott, weil wir vor ihm nicht bestehen können, in eine liebevolle Vater-Kind-Beziehung zu treten.</p>
+      <p>Der Herbergsvater, der von der Krippe zurück zur Herberge rennt, um alle Gäste wach zu klingeln, handelt intuitiv: diese Nachricht ist so gut, jeder muss davon hören!</p>
+      <ul>
+        <li>Deswegen feiern wir und über zwei Milliarden Christen weltweit einen Weihnachts-Gottesdienst.</li>
+        <li>Deswegen sammeln sich viele nachher um den Weihnachtsbaum und geben aus Freude über Jesu Geschenk an uns untereinander Geschenke weiter. Und</li>
+        <li>deswegen erzählen wir den Menschen um uns herum von Weihnachten, und von dem großen Hack, den Jesus da für uns durchgezogen hat.</li>
+      </ul>
+      <p>Vielleicht nehmt ihr euch heute, wenn euer Raclette, euer Braten oder euer Kartoffelsalat mit Würstchen leer ist und die Geschenke verteilt sind, eine Tüte Plätzchen und klingelt bei euren Nachbarn.</p>
+      <p>Lasst uns gemeinsam feiern. “Denn euch ist heute der Heiland geboren, welcher ist Christus, der Herr, in der Stadt Davids.” (Lk 2,11).</p>
+      <ul>
+        <li>Gott hat damit den größten Hack der Weltgeschichte gelandet.</li>
+        <li>Jesus ist ganz persönlich gekommen, damit <em>du</em> Beziehung mit ihm haben kan nst.</li>
+        <li>Und das feiern wir.</li>
+      </ul>
+      <p>Jesus ist kommen, Grund ewiger Freude.</p>
+      <p>Frohe Weihnachten!</p>
+    </article>
+  </section>
+  <!-- #!/de/predigt/2019-12-22_-->
+  <section class="view" id="!/de/predigt/2019-12-22_Wer-auf-Jesus-wartet" data-title="Wer auf Jesus wartet">
+    <article class="section text">
+      <h1>Wer auf Jesus wartet</h1>
+      <p style="font-style: italic">Predigt vom 22.12.19 in der EFG Ludwigshafen</p>
+      <p style="font-style: italic">Anhören auf <a href="https://efg-ludwigshafen.de/#!/sermon/2019-12-22_Dominik-Schreiber_Wer-auf-Jesus-wartet.mp3">efg-ludwigshafen.de</a></p>
+
+      <h2>Einstieg: Lukas 2,25-35 miterlebt</h2>
+      <p>Wir begeben uns gleich gemeinsam in den Tempel in Jerusalem und werden Zuschauer einer Szene, die mich als Vater oder uns als Eltern wohl ziemlich nachhaltig prägen würde.</p>
+      <blockquote>
+        <p>Schaut, da vorne kommt eine junge Familie durch die Tür. Die Beiden wirken ärmlich, aber passend für den Tempel gekleidet. Er trägt eine einfache, aber gepflegte hellbraune Tunika und einen dunkelbraunen Umhang. Sie hat ihren Umhang bis über den Kopf gezogen, ist geradezu verschleiert. Und seht doch, das Kind unter ihrem Umhang: das ist ja noch keine zwei Wochen alt. Die Beiden scheinen angespannt. Ob heute wohl der große Tag ist, die “Brit Mila”, die Beschneidung des Jungen?</p>
+        <p>Aber, wer kommt denn da von der Seite? Ein alter Mann, schon etwas gebeugt, aber mit einem unglaublichen Leuchten in den Augen. Er geht direkt auf die Familie zu. Und was tut er jetzt? Er nimmt das Kind aus den Händen der Mutter, streicht ihm liebevoll über den Arm, lächelt von einem Ohr bis zum anderen, und… Jetzt wendet er sich mit dem Kind dem Allerheiligsten zu. Schnell, hören wir, was er sagt:</p>
+        <p>“Herr, nun kann dein Diener in Frieden sterben, denn du hast deine Zusage erfüllt. Mit eigenen Augen habe ich das Heil gesehen, das du für alle Völker bereitet hast – ein Licht, das die Nationen erleuchtet, und der Ruhm deines Volkes Israel.”</p>
+        <p>Merkwürdig. Die Eltern lassen ihn gewähren, scheinen nur etwas verwundert. Jetzt wendet sich der alte Mann ihnen wieder zu, reicht der Mutter das Kind, und legt den Eltern segnend die Hände auf den Kopf. Dann deutet er auf das Kind und spricht zur Mutter. Pssst.</p>
+        <p>“Er ist dazu bestimmt, dass viele in Israel an ihm zu Fall kommen und viele durch ihn aufgerichtet werden. Er wird ein Zeichen sein, dem widersprochen wird – so sehr, dass auch dir ein Schwert durch die Seele dringen wird. Aber dadurch wird bei vielen an den Tag kommen, was für Gedanken in ihren Herzen sind.”</p>
+      </blockquote>
+      <p>Ihr dürft gern Lukas 2 aufschlagen, da findet sich ab Vers 25, was wir gerade erlebt haben. Ja, da sind wir schon nach Weihnachten, aber darum soll es heute nicht gehen. Es soll heute um Warten gehen. Um Warten auf Jesus. Denn das ist gerade, vor Weihnachten, die Zeit: wir machen uns ganz besonders bewusst,</p>
+      <ul>
+        <li>dass Jesus, der Sohn Gottes, als ganzer Mensch in die Welt gekommen ist, um den ewigen Fluch der Sünde, der auf uns allen lastet, zu brechen,</li>
+        <li>dass wir darauf warten, dass er erneut in diese Welt kommen wird, um seine Auserwählten – das sind auch wir – zusammenzubringen, und</li>
+        <li>dass wir gut oder weniger gut auf dieses Kommen vorbereitet sein können.</li>
+      </ul>
+      <p>Ich möchte heute mit euch</p>
+      <ul>
+        <li>von Simeon, dem alten Mann, der in Jesus den lange ersehnten Retter erkennt, Warten lernen.</li>
+        <li>Von Maria und Joseph werden wir lernen, uns Gottes Wirken unterzuordnen. Und</li>
+        <li>von der Prophetie, die Simeon über Jesus ausspricht, wollen wir mehr darüber lernen, wer Jesus ist, und was in dieser Zeit passiert ist – und heute passiert.</li>
+      </ul>
+
+      <h2>Simeon: Warten mit dem heiligen Geist</h2>
+      <p>Ich stehe nicht gern in Warteschlangen. Meine Zeit kann ich wirklich besser einsetzen, als zwei Stunden vor einer Achterbahn zu stehen, um dann mir dann fünf Minuten lang das Herz in die Hose rutschen zu lassen. Oder um zwei Tage vor einem Apple Store zu stehen, um der erste zu sein, der für sein Handy mehr ausgegeben hat als ich für mein erstes Auto. Selbst die fünf Minuten, die ich auf der Arbeit früher warten musste, um zu sehen ob das, was ich gebaut habe, funktioniert, haben mich so zur Weißglut getrieben, dass ich so lange optimiert habe, dass ich jetzt nur noch ein bis zwei Sekunden warten muss.</p>
+      <p>Und doch gibt es Dinge, für die es sich zu warten lohnt:</p>
+      <ul>
+        <li>“die Richtige”,</li>
+        <li>wenn der Sprit gerade mal wieder besonders teuer ist, oder</li>
+        <li>wenn die Nudeln noch nicht fertig gekocht sind.</li>
+      </ul>
+      <p>In christlichen Kreisen ist auch immer eine gute Antwort: Jesus. Und in der Tat ist sie passender als wir vielleicht denken.</p>
+      <ul>
+        <li>Warte ich auf Jesus?</li>
+        <li>Wenn ja, worauf genau?</li>
+        <li>Was traue ich ihm zu?</li>
+        <li>Weiß ich, worauf ich warte?</li>
+      </ul>
+      <p>In Simeon, dem alten Mann aus der Geschichte eben, finden wir einen Lehrer dafür, was es heißt, auf Jesus zu warten:</p>
+      <blockquote>
+        <p>Damals lebte in Jerusalem ein Mann namens Simeon; er war rechtschaffen, richtete sich nach Gottes Willen und wartete auf die Hilfe für Israel. Der Heilige Geist ruhte auf ihm, und durch den Heiligen Geist war ihm auch gezeigt worden, dass er nicht sterben werde, bevor er den vom Herrn gesandten Messias gesehen habe. Vom Geist geleitet, war er an jenem Tag in den Tempel gekommen. (Lukas 2,25-27a)</p>
+      </blockquote>
+      <p>Simeon ist rechtschaffen, richtet sich nach Gottes Willen und wartet auf… die Hilfe für Israel. Rechtschaffen sein, sich nach Gottes Willen richten, da kann man konkret etwas tun, konkrete Regeln befolgen. Aber “warten”?</p>
+      <p>Simeon weiß, worauf er wartet. Er kennt die alten Prophezeihungen. Die Psalmen, die sein Vater ihm am Sabbat vorgetragen hat, die er seinen Kindern und Enkeln immer wieder erzählt hat, ganz wie es Tradition ist. Wir haben eben eine solche Prophezeihung gehört: Psalm 2, in dem Gott selbst von einem König spricht, seinem Sohn, und dass ihm die Könige der Welt dienen sollen.</p>
+      <p>Für Simeon sind diese Worte nicht bloß Tradition. Für ihn ist es</p>
+      <ul>
+        <li>das Licht am Ende des 400-jährigen Tunnels,</li>
+        <li>die Antwort auf die brennende Frage, ob Gott uns verlassen hat,</li>
+        <li>die Hoffnung, die ihn am Leben hält, aber auch</li>
+        <li>eine ganz persönliche Prophezeihung.</li>
+      </ul>
+      <p>Hier ein kleiner Exkurs, weil wir das schnell überlesen: wir befinden uns</p>
+      <ul>
+        <li>vor Pfingsten,</li>
+        <li>vor Auferstehung,</li>
+        <li>vor Kreuzigung, überhaupt</li>
+        <li>vor dem öffentlichen Wirken Jesu –</li>
+      </ul>
+      <p>wir befinden uns im Alten Bund. Hier ist der Heilige Geist nicht auf jeden Gläubigen ausgegossen und wirkt in uns, hier “ruht” der Heilige Geist für eine bestimmte Zeit für eine bestimmte Aufgabe auf Einzelpersonen. Angefangen bei Bezalel, dem Leiter der Handwerker der Stiftshütte zur Zeit Moses (2.Mose 35,30f), über Saul, der mit den Propheten weissagt (1.Samuel 10,10), zu David, der nach Ehebruch und Mord bittet “Verstoße mich nicht aus deiner Gegenwart und nimm deinen Heiligen Geist nicht von mir” (Psalm 51,13) – weil er genau das bei Saul, seinem Vorgänger beobachtet hat (1.Samuel 15,23).</p>
+      <p>Wenn also hier der Heilige Geist auf Simeon ruht, und Simeon durch den Heiligen Geist gezeigt wurde, dass er “nicht sterben werde, bevor er den vom Herrn gesandten Messias gesehen habe”, und Simeon an diesem Tag “vom Geist geleitet” in den Tempel gekommen war, dann ist das etwas außergewöhnliches, erwähnenswertes, besonderes für diese Zeit.</p>
+      <p>Umso mehr wir, auf denen der Heilige Geist nicht nur ruht, sondern in denen der Heilige Geist wohnt: wissen wir, worauf wir warten?</p>
+      <p>Warten wir darauf, dass der Vorweihnachtsstress, das Geschenke kaufen, Päckchen packen, vor Plätchen platzen, endlich vorbei ist? Warten wir darauf, dass die dunklen, kalten Tage endlich vorbei sind und man wieder im Hellen auf die Arbeit und im Hellen wieder nach Hause kann?</p>
+      <p>Oder warten wir darauf, dass Jesus, der Sohn des allmächtigen Gottes, in unserem Leben, in unserem Umfeld, in unserer Stadt sichtbar wirkt? Dass “dein Reich komme, dein Wille geschehe, wie im Himmel so auf Erden”?</p>
+      <p>Jesus selbst macht uns Mut, Größeres zu erwarten:</p>
+      <blockquote>
+        <p>Ich versichere euch: Wer an mich glaubt, wird die Dinge, die ich tue, auch tun; ja er wird sogar noch größere Dinge tun. Denn ich gehe zum Vater, und alles, worum ihr dann in meinem Namen bittet, werde ich tun, damit durch den Sohn die Herrlichkeit des Vaters offenbart wird. (Johannes 14,12-13)</p>
+      </blockquote>
+      <p>Dies wäre der Beginn für eine eigene Predigtreihe, oder für eine Themenreihe – unser Hauskreis macht gerade genau das: denn Jesus erklärt in den folgenden Versen noch deutlicher, warum wir diese größeren Dinge erwarten können:</p>
+      <ul>
+        <li>weil wir seine Gebote halten werden weil wir ihn lieben, und</li>
+        <li>weil der Vater uns mit dem Heiligen Geist ausrüsten wird.</li>
+      </ul>
+      <p>Ich bin ganz ehrlich: ich habe noch keine größeren Dinge als Jesus getan. Ich habe höchstens mal Wein in Wasser verwandelt. Oder fünf Brote und zwei Fische gegessen. Im Ernst: ich zweifle regelmäßig daran, ob ich irgendeinen sinnvollen Beitrag zum Reich Gottes leiste, und auf natürliche Weise nicht erklärbare Wunder, die ich selbst miterlebt habe, kann ich an einer Hand abzählen.</p>
+      <p>Und doch steht es so im Wort Gottes, und deswegen will ich es glauben. Es heißt ja auch “Meine Kraft ist in den Schwachen mächtig” (2.Korinther 12,9) und “Ich glaube, hilf meinem Unglauben!” (Markus 9,24) – die Jahreslosung für nächstes Jahr. Und “glauben” darf dann nicht nur heißen “ich denke schon, dass das stimmt, was da steht”, sondern es muss heißen “ich erwarte fest, dass das passiert, was da steht – auch wenn ich es im Moment nicht sehe und mir beim besten Wissen nicht vorstellen kann”.</p>
+      <p>Ähnlich muss es auch Simeon ergangen sein. Er hatte die Zusage des Heiligen Geistes, dass er noch den Messias sehen wird. Die vergleichbare Zusage für uns heute wäre wohl, dass Jesus wieder kommt bevor wir sterben. Das möchte ich gern glauben. Aber meinen Alltag lebe ich doch auch so, dass ich meinen Kindern in allem ein gutes Erbe weitergeben kann. Umso mehr bewegt mich dann Simeons Dankgebet, als Joseph und Maria mit Jesus in den Tempel kommen:</p>
+      <blockquote>
+        <p>Als nun Jesu Eltern das Kind hereinbrachten, um mit ihm zu tun, was nach dem Gesetz üblich war, nahm Simeon das Kind in seine Arme, pries Gott und sagte: “Herr, nun kann dein Diener in Frieden sterben, denn du hast deine Zusage erfüllt. Mit eigenen Augen habe ich das Heil gesehen, das du für alle Völker bereitet hast – ein Licht, das die Nationen erleuchtet, und der Ruhm deines Volkes Israel.” (Lukas 2,27b-32)</p>
+      </blockquote>
+      <p>Das Harren auf Rettung, das Warten auf den Messias, hat Simeon keine Ruhe gelassen. Erst jetzt, wo sich seine Prophezeihung erfüllt hat, kann er in Frieden sterben. Er hat gesehen, dass Gott seine Zusage erfüllt. Und: er ist sich schlagartig der weltgeschichtlichen Bedeutung dieser Erkenntnis bewusst: Es geht hier nicht (nur) um das Volk Israel, es geht um <em>alle Völker</em>. Jesus ist nicht (nur) das Heil des Volkes Israel, er ist das Heil <em>aller Völker</em>.</p>
+      <p>Damit ist Jesus auch unser Heil, auch dein ganz persönlicher Retter. Auch du könntest ohne ihn nicht vor Gott kommen, müsstest ohne ihn in Ewigkeit ohne deinen Schöpfer leben. Aber auch wenn du der einzige Mensch auf der Erde wärst: Jesus</p>
+      <ul>
+        <li>wäre genauso sehr nur für dich, nur damit du nicht länger von Gott getrennt sein musst, auf die Erde gekommen,</li>
+        <li>wäre genauso sehr am Kreuz gestorben und</li>
+        <li>wäre genauso sehr von den Toten auferstanden und hätte nur für dich den Tod besiegt.</li>
+      </ul>
+
+      <h2>Maria und Joseph: Gottes Wirken erkennen</h2>
+      <p>An dem, wie Maria und Joseph auf Simeon und die ganze Situation reagieren, lässt sich etwas zweites, entscheidendes beobachten. Lasst uns das kurz ins Heute übertragen:</p>
+      <blockquote>
+        <p>Hanna und ich bringen unser neu geborenes Kind zur Kindersegnung in den Gottesdienst. (Ich habe kurz überlegt, einen Insider-Witz über Kindertaufe zu machen, aber da der bestimmt nicht bei allen richtig ankommen würde lasse ich den lieber sein. Also: wir bringen unser Kind zur Kindersegnung.) Wie wir ins Gemeindehaus kommen, kommt ein alter Mann auf uns zu, den wir wohl nicht kennen und noch nie gesehen haben. Der Mann nimmt unseren Sohn, hält ihn zum Kreuz, dankt Gott mit Worten, die weit über alles hinaus gehen, was wir von Gott über unseren Sohn gehört haben. Später prophezeiht er Hanna, dass wegen unserem Sohn ein Schwert durch ihre Seele dringen wird.</p>
+        <p>Und wir… sind erstaunt?</p>
+      </blockquote>
+      <p>Ich glaube, mein erster Gedanke wäre, hier geistliche Verantwortung zu ergreifen, und dem Geschehen Einhalt zu gebieten. “Da könnte ja jeder kommen.” Gerade in unserer heutigen Zeit, wenn auch nur ein Hauch von Bedrohung des Wohles des Kindes aufkommt – immerhin nimmt dieser alte Mann einen wenige Tage alten Säugling seinen Eltern weg – überwiegt doch letztlich das Misstrauen und ein “Better safe than sorry”, und ich weise Situationen von mir, meiner Familie und meinem Einflussbereich ab.</p>
+      <p>Aus dem Verhalten von Maria und Joseph will ich keine allgemeingültige Handlungsanweisung ableiten, dazu sind die Umstände doch zu speziell und die jüdische Kultur anders als unsere westlich-individualistische. Aber ich will zumindest folgenden Gedanken anregen:</p>
+      <p><em>Sind wir aufmerksam genug für Gottes Reden, um es zu erkennen, wenn es vor unseren Augen geschieht?</em></p>
+      <p>Maria und Joseph sind das wohl. Sie sind auch erstaunt. Aber im Tempel, in der Gegenwart Gottes, sind sie bereit, sich auf den fremden alten Mann mit den vor Freude leuchtenden Augen einzulassen. Sie sind bereit, ihm Gehör zu schenken, ihn nicht abzuweisen.</p>
+      <p>Ich wünsche mir, dass unser Haus, diese Gemeinde, ein Ort der Gegenwart Gottes wird:</p>
+      <ul>
+        <li>Wo Gott aus jeder Faser dringt,</li>
+        <li>wo wir, von seinem Heiligen Geist erfüllt, ebenfalls übereinander weissagen, und</li>
+        <li>wo wir uns dem Reden Gottes aussetzen, auch wenn es aus Mündern kommt, die wir nicht kennen.</li>
+      </ul>
+      <p>Nicht blind, es heißt ja “Prüft aber alles und das Gute behaltet” (1.Thessalonicher 5,21), aber auch nicht weltlich-verängstigt.</p>
+      <ul>
+        <li>Unser Gott ist größer als die Gefahren, die die Welt uns einredet.</li>
+        <li>Unser Gott ist näher als die Sorgen, die wir unser selber machen. Und</li>
+        <li>unser Gott ist liebevoller als wir es je im Stande wären.</li>
+      </ul>
+      <p>Er redet heute noch (Johannes 16,13), in Wegen, die wir kennen, und in Wegen, die wir nicht kennen (Apostelgeschichte 2,2f). Es ist ein lebenslanges Kennenlernen, ein sensibel werden für die Persönlichkeit Gottes, für sein Herz.</p>
+      <p>Ich erlebe Gottes Reden oft durch die Bibel, besonders, wenn ich sie mit einer konkreten Fragestellung aufschlage. Das zieht sich gern über Wochen: über das letzte Jahr hat mich oft die Frage nach meiner Berufung und meinem Platz in der Gemeinde umgetrieben. Im Gebet habe ich oft etwas gesagt wie “Vater, bitte zeig mir, was dein Plan für mich in der Gemeinde ist.” Dann hatte ich den Impuls, das Buch Josua zu lesen – jeden Morgen ein Kapitel, wie es meine Art ist – und Tag für Tag hat Gott mir neue Schnipsel seines Plans aufgedeckt. Immer wieder kleine Puzzleteile, die ich mir notiert habe, um sie nicht gleich wieder zu vergessen. Nach einigen Wochen war das Bild klar. Jetzt halte ich mich an dieser Zeit fest, wann immer ich ins Grübeln und Zweifeln komme. Gerade da kommen mir meine Notizen zu Gute.</p>
+      <p>Ich erlebe Gottes Reden aber oft auch dadurch, dass ich im Gebet – oder auch einfach so – an Eigenschaften Gottes, an seine Taten, an seine Zusagen erinnert werde. Neulich saß ich beim Mittagessen in der Kantine, und mit einem Mal war ich geradezu übermannt von Gottes Liebe für jeden einzelnen, der da saß und sein Mittagessen in sich hinein schaufelte. Ich habe angefangen, still für die Menschen zu beten. Mir war in dem Moment klar, dass das das ist, was ich tun soll. Mehr ist da nicht passiert, aber ich glaube daran und freue mich darauf, dass Gott in dieser Richtung – seinen Blick auf die Menschen um mich herum zu bekommen – mit mir weiterarbeiten wird.</p>
+      <p>Zuletzt erlebe ich Gottes Reden aber auch durch andere Menschen – durch euch. Und es ist mir ein Herzensanliegen, dass wir darin wachsen und uns darin üben, uns das weiterzugeben, was Gott uns sagt. Dabei</p>
+      <ul>
+        <li>will ich wie Maria und Joseph vom Reden Gottes und nicht vom Schlimmstmöglichen ausgehen,</li>
+        <li>will wie Paulus schreibt “Prüfen und das Gute behalten”, und</li>
+        <li>will auf den Heiligen Geist in mir und euch vertrauen, der “in uns betet und ‘Abba, Vater!’ ruft” (Galater 4,6)</li>
+      </ul>
+
+      <h2>Jesus: Fällen und Aufrichten, Gedanken ans Tageslicht bringen</h2>
+      <blockquote>
+        <p>Simeon segnete sie und sagte zu Maria, der Mutter Jesu: “Er ist dazu bestimmt, dass viele in Israel an ihm zu Fall kommen und viele durch ihn aufgerichtet werden. Er wird ein Zeichen sein, dem widersprochen wird – so sehr, dass auch dir ein Schwert durch die Seele dringen wird. Aber dadurch wird bei vielen an den Tag kommen, was für Gedanken in ihren Herzen sind.” (Lukas 2,34-35)</p>
+      </blockquote>
+      <p>Simeon prophezeiht über den gerade acht Tage alten Jesus – er spricht Gottes Wahrheit laut aus, die der Heilige Geist ihm gezeigt hat. Dabei verschont er Maria nicht von dem, was er gehört hat. Nämlich:</p>
+      <blockquote>
+        <p>Er ist dazu bestimmt, dass viele in Israel an ihm zu Fall kommen</p>
+      </blockquote>
+      <p>Es werden die in Israel – und darüber hinaus – zu Fall kommen, die in ihrem Stolz aus eigener Kraft gerecht werden wollen. Die sagen “Ich bin ein guter Mensch, was soll Gott schon gegen mich haben, schau doch, ich zahle meine Kirchensteuer <em>und</em> gebe Geld ans Rote Kreuz. Also, wenn Gott mich nicht in den Himmel kommen lässt, dann ist <em>er</em> ungerecht!” Die dabei aber nicht verstehen, dass sie aus eigener Kraft die ewige Trennung von Gott, die seit Adam und Eva besteht, nie nie nie aufheben können.</p>
+      <blockquote>
+        <p>und viele durch ihn aufgerichtet werden.</p>
+      </blockquote>
+      <p>Die aber, die genau das erkennen: “aus eigener Kraft kann ich die Trennung nicht aufheben, ich bin ein sündiger Mensch der einzig Jesu Gnade bedarf”, die werden durch ihn aufgerichtet werden. Jesus hat diesen Weg frei gemacht, der uns aus eigener Kraft immer verwehrt bleibt. Wir müssen einzig und allein anerkennen, dass wir aus eigener Kraft nicht gerecht werden können, und das Opfer, das Jesus mit seinem Tod am Kreuz gebracht hat, für uns in Anspruch nehmen. Dann gilt uns auch seine Auferstehung, sein Sieg über den ewigen Tod.</p>
+      <blockquote>
+        <p>Er wird ein Zeichen sein, dem widersprochen wird</p>
+      </blockquote>
+      <p>Der Name “Jesus” polarisiert. Er ist der einzige Weg zum Vater (Johannes 14,6), damit führen alle anderen Religionen und Weltanschauungen ins Nichts. Wir hatten hier vor einigen Jahren eine Straßenevangelisation unter den Kindern im Hemshof. Die haben super toll gespielt, hatten großen Spaß, waren voll bei der Sache. Mittags hat ein Evangelist für eine Stunde von Jesus und seinem Angebot gesprochen. In dem Moment, als der Name “Jesus” das erste Mal fiel, ist eine ganz Reihe muslimischer Jungs aufgestanden und hat die Veranstaltung verlassen. So schade das war, hat es doch gezeigt, wie “Jesus” auch heute noch polarisiert und ihm widersprochen wird.</p>
+      <blockquote>
+        <p>so sehr, dass auch dir (Maria) ein Schwert durch die Seele dringen wird.</p>
+      </blockquote>
+      <p>Simeon prophezeiht Maria hier schon die dunkelste Stunde, die auf eine Mutter lauern kann: dass sie weinend unter dem Kreuz stehen wird, an dem ihr Sohn, ihr Erstgeborener, der, der ihr ewiger Herrscher über Israel verheißen war (Lukas 1,32f), stirbt. Doch selbst in dieser Zeit greift Jesus mit tiefer Liebe für seine Mutter ein und weist seinen Jünger Johannes an, an seiner Stelle als Sohn für seine Mutter zu sorgen (Johannes 19,27f).</p>
+      <blockquote>
+        <p>Aber dadurch wird bei vielen an den Tag kommen, was für Gedanken in ihren Herzen sind.</p>
+      </blockquote>
+      <p>Die Gedanken im Herzen sind für Gott ebenso entscheidend, wenn nicht sogar wichtiger, als die Taten eines Menschen. In 1. Timotheus 5 heißt es</p>
+      <blockquote>
+        <p>Bei manchen Menschen liegt es offen zutage, dass sie sündigen; ihre Verfehlungen laufen ihnen gewissermaßen voraus und sind schon vor dem Tag bekannt, an dem Gott Gericht hält. Bei anderen kommen sie erst durch das Gericht ans Licht. Dasselbe trifft auch auf die guten Taten zu: Manche sind schon jetzt für alle sichtbar, und auch die, bei denen es sich anders verhält, können nicht für immer verborgen bleiben. (1.Timotheus 5,24-25)</p>
+      </blockquote>
+      <p>Bei Gott zählt nicht der Schein. Alles wird ans Licht kommen, früher oder später. Das kann großen Mut machen: die Unterdrückung, die du erlebst, das unfaire Verhalten, das du ertragen musst, aber auch die Guten Taten, die du vollbringst, ohne dass jemand sie sieht, werden gesehen. Gott sieht sie.</p>
+      <p>Wenn dir der Gedanke eher Angst bereitet möchte ich dich ermutigen: Gott ist kein böser Schulmeister, der mit erhobenem Zeigefinger dasteht und nur darauf wartet, dir einen Fehler nachweisen zu können. Er ist ein liebender Vater, der seinem Kind – dir – helfen will, so zu leben, dass ihr Beziehung haben könnt. Der beängstigende Unterton, den du zu verspüren glaubst, ist ein leises Tippen von Gottes Heiligem Geist, der sagt “Hier, Dominik, schau mal: da müssen wir dran arbeiten, dann kannst du noch eher das machen, wozu du geschaffen bist: Gemeinschaft mit Gott, deinem Vater haben.” Und er hat dir andere Kinder Gottes zur Seite gestellt, die alle mindestens so viel auf dem Kerbholz haben wie du. Gemeinsam kommt ihr aus dem, wo du gerade drin steckst, raus. Ich möchte dich ermutigen, dir heute einen Freund zur Seite zu nehmen und zu sagen “Ich habe da ein Problem von dem ich alleine nicht los komme. Kannst du mir helfen?” Lass dir Mut machen: als Betrunkener, Lügner, Mörder, Prostituierte, Jähzorniger, Dieb, Zyniker, Ehebrecher, … bist du in bester Gesellschaft der Personen in der Bibel, die für uns alle Glaubensvorbilder sind.</p>
+      <p>(siehe <a href="http://www.kleiber.li/Glaube/Ausreden/">www.kleiber.li/Glaube/Ausreden</a>)</p>
+
+      <h2>Fazit</h2>
+      <p>Ich wollte heute drei Dinge deutlich machen und als Anregung weitergeben:</p>
+      <ol type="1">
+        <li>Wisse, worauf du wartest. Wie Simeon. Und lass dir nicht einreden, das würde nicht passieren, nur weil deine Erfahrung sagt, dass du so etwas noch nie erlebt hast.</li>
+        <li>Lerne, auf Gottes Stimme zu hören. Komm ihm nahe, werde sensibel für sein Reden. Hab Mut, sein Reden in der Gemeinde weiterzugeben. Und andersherum: hab Mut, alles zu Prüfen und nur das Gute zu behalten.</li>
+        <li>Jesus ist heute relevanter als je zuvor. Im großen Weltgeschehen, aber erst recht in deinem persönlichen Leben. Klopf dein Leben ab: wo versuchst du, selbst zum Ziel zu kommen? Bring diese Punkte zu Jesus und bitte ihn, die Führung zu übernehmen. “Treu ist er, der euch ruft; er wird’s auch tun.” (1.Thessalonicher 5,24)</li>
+      </ol>
+      <p>Warum steht ihr nicht auf? Ich möchte für euch beten.</p>      
+    </article>
+  </section>
+  <!-- #!/de/predigt/2019-12-03_Bibelarbeit-Altesten-Diakonenamt-und-Einflussname-der-Urgemeinde -->
+  <section class="view" id="!/de/predigt/2019-12-03_Altesten-Diakonenamt-und-Einflussname-der-Urgemeinde" data-title="Bibelarbeit: Ältesten-/Diakonenamt und Einflussname der Urgemeinde">
+    <article class="section text">
+      <h1>Ältesten-/Diakonenamt und Einflussnahme der Urgemeinde</h1>
+      <p style="font-style: italic">Bibelarbeit vom 3.12.19 für die Gemeindeleitungssitzung der EFG Ludwigshafen</p>
+
+      <p>Zwei der Hausaufgaben-Fragen von Jürgen haben eher den Charakter einer Bibelarbeit: “Wie hat christliche Gemeinde früher Einfluss auf die Menschen gehabt?” und “Aufgaben und Verantwortung von Ältesten und Diakonen”. Diesen beiden Fragen möchte ich mich mit der heutigen Andacht widmen. Später werden wir gemeinsam auf Jürgens Fragen zur Bestandsaufnahme und zur Vision eingehen.</p>
+      <p>In einer Viertelstunde kann ich die Fragen definitiv nicht umfassend beantworten. Aber ich hoffe ich kann einen Eindruck von der damaligen Zeit, den damaligen Gegebenheiten und den daraus für uns folgenden Anregungen schaffen.</p>
+
+      <h2>Aufgaben und Verantwortung von Ältesten und Diakonen</h2>
+      <p>Zunächst möchte ich auf Aufgaben und Verantwortungen von Ältesten und Diakonen eingehen.</p>
+      <p>Diakone tauchen zum ersten Mal in Apostelgeschichte 6 auf, also weit nach Kreuzigung, Himmelfahrt, Pfingsten, und auch mehrfachem machtvollem Wirken und einigen Anfechtungen der zwölf Jünger:</p>
+      <blockquote>
+        <p>Apg 6,2-6 (NGU): Da beriefen die Zwölf eine Versammlung aller Jünger ein und erklärten: “Es wäre nicht gut, wenn wir Apostel uns persönlich um den Dienst der Verteilung der Lebensmittel kümmern müssten und darüber die Verkündigung von Gottes Botschaft vernachlässigen würden. Seht euch daher, liebe Geschwister, in eurer Mitte nach sieben Männern um, die einen guten Ruf haben, mit dem Heiligen Geist erfüllt sind und von Gott Weisheit und Einsicht bekommen haben. Ihnen wollen wir diese Aufgabe übertragen. Wir selbst aber werden uns weiterhin ganz auf das Gebet und den Dienst der Verkündigung des Evangeliums konzentrieren.” Dieser Vorschlag fand allgemeine Zustimmung, und die Gemeinde wählte folgende sieben Männer aus: Stephanus, einen Mann von festem Glauben und erfüllt vom Heiligen Geist, Philippus, Prochorus, Nikanor, Timon, Parmenas und Nikolaus, einen Nichtjuden aus Antiochia, der zum Judentum übergetreten war. Man ließ sie vor die Apostel treten, und die Apostel beteten für sie und legten ihnen die Hände auf.</p>
+      </blockquote>
+      <p>Hier sehen wir, was die Zwölf als ihre Aufgabe ansehen: <em>das Gebet und den Dienst der Verkündigung des Evangeliums</em>.</p>
+      <p>Gleichzeitig erwarten sie von den Diakonen <em>einen guten Ruf, Erfüllt-sein mit dem Heiligen Geist, und Gottes Weisheit und Einsicht</em>. Interessant ist auch, dass alle sieben Griechen waren. Sie spiegeln damit die griechischen Witwen, für deren Versorgung sie sorgen sollen, besonders wider. Und die der Sieben, von denen mehr berichtet wird, stechen mehr hervor als viele andere: Stephanus erregt noch im selben Kapitel durch die Wunder, die er vollbringt, so viel Unwillen, dass er gefangen genommen, und nach einer umfassenden Verteidigungsrede im nächsten Kapitel, unter den Augen von Saulus, gesteinigt wird. Philippus evangelisiert auf der Flucht Samarien, tauft im Vorbeiflug den äthiopischen Finanzminister, und evangelisiert nahtlos weiter.</p>
+      <p>In 1. Timotheus 3 und in Titus 1 werden Anforderungen an Älteste/Bischöfe/Aufseher und Diakone/Diener formuliert. Eine tabellarische Auflistung hat es bis in den Kommentar zu unserer Gemeindeordnung geschafft. Im Großen Ganzen gelten für Älteste und Diakone ähnliche Anforderungen, für Älteste sind sie jedoch häufig strenger – so sollen z.B. Diakone “nicht übermäßig viel Wein trinken” (1.Tim 3,8), Älteste aber “nicht alkoholsüchtig sein” (1.Tim 3,3).</p>
+      <p>Beide Ämter sind mit “Vergütung” verknüpft: “Diakone, die ihr Amt gut ausüben, erwerben sich hohes Ansehen und können im Vertrauen auf Jesus Christus mit besonderer Zuversicht auftreten” (1.Tim 3,13). Und “Älteste, die ihre Verantwortung für die Gemeinde so wahrnehmen, wie es sein soll, haben nicht nur Anerkennung verdient, sondern auch einen entsprechenden Lohn, besonders dann, wenn sie eine Verkündigungs- und Lehrtätigkeit ausüben.” (1.Tim 5,17).</p>
+      <p>Die Ältesten von Ephesus fordert Paulus auf, auf sich selbst, und auf die ganze Herde, die Gemeinde Gottes, zu achten; für sie als gute Hirten zu sorgen (Apg 20,28). Bei all den zeitlichen Anforderungen betrachtet, die wir an das Ältestenamt knüpfen – wenn man jeweils die in der Gemeindeordnung angesetzte Minimal-Zeit durchlebt muss man wenigstens drei Jahre Gemeindemitglied sein, um zum Ältesten gewählt zu werden – dann erscheint es geradezu unbiblisch, dass Paulus nur drei Monate in Ephesus war (Apg 19,8), sich dort Menschen zu Christus bekehrten, und dass Paulus Menschen, die keine drei Monate gläubig sein konnten, zu Ältesten macht. Paulus ist noch weitere Male in Ephesus (1.Kor 11,16) und sendet seinen besten Mitarbeiter, Timotheus, dorthin, wohl auch um die Gemeindeleitung “zu sortieren” (1.Tim 1,3). Paulus handelt also viel schneller als wir, fungiert gleichzeitig aber auch als eine Art übergemeindliches Korrektiv – etwas, das uns eigenständigen, basisdemokratischen Baptisten allzu sehr abhanden gekommen ist.</p>
+      <p>Interessant sind zuletzt die Verwendungen der griechischen Worte für Diakon und Ältester: “Diakonos”, unser “Diakon”, verwendet Jesus mehrfach, und es wird gemeinhin mit “Diener” übersetzt: “Der Größte unter euch soll euer Diener sein.” (MT 23,11). Genauso ist “Diakonos” aber auch die Regierung: “Die Regierung ist Gottes Dienerin, und du sollst durch sie gutes empfangen.” (Römer 12,4a). “Presbyteros”, unser “Ältester”, sind mal die Anführer der Juden (MT 27,3), mal die Älteren (Apg 2,17/Joel 3,1, 1.Tim 5,1), mal werden sie neben den Aposteln der Jerusalemer Gemeinde explizit genannt (Apg 15,23), aber <em>nie</em> werden sie <em>gewählt</em>. Es scheint eher so zu sein, dass sie von einem Gemeindegründer/Apostel eingesetzt werden (Titus 1,5), oder, was der orientalischen Kultur entsprechen würde: dass schlicht alte weise Menschen naturgemäß Autorität und Verantwortung besaßen. Ähnlich beobachten wir das auch in unserer Gemeinde: wenn Hans-Erhard, Wilfried, Thomas oder Andreas etwas sagen, hat das Gewicht – unabhängig von Amt und Titel. Das jedoch eher als Gedankenanstoß.</p>
+      <p>Zusammenfassend lässt sich über Apostel und Diakone also sagen,</p>
+      <ul>
+        <li>dass die Aufgabe der Ältesten das Gebet und der Dienst der Verkündigung des Evangeliums ist,</li>
+        <li>dass die Diakone hingegen die Ältesten dienend in konkreten Aufgaben entlasten,</li>
+        <li>dass Älteste wie Diakone ehrbar, untadelig und vorbildhaft leben müssen, und</li>
+        <li>dass Älteste wie Diakone in einer besonderen Weise belohnt werden.</li>
+      </ul>
+
+      <h2>Einflussnahme der Urgemeinde</h2>
+      <p>Bleibt zu klären, wie die Christliche Gemeinde früher Einfluss auf die Menschen gehabt hat.</p>
+      <p>In den Sendschreiben in der Offenbarung werden die Gemeinden beschrieben</p>
+      <ul>
+        <li>als “unermüdlich”, “ausdauernd” und “prüfend”, aber auch als “erkaltet” (Ephesus, Offb 2,1-7)</li>
+        <li>als “bedrängt”, “arm (eigentlich aber reich)” und “verhöhnt” (Smyrna, Offb 2,8-11)</li>
+        <li>als “wohnend am Thron des Satans”, “festhaltend am Glauben”, aber als “nicht umgekehrt” (Pergamon, Offb 2,12-17)</li>
+        <li>als “liebend”, “glaubend”, “hilfsbereit”, “ausdauernd”, aber “nur wenige sind standhaft geblieben” (Thyatria, Offb 2,18-25)</li>
+        <li>als “dem Ruf nach lebendig, aber innerlich tot” und “schlafend” (Sardes, Offb 3,1-6)</li>
+        <li>als “wenig kraftvoll aber unerschrocken” und “standhaft” (Philadelphia, Offb 3,7-13)</li>
+        <li>als “lauwarm” und “reich aber doch arm” (Laodizea, Offb 3,14-22).</li>
+      </ul>
+      <p>Hier zeigt sich, dass wohl nicht alle Gemeinden gleich waren. Ein erster wichtiger Schritt scheint also, eine Bestandsaufnahme – wie wir sie heute machen wollen – darüber zu tun, wo und wie sich die Gemeinde befindet. Ich möchte lieber zur armen (aber eigentlich reichen) Gemeinde von Smyrna gehören als zur reichen (aber eigentlich armen) Gemeinde von Laodizea. Aber es gab Gemeinden wie die in Thyatria, die als hilfsbereit – eine der wenigen nach außen gerichteten Eigenschaften – charakterisiert werden.</p>
+      <p>Auch in den Grußworten der Briefe findet man Hinweise darauf, wie die Gemeinden nach außen hin wahrgenommen wurden:</p>
+      <ul>
+        <li>über den Glauben der römischen Gemeinde spricht man in der ganzen Welt (Römer 1,8),</li>
+        <li>der Gemeinde in Korinth fehlt keine der Gaben, die seine Gnade schenkt (1.Kor 1,6-7),</li>
+        <li>in Thessaloniki wird Glaube entschieden in die Tat umgesetzt, der Einsatz aus Liebe ist unermüdlich, und die Hoffnung auf Jesus macht standhaft (1.Thess 1,3),</li>
+        <li>die Gemeinde in Philippi setzt sich seit dem ersten Tag für das Evangelium ein (Philipper 1,5), und</li>
+        <li>die Gemeinde in Kolossä hat einen lebendigen Glauben an Christus und bringt denen, die zu Gottes heiligem Volk gehören, außerordentlich viel Liebe entgegen (Kolosser 1,4).</li>
+      </ul>
+      <p>Auch hier sind die Gemeinden unterschiedlich, und doch meine ich, darin Eigenschaften wiederzuerkennen: lebendiger Glaube, unermüdliche Liebe, Hoffnung auf Jesus/das Evangelium. Was den Charme hätte, mit 1. Korinther 13 übereinzustimmen:</p>
+      <blockquote>
+        <ol type="1">
+          <li>Korinther 13,13 Was für immer bleibt, sind Glaube, Hoffnung, Liebe, diese drei. Aber am größten von ihnen ist die Liebe.</li>
+        </ol>
+      </blockquote>
+      <p>Damit müssten wir uns fragen:</p>
+      <ul>
+        <li>ist unser Glaube so lebendig, dass man von ihm in der ganzen Welt spricht?</li>
+        <li>ist unsere Liebe unermüdlich? Oder hört sie am schweren Metalltor in der Böhlstraße auf?</li>
+        <li>setzen wir uns für die Hoffnung Jesu, für das Evangelium ein? Wie und bei wem?</li>
+      </ul>
+      <p>Das sind herausfordernde Fragen, auf die ich keine – erst recht keine befriedigende Antwort – habe. Aber sie beschäftigen mich. Und insgeheim hoffe ich, dass sie mich und uns im innersten so tief erschüttern, dass wir betend Buße tun vor unserem Gott und ihn inständig um Erweckung in unserer Stadt anflehen. Am Ende ist Erweckung das, wonach ich mich für Ludwigshafen sehne, und diese erschütterte Erkenntnis von der eigenen Unzulänglichkeit – die sich in der ganzen Tiefe nicht selbst herbeiführen lässt, sondern von Gott geschenkt wird – gepaart mit dem beharrlichen Flehen vor Gott, scheint ein Schlüssel dazu zu sein. Ein Beispiel ist die <a href="http://www.revival-library.org/index.php/pensketches-menu/historical-revivals/the-hebrides-revival">Erweckung auf Lewis Island 1949</a>:</p>
+      <blockquote>
+        <p>Two old women, one of them 84 years of age and the other 82-one of them stone blind, were greatly burdened because of the appalling state of their own parish. It was true that not a single young person attended public worship. Not a single young man or young woman went to the church. They spent their day perhaps reading or walking but the church was left out of the picture. And those two women were greatly concerned and they made it a special matter of prayer.</p>
+      </blockquote>
+      <p>Mir ist klar, dass sich allein mit diesem Wunsch nach Erweckung keine Gemeinde bauen lässt. Aber über alles Vision erarbeiten, Ziele formulieren, Aufgabenbereiche abstecken und Projekte organisieren, dürfen wir nicht vergessen, dass eine Begegnung mit Gott die Menschen mehr und nachhaltiger verändern wird, als unsere Pläne – so geistgeleitet, gabenorientiert und mit bestem Gewissen sie auch sind – das je könnten.</p>
+    </article>
+  </section>
+  <!-- #!/de/predigt/2019-09-29_Gebet-in-gottlicher-Autoritat -->
+  <section class="view" id="!/de/predigt/2019-09-29_Gebet-in-gottlicher-Autoritat" data-title="Gebet in göttlicher Autorität">
+    <article class="section text">
+      <h1>Gebet in göttlicher Autorität</h1>
+      <p style="font-style: italic">Predigt vom 29.9.19 in der EFG Ludwigshafen</p>
+      <p style="font-style: italic">Anhören auf <a href="https://efg-ludwigshafen.de/#!/sermon/2019-09-29_Dominik-Schreiber_Gebet-in-göttlicher-Autorität.mp3">efg-ludwigshafen.de</a></p>
+      
+      <h2>Zusammenfassung</h2>
+      <p>Ich möchte heute mit euch herleiten, dass wir durch Jesus Christus eine neue Schöpfung sind, die endlich der ursprünglichen Bestimmung der Menschheit &ndash; göttliche Autorität über die Schöpfung ausüben &ndash; nachkommen kann. Ich möchte euch zeigen, wie diese Erkenntnis unser Leben, und insbesondere unser Gebetsleben verändert: wir sind nicht länger Bittsteller, bleiben nicht in einer Position des Bittens stecken, sondern sind mit göttlicher Autorität ausgestattet, seinen Willen zu erkennen, ihn schöpferisch auszusprechen, und in seiner Autorität auszuüben. Und wir beten, bis wir seinen Willen Wirklichkeit werden sehen.</p>
+
+      <h2>Die göttliche Autorität ist wiederhergestellt</h2>
+      <p>Heute gab es keine Schriftlesung, denn wir werden im Laufe der Predigt einen Flug durch die ganze Bibel erleben, von 1. Mose bis Offenbarung. Ich möchte mit euch mittendrin einsteigen bei der Lösung der Frage “Wer hat hier eigentlich was zu sagen?”.</p>
+      <blockquote>
+        <p>Der Teufel führte ihn an eine hochgelegene Stelle, zeigte ihm in einem einzigen Augenblick alle Reiche der Erde und sagte: “Alle diese Macht und Herrlichkeit will ich dir geben. Denn <em>mir ist das alles übergeben</em>, ​und ich gebe es, wem ich will.” (LK 4,5-6)</p>
+      </blockquote>
+      <p>Wer hat dem Teufel alle diese Macht und Herrlichkeit übergeben?</p>
+      <p>Schauen wir mal an Anfang nach.</p>
+      <p>Im ersten Schöpfungsbericht, ganz zu Beginn der Bibel, wird erzählt, wie Gott die Welt erschuf. Am Ende, als krönenden Abschluss erschafft Gott die Menschen:</p>
+      <blockquote>
+        <p>Da sprach Gott: “Wir wollen Menschen schaffen nach unserem Bild, die uns ähnlich sind. Sie sollen über die Fische im Meer, die Vögel am Himmel, über alles Vieh, die wilden Tiere und über alle Kriechtiere herrschen.” So schuf Gott die Menschen nach seinem Bild, nach dem Bild Gottes schuf er sie, als Mann und Frau schuf er sie. Und Gott segnete sie und gab ihnen den Auftrag: “Seid fruchtbar und vermehrt euch, bevölkert die Erde und ​<em>nehmt sie in Besitz</em>.​ Herrscht über die Fische im Meer, die Vögel in der Luft und über alle Tiere auf der Erde.” (1.Mo 1,26-28)</p>
+      </blockquote>
+      <p>Die Menschheit hatte in der Schöpfung die Herrschaft über die Erde bekommen. So hatte Gott sich das gedacht. Wir Menschen sollen die Erde in Besitz nehmen und über alle Tiere herrschen. Wie haben wir diese Herrschaft abgegeben?</p>
+      <p>Dafür müssen wir nicht weit blättern. Im zweiten Schöpfungsbericht wird erzählt, wie Adam und Eva im Garten Eden Gemeinschaft mit Gott haben. Sie dürfen alles tun außer vom Baum der Erkenntnis zu essen. Doch der Teufel in Form einer Schlange setzt ihnen einen unerhörten Gedanken in die Köpfe.</p>
+      <blockquote>
+        <p>“Ihr werdet nicht sterben!” , zischte die Schlange. “Gott weiß, dass eure Augen geöffnet werden, wenn ihr davon esst. Ihr werdet sein wie Gott und das Gute vom Bösen unterscheiden können.” Die Frau sah: Die Früchte waren so frisch, lecker und verlockend - und sie würden klug machen! Also nahm sie eine Frucht, biss hinein und gab auch ihrem Mann davon. <em>​Da aß auch er von der Frucht​.</em>(1.Mo 3,4-6)</p>
+      </blockquote>
+      <p>Hier geschehen gleich mehrere dramatische Ereignisse. Adam und Eva sind Gott nicht gehorsam. Aber noch viel schlimmer: durch den Gehorsam dem Teufel gegenüber übergeben Adam und Eva ihre Autorität über die Erde an den Teufel. Zu sagen “also wenn ich Adam gewesen wäre, hätte ich nicht von der Frucht gegessen” ist vorschnell geurteilt – wie oft versuchen wir, Probleme eigenmächtig zu lösen, uns selbst ein Urteil zu bilden, aus Furcht statt aus Hoffnung zu handeln?</p>
+      <p>Umso interessanter ist, was Jesus bei seiner letzten Begegnung mit den Jüngern sagt:</p>
+      <blockquote>
+        <p>Jesus trat auf sie zu und sagte: “Mir ist alle Macht im Himmel ​<em>und auf der Erde​</em> gegeben. Darum geht zu allen Völkern und macht die Menschen zu meinen Jüngern; tauft sie auf den Namen des Vaters, des Sohnes und des Heiligen Geistes und lehrt sie, alles zu befolgen, was ich euch geboten habe. Und seid gewiss: Ich bin jeden Tag bei euch, bis zum Ende der Welt.” (MT 28,18-20)</p>
+      </blockquote>
+      <p>Dass Jesus alle Macht im Himmel gegeben ist, ist nichts neues. Aber ihm ist nun, nach Kreuzigung und Auferstehung, auch alle Macht auf der Erde gegeben.</p>
+      <p>Er hat die Schlüssel zurückgeholt. Was heißt das nun für uns, und warum?</p>
+      <blockquote>
+        <p>Vielmehr wissen wir: Wenn jemand zu Christus gehört, ist er eine neue Schöpfung. Das Alte ist vergangen; etwas ganz Neues hat begonnen! (2.Kor 5,17)</p>
+      </blockquote>
+      <p>Wir sind eine neue Schöpfung, etwas nie dagewesenes. Du stammst nicht länger vom ersten Adam ab, sondern von Jesus, dem zweiten Adam. Paulus schreibt darüber im Römerbrief, Kapitel 5 – sehr lesenswert.</p>
+      <p>Du bist ein Mini-Jesus. Wenn du einen Raum betrittst kommt Jesus in Herrlichkeit, wie in der Offenbarung beschrieben, hinein:</p>
+      <blockquote>
+        <p>Da sah ich sieben goldene Leuchter und mitten unter den Leuchtern jemand, der aussah wie der Menschensohn. Er war mit einem Gewand bekleidet, das ihm bis an die Füße reichte, und trug ein breites goldenes Band um die Brust. Das Haar auf seinem Kopf war weiß wie schneeweiße Wolle, und seine Augen glichen lodernden Flammen. Seine Füße glänzten wie Golderz, das im Schmelzofen glüht, und seine Stimme klang wie das Tosen einer mächtigen Brandung. In seiner rechten Hand hielt er sieben Sterne, und aus seinem Mund kam ein scharfes, beidseitig geschliffenes Schwert. Sein Gesicht leuchtete wie die Sonne in ihrem vollen Glanz. (Offb 1,12b-16)</p>
+      </blockquote>
+      <p>Diese Herrlichkeit strahlt aus dir. Weil du eine neue Schöpfung bist. Ein Mini-Jesus.</p>
+      <p>Wir können jetzt zum ersten Mal unserer ursprünglichen Berufung, Autorität über die Schöpfung zu haben, nachkommen. Aber was ist das besondere an unserer neuen Schöpfung?</p>
+
+      <h2>Der mehrdimensionale Christ</h2>
+      <blockquote>
+        <p>Ich kenne einen Menschen, der zu Christus gehört, und der – es ist jetzt vierzehn Jahre her – bis in den dritten Himmel versetzt wurde. Ob er dabei in seinem Körper war, weiß ich nicht; ob er außerhalb seines Körpers war, weiß ich genauso wenig; Gott allein weiß es. Auf jeden Fall weiß ich, dass der Betreffende ins Paradies versetzt wurde (ob in seinem Körper oder ohne seinen Körper, weiß ich – wie gesagt – nicht; nur Gott weiß es) und dass er dort geheimnisvolle Worte hörte, Worte, die auszusprechen einem Menschen nicht zusteht. (2.Kor 12,2-4)</p>
+      </blockquote>
+      <p>Es gibt einen dritten Himmel, die direkte Gegenwart Gottes, das Paradies. Wenn es einen dritten Himmel gibt, macht es Sinn, auch einen ersten und zweiten Himmel zu vermuten: der erste Himmel ist die sichtbare Welt, die Schöpfung. Der zweite Himmel die unsichtbare Welt, in der ein permanenter geistlicher Kampf stattfindet:</p>
+      <blockquote>
+        <p>Denn unser Kampf richtet sich nicht gegen Wesen von Fleisch und Blut, sondern gegen die Mächte und Gewalten der Finsternis, die über die Erde herrschen, gegen das Heer der Geister in der unsichtbaren Welt, die hinter allem Bösen stehen. (Eph 6,12)</p>
+      </blockquote>
+      <p>Wir sind ausgestattet mit göttlicher Autorität, ausgerüstet aus dem dritten Himmel. Unser Auftrag ist, diesen dritten Himmel zum ersten, zu den Menschen zu bringen. Dabei erleben wir jedoch den permanenten geistlichen Kampf im zweiten Himmel.</p>
+      <p>Der Teufel kämpft im zweiten Himmel gegen die Ausbreitung des Reichs Gottes. Er hasst Ehebrecher. Der Teufel hasst auch Mörder. Er hasst selbst Satanisten. Er hasst auch Buddhisten, Moslems, Juden und Christen. Er ist der Feind aller Menschen.</p>
+      <p>Wir müssen aufpassen, dass wir unsere göttliche Autorität im Kampf im zweiten Himmel und nicht gegen Menschen im ersten Himmel einsetzen. Sonst wird der Feind unseres Feindes unser Freund, der Teufel. Wir müssen uns im Klaren darüber sein, dass wir die uns gegebene Autorität im Kampf gegen den Teufel, für die Ausbreitung des Reiches Gottes einsetzen müssen. Dann werden wir zu den Architekten göttlicher Kultur, zu denen wir berufen sind.</p>
+      <p>Als neue Schöpfung durch Christus leben wir mehrdimensional: im ersten Himmel, der Schöpfung, im zweiten Himmel, dem Schlachtfeld, und im dritten Himmel, bei unserem Vater. Welches ist unsere “Standard-Dimension”?</p>
+
+      <h2>Prophetisches Gebet</h2>
+      <p>Welche Auswirkungen hat das auf unser Gebetsleben?</p>
+      <blockquote>
+        <p>Eines Tages stieg Jesus mit seinen Jüngern ins Boot und sagte zu ihnen: “Wir wollen über den See ans andere Ufer fahren!” Während der Fahrt schlief Jesus ein. Plötzlich brach auf dem See ein schwerer Sturm los; das Boot füllte sich mit Wasser, und sie waren in großer Gefahr. Die Jünger stürzten zu Jesus und weckten ihn. “Meister, Meister”, schrien sie, “wir sind verloren!” Jesus stand auf und wies den Wind und die Wellen in ihre Schranken. Da legte sich der Sturm und es wurde ganz still. “Wo bleibt euer Glaube?”, fragte Jesus seine Jünger. Sie aber sagten voll Furcht und Staunen zueinander: “Wer ist nur dieser Mann? Er befiehlt sogar dem Wind und dem Wasser, und sie gehorchen ihm.” (LK 8,22-25)</p>
+      </blockquote>
+      <p>Jesus hat den Willen Gottes ausgesprochen “Wir wollen über den See ans andere Ufer fahren!”, prophetisch im wahrsten Sinn – Gottes Willen aussprechen. Die Jünger folgen dieser Prophetie. Dabei treffen sie auf lebensgefährliche Probleme. Als sie Jesus wecken und er die Probleme weg schafft, fragt er “Wo bleibt euer Glaube?” – “Ihr kennt meinen Willen. Ihr habt die Autorität, ihn auszufüllen. Wo bleibt euer Glaube daran?”</p>
+      <p>Das verändert mein Herangehen an Gebet:</p>
+      <p>ich bitte darum, den Willen Gottes zu erkennen. Dies kann durch Bibelverse, Visionen, Prophetien, Bilder, Eingebungen oder vieles andere geschehen. Wenn mir der Wille Gottes deutlich geworden ist will ich darauf vertrauen, dass ich als neue Schöpfung die Autorität habe, ihn auszuführen. Ich spreche jetzt den Willen Gottes prophetisch aus.</p>
+      <blockquote>
+        <p>Ich sage euch: Wenn jemand zu diesem Berg hier sagt “Heb dich empor und stürz dich ins Meer!” und wenn er dabei in seinem Herzen nicht zweifelt, sondern glaubt, dass das, was er sagt, geschieht, wird es eintreffen. (MK 11,23)</p>
+      </blockquote>
+      <p>Es ist ein schöpferischer Akt, den Willen Gottes prophetisch auszusprechen.</p>
+      <p>Jesus sagt nicht “Wenn jemand Gott darum bittet, dass dieser Berg sich empor hebe und sich ins Meer stürze...”, sondern beschreibt ein direktes Aussprechen.</p>
+      <p>Damit bleibe ich nicht beim Gebet stehen, sondern handle nach Gottes Willen und in der Autorität, die er für mich gewonnen hat.</p>
+      <p>Und ich werde sensibel für Gottes Reden, um seinen Willen zu erkennen. Dinge, die mich über die Maßen aufregen, Dinge, die mich immer wieder stark bewegen, sind oft ein Hinweis darauf, dass Gott genau diese Dinge dadurch lösen will, dass er mir die Autorität dazu gegeben hat. Jetzt liegt es bei mir, aus dieser Autorität zu handeln.</p>
+      <p>Ein Beispiel:</p>
+      <p>Vor ein paar Wochen gab es Folien zur Predigt von Daniel Köpke, aber die konnten nicht angezeigt werden. Ich saß in der ersten Reihe und betete, dass Gott dieses Problem lösen möge. Mit diesem Gedanken im Kopf wurde mir klar, dass ich die Autorität habe, das Problem zu lösen, und dass es sich nicht &ndash; “Puff” &ndash; von allein löst. Also bin ich nach hinten, und konnte das Problem in der Tat lösen: die Folien waren lediglich als PowerPoint-Folien und nicht als PDF verfügbar und Apple KeyNote konnte die Folien nicht öffnen und zur PDF exportieren; ich habe die Folien mit Google Docs geöffnet und zur PDF exportiert, und die konnten dann angezeigt werden. Ich hatte also Gottes Willen in meiner Bitte erkannt, meine Autorität über das Problem entdeckt, und dann entsprechend Gottes Willen gehandelt.</p>
+      
+      <h2>Ausdauerndes Gebet</h2>
+      <p>Ein letzter Punkt: Jesus lehrt uns, wie wir beten sollen. Nicht nur durch das “Vater Unser”, sondern auch durch Gleichnisse. Und im Gleichnis von der bittenden Witwe und dem ungerechten Richter wird ein Aspekt besonders deutlich: wir sollen durchhalten, nicht auffhören.</p>
+      <blockquote>
+        <p>Jesus wollte seinen Jüngern zeigen, dass sie unablässig beten sollten, ohne sich entmutigen zu lassen. Deshalb erzählte er ihnen folgendes Gleichnis: “In einer Stadt lebte ein Richter, der nicht nach Gott fragte und auf keinen Menschen Rücksicht nahm. In der gleichen Stadt lebte auch eine Witwe. Sie kam immer wieder zu dem Richter und bat ihn: ‘Verhilf mir in der Auseinandersetzung mit meinem Gegner zu meinem Recht!’ Lange Zeit wollte der Richter nicht darauf eingehen, doch dann sagte er sich: ‘Ich fürchte Gott zwar nicht, und was die Menschen denken, ist mir gleichgültig; aber diese Witwe wird mir so lästig, dass ich ihr zu ihrem Recht verhelfen will. Sonst bringt sie mich mit ihrem ständigen Kommen noch zur Verzweiflung.’” Der Herr fuhr fort: “Habt ihr darauf geachtet, was dieser Richter sagt, dem es überhaupt nicht um Gerechtigkeit geht? Sollte da Gott nicht erst recht dafür sorgen, dass seine Auserwählten, die Tag und Nacht zu ihm rufen, zu ihrem Recht kommen? Und wird er sie etwa warten lassen? Ich sage euch: Er wird dafür sorgen, dass sie schnell zu ihrem Recht kommen. Aber wird der Menschensohn, wenn er kommt, auf der Erde solch einen Glauben finden?” (LK 18,1-8)</p>
+      </blockquote>
+      <p>Markus hat kürzlich über diese Stelle gepredigt. Und in der Tat ist hier die Anleitung enthalten, wiejedes Gebet erhört wird: nicht aufhören, immer weiter beten. “Jedes Gebet” ist natürlich etwas plakativ, Gott erhört Gebete, die seinem Willen entsprechen – aber sein Wille für uns, seine neue Schöpfung, ist gut.</p>
+      <p>Freilich gibt es “spontane Gebetserhörungen”, und ich wünsche sie jedem von uns. Aber gerade diese spontanen Gebetserhörungen brauchen oft lange Vorbereitung im Gebet. Ich hatte eine sehr persönliche “spontane Gebetserhörung” dieser Art: als Jugendlicher, und zu Beginn unserer Ehe, hatte ich große Probleme mit Pornographie und Selbstbefriedigung. Habe mit Gott und meiner Frau darüber gesprochen, und irgendwann – von einem Tag auf den anderen – war ich davon befreit, und bin es nun seit über fünf Jahren. Aber dieser spontanen Befreiung gingen zehn Jahre “nicht erhörtes” Gebet und ständiger Rückfall voran. Hier zeigt sich, dass im Gebet vor allem eins zählt: Ausdauer und Beständiger Glaube.</p>
+
+      <h2>Fazit</h2>
+      <p>Es ist also so:</p>
+      <p>Gott hatte die Autorität über die Schöpfung den Menschen zugedacht, doch Adam und Eva haben sie dem Teufel übergeben. Durch Kreuz und Auferstehung hat Jesus die Autorität zurückgewonnen, und uns zu einer neuen Schöpfung gemacht, die jetzt zum ersten Mal ihrer ursprünglichen Berufung nachkommen kann: göttliche Autorität über die Schöpfung ausüben.</p>
+      <p>Das verändert unser Leben, insbesondere unser Gebetsleben: wir bitten darum, Gottes Willen zu erkennen, sprechen diesen Willen dann schöpferisch aus, und handeln seinem Willen entsprechend in der uns von ihm gegebenen Autorität.</p>
+      <p>Und wir hören nicht auf zu beten, bis etwas passiert.</p>
+
+      <h2>Praktisches Gebet</h2>
+      <p>Eine Anregung für nächste Woche: gibt es Bereiche in deinem Leben, die dich “überdurchschnittlich” bewegen? Rede mit Gott darüber, bitte darum, Gottes Willen in Bibelversen, Prophetien und Visionen für diese Bereiche zu erkennen. Und überlege, wie du in göttlicher Autorität handeln kannst, um in diesen Bereichen das Reich Gottes sichtbar werden zu lassen.</p>
+      <p>Wenn du sagst "Dominik, das alles trifft auf mich nicht zu, ich gehöre nicht zu Jesus, aber ich will den Raum nicht verlassen ohne das zu ändern" lade ich dich ein, während dem nächsten Lied zu mir nach vorne zu kommen. Wir können über das sprechen, was dir noch unklar ist, und werden gemeinsam beten. Euch andere lade ich ein, das Lied in dem Bewusstsein zu singen, dass der Himmel der Ort ist, aus dem wir leben. Der Ort, an dem wir nicht zu Gott sondern mit Gott beten. Der Ort, wo wir Gottes Willen klar vor Augen bekommen, um ihn dann hier in der sichtbaren Welt auszusprechen und Teil seiner Erfüllung zu sein.</p>
+    </article>
+  </section>
+  <script>
+    function updateLanguage() {
+      /** @type {'de'|'en'} */
+      var language = location.hash
+        ? location.hash.slice(3,5)
+        : navigator.language.slice(0,2);
+  
+      if (language === 'de' || language === 'en') {
+        document.getElementById('pageheader_homelink')
+          .setAttribute('href', '#!/' + language + '/home');
+        document.querySelector('html').setAttribute('lang', language);
+      }
+    }
+
+    window.addEventListener('hashchange', updateLanguage);
+    updateLanguage();
+  </script>
   <script>/** @type {string[]} */
 var targets = Array.from(document.querySelectorAll('[id^="!/"]')).map(function(
 	target
