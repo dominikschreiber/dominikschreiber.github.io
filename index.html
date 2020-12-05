@@ -42,6 +42,19 @@
         margin-left: 1rem;
       }
 
+      article[id] {
+        display: none;
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+        min-height: 100vh;
+        box-sizing: border-box;
+        flex-direction: column;
+      }
+
+      article[id]:target {
+        display: flex;
+      }
+
       section {
         box-sizing: border-box;
         display: flex;
@@ -103,16 +116,8 @@
         margin-bottom: 0;
       }
 
-      article[id] {
-        display: none;
-        padding-top: 6rem;
-        min-height: 100vh;
-        box-sizing: border-box;
-        flex-direction: column;
-      }
-
-      article[id]:target {
-        display: flex;
+      li blockquote {
+        margin: 0;
       }
 
       a {
@@ -126,17 +131,31 @@
 
       nav img {
         border-radius: 0.125rem;
-        box-shadow: 0 0 0 0.125rem white, 0 0 0 0.25rem #123;
+        box-shadow: 0 0 0 0.125rem #fff, 0 0 0 0.25rem #123;
         transition: box-shadow 0.1s ease;
       }
 
       nav img:hover {
-        box-shadow: 0 0 0 0.125rem white, 0 0 0 0.25rem #789;
+        box-shadow: 0 0 0 0.125rem #fff, 0 0 0 0.25rem #789;
       }
 
       p,
-      ul {
+      ul,
+      ol {
         margin-top: 0;
+      }
+
+      kbd {
+        display: inline-block;
+        box-sizing: border-box;
+        margin: 0 0.0625rem;
+        padding: 0 0.25rem;
+        min-width: 1.5rem;
+        background-color: #fff;
+        border: 0.0625rem solid #333;
+        border-radius: 0.25rem;
+        text-align: center;
+        box-shadow: 0 0.125rem 0 0.0625rem #eee;
       }
 
       html[lang="en"] a[href^="#!/de/"],
@@ -203,6 +222,7 @@
       </a>
       <div style="width: 100%"></div>
 
+      <a href="#!/en/audio-engineering/">Audio Engineering</a>
       <a href="#!/en/software-development/">Software Development</a>
       <a href="#!/de/predigt/">Predigten</a>
 
@@ -230,6 +250,450 @@
         </ul>
       </section>
     </article>
+    <!-- #region !/en/audio-engineering/ =================================== -->
+    <article id="!/en/audio-engineering/" data-title="Audio Engineering">
+      <section>
+        <h1>Audio Engineering</h1>
+        <p>
+          During the COVID-19 pandemic I started a podcast (<a
+            href="https://efg-ludwigshafen.de/anchor"
+            >Gemeinde-Podcast EFG Ludwigshafen</a
+          >, a podcast in german where we talk about god, faith and church).
+          Especially recording/mixing/mastering this podcast was a completely
+          new topic for me that I dove into with a lot of fun. Here, I share
+          knowledge I assembled during this time.
+        </p>
+
+        <h2>My podcast editing flow</h2>
+        <p>
+          In this article, I share the editing flow I apply to podcast episodes
+          of the
+          <a href="https://efg-ludwigshafen.de/anchor"
+            >Gemeinde-Podcast EFG Ludwigshafen</a
+          >. Basically this is:
+        </p>
+        <ol>
+          <li>Record the episode with Audacity/QuickTime.</li>
+          <li>Cleanup with iZotope plugins.</li>
+          <li>Detailed walk-through with Audacity macros.</li>
+          <li>Finalize with Audacity plugins.</li>
+          <li>Export and upload to Anchor.</li>
+        </ol>
+        <p>
+          <a href="#!/en/audio-engineering/2020-12-04_my-podcast-editing-flow"
+            >Read more…</a
+          >
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
+    <!-- #region !/en/audio-engineering/2020-12-04_my-podcast-editing-flow . -->
+    <article
+      id="!/en/audio-engineering/2020-12-04_my-podcast-editing-flow"
+      data-title="My podcast editing flow"
+    >
+      <section>
+        <h1>My podcast editing flow</h1>
+        <p>
+          Podcasts are a fascinating medium: <i>you</i> can create and
+          distribute something the whole world can hear. Totally for free. But,
+          if you strive for high quality, you have to dive into topics like
+          recording, audio engineering and distribution. This might be
+          overwhelming.
+        </p>
+        <p>
+          In this article I give an overview about my podcast editing flow, from
+          recording to distribution. It is a result of creating currently (on
+          december 4th 2020) 62 episodes of
+          <a href="https://efg-ludwigshafen.de/anchor"
+            >Gemeinde-Podcast EFG Ludwigshafen</a
+          >
+          with 1943 minutes of content that have been played 2118 times since
+          april 2020. The knowledge is mainly collected from
+        </p>
+        <ul>
+          <li>solving the problems that arose editing these episodes,</li>
+          <li>
+            lurking
+            <a href="https://www.reddit.com/r/audioengineering/"
+              >r/audioengineering</a
+            >, and
+          </li>
+          <li>
+            reading the
+            <a href="https://manual.audacityteam.org/">Audacity manual</a>.
+          </li>
+        </ul>
+        <p>The following sections cover</p>
+        <ol>
+          <li>the recording process,</li>
+          <li>cleaning up the recording, mainly using iZotope plugins,</li>
+          <li>
+            walking through the recording, using Audacity macros to remove
+            unwanted words, silences and noise,
+          </li>
+          <li>finalizing the recording with a compressor, EQ, limiter etc.,</li>
+          <li>adding jingles to the start and end, and</li>
+          <li>
+            exporting the episode to upload it to
+            <a href="https://anchor.fm">anchor.fm</a>.
+          </li>
+        </ol>
+
+        <h2>Recording</h2>
+        <p>
+          Often overlooked, but the root of all evil is:
+          <i>the recording process</i>. A minute spent to create a better
+          recording saves an hour of work in post-production. A bad recording
+          won't magically become good, you can only do so much afterwards.
+        </p>
+        <p>
+          When Covid hit, I purchased a
+          <a href="http://www.rode.com/microphones/podcaster">RøDE Podcaster</a>
+          pretty quick, which has a good sound quality, but mainly is super easy
+          to set up and use, because it has its own audio-interface – you just
+          plug it in via USB and… done! As it became clear that we would be in
+          home-office for several months, and because my Podcaster was always
+          borrowed by friends, I additionally bought a
+          <a href="https://www.shure.com/en-US/products/microphones/sm7b"
+            >Shure SM7B</a
+          >
+          and a
+          <a
+            href="https://www.native-instruments.com/en/products/komplete/audio-interfaces/komplete-audio-1-audio-2/"
+            >Native Instruments Komplete Audio 2</a
+          >.
+        </p>
+        <p>
+          My recording setup is built around these two
+          microphones/audio-interfaces. If we're recording an episode in person
+          (i.e. in my office), I assign the SM7B to the one I anticipate to
+          speak the most, usually the guest, and take the Podcaster for myself.
+          As the Podcaster has its own audio-interface, I can't record both
+          simultaneously with Audacity (maybe I could with an
+          <a href="https://support.apple.com/en-us/HT202000"
+            >Apple MIDI aggregate device</a
+          >, but I never spent time to try that out, because my solution works
+          good enough). So I record the SM7B with Audacity and the Podcaster
+          with QuickTime on Maximum settings. I should also note that I record
+          on a fully equipped 2018 Macbook Pro.
+        </p>
+        <p>
+          Your behavior behind the microphone can make your life in
+          post-production easier or harder, here are some tips to make it
+          easier:
+        </p>
+        <ul>
+          <li>
+            <b>Don't talk directly into the microphone.</b> Aim the microphone
+            directly to your mouth, but angle your head 45° and 1-2 hands
+            (30-50cm) away from the mic. That way you minimize
+            <i>plosives</i> (hard "P"-sounds) that you would have to remove
+            later.
+          </li>
+          <li>
+            <b>Don't rearrange the microphone and talk.</b> Rearrange first,
+            talk later. You can always cut the rearrangement away, but it's hard
+            to operate it surgically out of spoken voice.
+          </li>
+        </ul>
+
+        <h2>A first cleanup</h2>
+        <p>
+          The recording is done, the guest is gone. Now the very first thing is
+          to duplicate the recording files – never work on the recordings
+          themselves, otherwise you may not be able to recover from errors. I
+          usually name the original recording <i>Original.aup</i> and the file
+          I'm actually working on the way I plan to name the podcast episode
+          later (e.g. <i>My podcast editing flow | Episode 016.aup</i>).
+        </p>
+        <p>
+          I use <a href="https://www.audacityteam.org/">Audacity</a> as my DAW
+          ("Digital Audio Workstation", the main program the editing is done
+          in). It started because it was free and open-source, and I really
+          locked-in on it, so that I feel so much more productive with it than
+          with GarageBand or Logic (which I tried for some months as well).
+        </p>
+        <p>
+          Audacity has extensive keyboard support, which speeds up the manual
+          editing (more on that later). For the moment, I just drag the
+          QuickTime recording into the already open project (<i
+            >"My podcast editing flow | Episode 016.aup"</i
+          >) and press <kbd>⌘</kbd><kbd>⇧</kbd><kbd>F</kbd> to distribute both
+          tracks evenly on the screen. Maybe <kbd>⌘</kbd><kbd>F</kbd> to see the
+          whole recording.
+        </p>
+        <p>Now my workflow for all tracks is:</p>
+        <ol>
+          <li>
+            <b
+              >Switch from Waveform to Multi-View, with the spectral view in
+              logarithmic scale.</b
+            >
+            This makes it a lot easier (for me) to identify words, sounds and
+            noise. Also, on a high-resolution display, resize the waveform part
+            so that "silence" is not just a single pixel line but two pixels (it
+            takes an amplify -150db to bring it to a single line, more on that
+            later).
+          </li>
+          <li>
+            <b>Run a High-Pass Filter at 80Hz.</b> This removes bumps and
+            low-frequency noise, which is not produced by human voice.
+          </li>
+          <li>
+            <b>Run iZotope de-click on multi-band/high quality.</b> This cleans
+            up a lot of random clicks that you would have to remove manually.
+            (Before I bought iZotope RX elements I did that manually, and it
+            took me 15 hours on long podcast episodes. Running this plugin takes
+            15 minutes, in which you can drink a coffee, and has almost the same
+            effect.)
+          </li>
+          <li>
+            <b>Run iZotope voice de-noise.</b> For a first run select a moment
+            of silence (as large as possible) and run the plugin in "learn"
+            mode. Then run it no the whole track with the learned shape.
+          </li>
+        </ol>
+
+        <h2>A detailed walk-through</h2>
+        <p>
+          Now, before running finalizing plugins like compressor, EQ etc., I do
+          a detailed clean-up and the right arrangement for each track, so that
+          only the absolutely necessary sound is run through the compressor.
+        </p>
+        <p>I start with aligning all tracks as optimal as possible:</p>
+        <ul>
+          <li>
+            I <b>drag the tracks in order</b> of their appearance in the episode
+            (i.e. who speaks first comes first).
+          </li>
+          <li>
+            Then I <b>arrange the tracks on the time axis</b> so that they
+            loosely resemble the final form (using <kbd>F5</kbd>-mode in
+            Audacity). If we recorded with multiple microphones in the same room
+            this is somewhat easy because each mic captures all content and you
+            can line them up easily. In the detailed walk-through I will cut the
+            transitions from one track to the next to the right length anyways,
+            so it's not important to align the tracks with milli-second
+            fidelity.
+          </li>
+        </ul>
+        <p>
+          After that, I go through each track. This process can take up hours,
+          but you can omit the time-consuming parts (lowering quality but
+          speeding up the process).
+        </p>
+        <p>
+          In this stage of the workflow, I use plugins and multiple hand-made
+          Audacity macros that I assigned to keyboard shortcuts (via <kbd>⌘</kbd
+          ><kbd>,</kbd> &gt; <i>Keyboard</i>), which speeds up editing
+          incredibly:
+        </p>
+        <ul>
+          <li>
+            <b>Select zero crossings (<kbd>Z</kbd>):</b> does nothing in itself,
+            but is incredibly useful for nearly every editing. It adjusts the
+            current selection to the next zero-crossings of the waveform. If you
+            omit that and e.g. delete a section, you'll end up with a waveform
+            that doesn't fit together, which results in an audible "bump" (a
+            straight red line in the spectral view).
+          </li>
+          <li>
+            <b>Spectral Multi Tool (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>A</kbd>):</b>
+            dampens the current spectral selection around the center. This is
+            incredibly useful as a poor-mans "de-plosive" (applied to bumpy
+            "P"-sounds around 80Hz) or "de-esser" (applied to harsh "S"-sounds
+            above 5kHz).
+          </li>
+          <li>
+            <b>Spectral Delete (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>D</kbd>):</b>
+            completely deletes the current spectral selection. Useful to only
+            keep the "breath" of the last word and remove the beginning of an
+            "ähm" you want to remove all along.
+          </li>
+          <li>
+            <b>Amplify:</b> I use that rarely, mainly to dampen exceptionally
+            loud parts (usually in repeated -2dB steps) that would trigger the
+            compressor later on.
+          </li>
+          <li>
+            <b
+              >Delete on all tracks (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>ALT</kbd
+              ><kbd>X</kbd>):</b
+            >
+            a custom macro that <i>selects zero crossings</i>, extends the
+            selection to all tracks, and deletes it. This keeps tracks in sync
+            when deleting sections of a single track. I use it for most unwanted
+            noise (breaths, "ähms" etc).
+          </li>
+          <li>
+            <b>Silence (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>ALT</kbd><kbd>S</kbd>):</b>
+            a custom macro that applies <i>"Select zero crossings"</i> and then
+            3x an <i>amplify with -50dB</i>. This makes sections
+            <i>really</i> silent. I use it for parts where the microphone just
+            captured what a different speaker said into his own microphone. Or
+            to replace breaths and unwanted noise (e.g. an "ähm").
+          </li>
+          <li>
+            <b
+              >Repair at cursor (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>ALT</kbd
+              ><kbd>R</kbd>):</b
+            >
+            a custom macro that creates a selection of around 3ms around the
+            cursor and applies Audacitys <i>repair</i> plugin (as described in
+            <a
+              href="https://manual.audacityteam.org/man/macros_examples.html#Reparations_Magicke_Spell"
+              >Reparations Magicke Spell</a
+            >) to the first track (because I wasn't able to figure out how to
+            find the right track in the macro and it was easier to just drag the
+            track you're editing to the top). I use that for little bumps in the
+            waveform of a track that weren't cought by the
+            <i>iZotope de-click</i> run.
+          </li>
+        </ul>
+        <p>
+          Keep in mind that <kbd>⌘</kbd><kbd>⇧</kbd><kbd>R</kbd> re-applies the
+          last plugin, which comes in pretty handy as well.
+        </p>
+        <p>
+          Depending on my artistic goal with the episode, I apply more or less
+          editing to the tracks. The "Gemeinde-Podcast EFG Ludwigshafen" has two
+          formats: <i>sermon of the week</i>, which is a capture of the sermon
+          of this weeks church service, and <i>episode</i>, which is a dedicated
+          podcast episode released every other week. At the end of editing
+          <i>episodes</i>, I tried to cut all speech so that there were almost
+          no pauses except between paragraphs, without making it sound
+          unnatural.
+        </p>
+        <p>
+          Another thing I do is keep notes of imporant information that will end
+          up in the podcast description (e.g. the main points of the talk, or
+          articles and links mentioned in the episode).
+        </p>
+        <p>At the end of this detailed step should be tracks that</p>
+        <ul>
+          <li>are aligned like you want them,</li>
+          <li>contain only what you want them to contain, and</li>
+          <li>are ready to be finalized and exported.</li>
+        </ul>
+
+        <h2>Finalizing</h2>
+        <p>
+          Now I have the almost-ready podcast episode and can just apply some
+          plugins to it to create a consistent experience:
+        </p>
+        <ol>
+          <li>
+            <b>Compressor:</b> As a first step I apply a <i>compressor</i> with
+            default settings to each track (separately).
+          </li>
+          <li>
+            <b>EQ:</b> Then I apply the <i>AUNBandEQ</i> (from GarageBand,
+            loaded into Audacity as an Audio Unit plugin) with 7 bands as
+            described in
+            <a href="https://podigy.co/2017/09/01/podcasters-eq/"
+              >EQ For Podcasts</a
+            >:
+            <blockquote>
+              <ol>
+                <li>Band-EQ at 87Hz with -1.3dB/3.7oct.</li>
+                <li>Band-EQ at 209Hz with -2.5dB/3.7oct.</li>
+                <li>Band-EQ at 547.7Hz with -5.4dB/3.7oct.</li>
+                <li>Band-EQ at 1495Hz with -5.4dB/2oct.</li>
+                <li>Band-EQ at 3256Hz with -2.7dB/3.7oct.</li>
+                <li>Band-EQ at 7400Hz with -1.3dB/3.7oct.</li>
+                <li>High-Pass-EQ at 70Hz with 0dB/1oct.</li>
+              </ol>
+            </blockquote>
+          </li>
+          <li>
+            <b>Loudness Normalization:</b> I normalize all tracks separately to
+            -16LUFS.
+          </li>
+          <li><b>Limiter:</b> After all that I add a soft limit at -1dB.</li>
+          <li>
+            <b>iZotope de-clip:</b> If I feel like it, I run
+            <i>iZotope de-clip</i> as well, targeting -1dB, with "post-limiter"
+            checked. Just 'cause I have it.
+          </li>
+        </ol>
+        <p>
+          Now that all tracks are finalized, I can add an intro- and
+          outro-jingle. Anchor offers to add that as well, but there you can't
+          fade between them. I have the intro and outro jingle prepared for
+          -16LUFS and a fade-in/fade-out, and can just prepend/append them
+          (using <kbd>F5</kbd> to align the tracks properly). I try to have the
+          first speaker start when the reverb of the intro jingle is still
+          there. And I have the outro jingle prepared so that it has the climax
+          in the middle – then the first half fades in while the last speaker
+          still speaks the final words, and the climax hits right after the last
+          word.
+        </p>
+
+        <h2>Exporting and Publishing</h2>
+        <p>
+          Our podcast is hosted on <a href="https://anchor.fm">Anchor.fm</a>,
+          and I'm really happy with it. It accepts any audio file as an input,
+          but only up to 200mb in size. Therefore uploading a WAV (uncompressed
+          file with the best quality) is not an option. But an OGG file with
+          quality 10 usually fits into the 200mb, so I go for that.
+        </p>
+        <p>
+          I add the right ID3-tags, drag the file to
+          <a href="https://anchor.fm/dashboard/episode/new"
+            >anchor.fm/dashboard/episode/new</a
+          >
+          and hit "Save Episode".
+        </p>
+        <p>
+          I already have thought of an episode title (<i
+            >My podcast editing flow | Episode 016</i
+          >, that's how I named my Audacity project), so I simply use that. I
+          have also taken notes for the podcast description, so it is fairly
+          easy to create the podcast description now.
+        </p>
+        <p>
+          As publish date I select what fits (our podcast was released every
+          other wednesday at 7am). The artwork is taken over from the podcast,
+          so I don't have to create a new one (although I could and it would
+          surely look awesome), and the series and episode number dictate
+          themselves (our "sermon of the week" format is series 1, and the
+          "episodes" are series 2).
+        </p>
+        <p>
+          Now the podcast is fully produced and I can relay. Or start
+          advertising it on social media.
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>
+          I hope this gave an overview on my editing flow. I plan to go into
+          details on different topics in separate articles. When I have them,
+          I'll link them below.
+        </p>
+        <p>
+          For a <i>first cleanup</i> I use a high-pass filter at 80Hz, iZotope
+          de-click and iZotope voice de-noise.
+        </p>
+        <p>
+          Then I <i>go through all tracks</i> and clean them up with all kinds
+          of plugins and macros.
+        </p>
+        <p>
+          <i>Finally</i> I use a compressor, EQ, loudness-normalization, limiter
+          and iZotope de-clip to create a consistent sound.
+        </p>
+        <p>
+          This is uploaded to Anchor.fm with a meaningful title and description
+          I thought of while editing the podcast.
+        </p>
+        <p style="font-style: italic">
+          Hit me on <a href="https://twitter.com/@domischreib">twitter</a> to
+          discuss this flow.
+        </p>
+      </section>
+    </article>
+    <!-- #endregion -->
     <!-- #region !/en/software-development/ ================================ -->
     <article id="!/en/software-development/" data-title="Software Development">
       <section>
