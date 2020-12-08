@@ -154,6 +154,7 @@
         background-color: #fff;
         border: 0.0625rem solid #333;
         border-radius: 0.25rem;
+        font-weight: normal;
         text-align: center;
         box-shadow: 0 0.125rem 0 0.0625rem #eee;
       }
@@ -453,6 +454,23 @@
             of silence (as large as possible) and run the plugin in "learn"
             mode. Then run it no the whole track with the learned shape.
           </li>
+          <li>
+            <b>Run Noise Gate.</b> This will completely silence sound below a
+            threshold, so it silences "silence". However, you have to be really
+            careful with the attack/decay setting, otherwise it will silence
+            long-sounding "n"s at the end of mumbled speech parts (e.g.
+            "Ludwigsha<i>fen</i>" is a common victim). I usually go up to 500ms
+            with attach/decay and adjust the dB threshold manually. For some
+            time I tried to get
+            <a href="https://www.auburnsounds.com/products/Renegate.html"
+              >Renegate</a
+            >
+            to work, because it seems to be a very sophisticated (but still
+            free) noise gate plugin, but it will not take over any settings from
+            Audacity, and running it on default settings often silences parts of
+            breathing etc, so I stick with the default Audacity noise gate
+            plugin for the moment.
+          </li>
         </ol>
 
         <h2>A detailed walk-through</h2>
@@ -518,7 +536,7 @@
           </li>
           <li>
             <b
-              >Delete on all tracks (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>ALT</kbd
+              >Delete on all tracks (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>⌥</kbd
               ><kbd>X</kbd>):</b
             >
             a custom macro that <i>selects zero crossings</i>, extends the
@@ -527,7 +545,7 @@
             noise (breaths, "ähms" etc).
           </li>
           <li>
-            <b>Silence (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>ALT</kbd><kbd>S</kbd>):</b>
+            <b>Silence (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>⌥</kbd><kbd>S</kbd>):</b>
             a custom macro that applies <i>"Select zero crossings"</i> and then
             3x an <i>amplify with -50dB</i>. This makes sections
             <i>really</i> silent. I use it for parts where the microphone just
@@ -536,7 +554,7 @@
           </li>
           <li>
             <b
-              >Repair at cursor (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>ALT</kbd
+              >Repair at cursor (<kbd>⌘</kbd><kbd>⇧</kbd><kbd>⌥</kbd
               ><kbd>R</kbd>):</b
             >
             a custom macro that creates a selection of around 3ms around the
@@ -584,8 +602,24 @@
         </p>
         <ol>
           <li>
-            <b>Compressor:</b> As a first step I apply a <i>compressor</i> with
-            default settings to each track (separately).
+            <b>Truncate Silence:</b> if I went through the whole podcast in
+            detail this does not have much effect. But if I shortened this step,
+            <i>Truncate Silence</i> (together with the <i>Noise Gate</i> from
+            the beginning) really helps to bring the sound in an easily
+            digestable format. I usually run it twice:
+            <ol>
+              <li>
+                Truncate all silence above a fixed length, e.g. above 2s to 2s.
+              </li>
+              <li>
+                Shorten all remaining silence to e.g. 30%, so that there is no
+                silence larger than 600ms.
+              </li>
+            </ol>
+          </li>
+          <li>
+            <b>Compressor:</b> I apply a <i>compressor</i> with default settings
+            to each track (separately).
           </li>
           <li>
             <b>EQ:</b> Then I apply the <i>AUNBandEQ</i> (from GarageBand,
