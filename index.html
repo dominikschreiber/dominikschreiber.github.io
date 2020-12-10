@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
     <meta
       name="description"
       content="Dominik is the software architect of Unified Rendering, a mature web-based UI-framework at SAP. He's a husband, dad of three, well-versed pianist/bassist, and christ follower in the leadership team of EFG Ludwigshafen."
@@ -10,6 +11,10 @@
 
     <title>Dominik Schreiber</title>
     <style>
+      html {
+        background-color: #fdfeff;
+      }
+
       body {
         margin: 0;
         font-family: Helvetica, Arial, sans-serif;
@@ -80,7 +85,7 @@
 
       section h3 {
         font-size: 1.618rem;
-        color: #666;
+        color: #456;
         font-weight: bold;
       }
 
@@ -131,12 +136,12 @@
 
       nav img {
         border-radius: 0.125rem;
-        box-shadow: 0 0 0 0.125rem #fff, 0 0 0 0.25rem #123;
+        box-shadow: 0 0 0 0.125rem #fdfeff, 0 0 0 0.25rem #123;
         transition: box-shadow 0.1s ease;
       }
 
       nav img:hover {
-        box-shadow: 0 0 0 0.125rem #fff, 0 0 0 0.25rem #789;
+        box-shadow: 0 0 0 0.125rem #fdfeff, 0 0 0 0.25rem #789;
       }
 
       p,
@@ -207,6 +212,40 @@
         section {
           padding-left: calc((100% - 1440px + 2rem) / 2);
           padding-right: calc((100% - 1440px + 2rem) / 2);
+        }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        html {
+          background-color: #202830;
+          color: #f0f8ff;
+        }
+        nav {
+          box-shadow: 0 0 0.125rem #fff3, 0 0 4rem #fff1;
+        }
+        nav img {
+          box-shadow: 0 0 0 0.125rem #202830, 0 0 0 0.25rem #cde;
+        }
+        nav img:hover {
+          box-shadow: 0 0 0 0.125rem #202830, 0 0 0 0.25rem #789;
+        }
+        section h3,
+        section blockquote {
+          color: #def;
+        }
+        section blockquote {
+          background-image: linear-gradient(0deg, #def 0, #def 100%);
+        }
+        a {
+          color: #cde;
+        }
+        a:hover {
+          color: #789;
+        }
+        kbd {
+          background-color: #678;
+          border-color: #f0f8ff;
+          box-shadow: 0 0.125rem 0 0.0625rem #999;
         }
       }
     </style>
