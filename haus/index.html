@@ -506,14 +506,14 @@
           p.classList.remove('ci_b-a');
           n.classList.remove('ci_b-a');
 
-          (dx > 0 ? n : p).classList.add('ci_b-a');
+          (dx > 0 ? p : n).classList.add('ci_b-a');
         });
         ci.addEventListener('touchend', ({target}) => {
           p.classList.remove('ci_b-a');
           n.classList.remove('ci_b-a');
 
           if (Math.abs(dx) > 16) {
-            location.hash = (dx > 0 ? n : p).hash.slice(1);
+            location.hash = (dx > 0 ? p : n).hash.slice(1);
           }
         });
       }
