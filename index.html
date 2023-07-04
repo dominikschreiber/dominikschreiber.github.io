@@ -3744,57 +3744,23 @@
 			'!/de/home/': '!/de/',
 			'!/en/home/': '!/en/'
 		};
-		/** @type {'Edge'|'LegacyEdge'|'Firefox'|'Chrome'|'Safari'|'WebKit'|'IE'} */
-		var browser =
-			navigator.userAgent.indexOf('Edge/') > -1
-				? 'Edge'
-				: navigator.userAgent.indexOf('Edg/') > -1
-					? 'LegacyEdge'
-					: navigator.userAgent.indexOf('Gecko/') > -1
-						? 'Firefox'
-						: navigator.userAgent.indexOf('Chrome/') > -1
-							? 'Chrome'
-							: navigator.userAgent.indexOf('Safari/') > -1
-								? 'Safari'
-								: navigator.userAgent.indexOf('WebKit/') > -1
-									? 'WebKit'
-									: 'IE';
-		/**
-		 * @template T
-		 * @param {ArrayLike<T>} _
-		 * @return {T[]}
-		 */
-		var toArray =
-			Array.from ||
-			function(_) {
-				var r = [];
-
-				for (var i = 0; i < _.length; i++) {
-					r.push(_[i]);
-				}
-
-				return r;
-			};
 
 		function onhashchange() {
 			/** @type {string} */
 			var id = location.hash.slice(1);
 
 			if (!articles) {
-				articles = toArray(document.querySelectorAll('article[id]')).reduce(function(as, e) {
-					as[e.id] = e.dataset;
-
-					return as;
-				}, {});
+				articles = Array.from(document.querySelectorAll('article[id]'))
+					.reduce((as, {id, dataset}) => ({...as, [id]: dataset}), {});
 			}
 
 			if (!articleLinks) {
-				articleLinks = toArray(document.querySelectorAll('a[href^="#!/"]'));
+				articleLinks = Array.from(document.querySelectorAll('a[href^="#!/"]'));
 			}
 
 			if (id in articles) {
-				document.title = articles[id].title + ' | Dominik Schreiber';
-				articleLinks.forEach(function(_) {
+				document.title = `${articles[id].title} | Dominik Schreiber`;
+				articleLinks.forEach(_ => {
 					if (id.indexOf(_.href.split('#')[1]) === 0) {
 						_.classList.add('active');
 					} else {
@@ -3816,16 +3782,6 @@
 
 		window.addEventListener('hashchange', onhashchange);
 		onhashchange();
-
-		if (browser === 'IE') {
-			// IE doesn't support webp => replace with jpg
-			toArray(document.querySelectorAll('img[src*=".webp"]')).forEach(function(_) {
-				_.src = _.src.replace(/\.webp/g, '.jpg');
-			});
-			toArray(document.querySelectorAll('[style*=".webp"]')).forEach(function(_) {
-				_.setAttribute('style', _.getAttribute('style').replace(/\.webp/g, '.jpg'));
-			});
-		}
 	</script>
 </body>
 
