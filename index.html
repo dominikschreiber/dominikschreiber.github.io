@@ -639,7 +639,7 @@
 			<p>Via <code>&lt;jenkins&gt;/manage/credentials</code> you can only manage the credentials of a Jenkins instance, but not see their values (for security, which is good). But occasionally you need to access their values, e.g. to reproduce a script result locally.</p>
 			<p>This can be achieved in the script console <code>&lt;jenkins&gt;/script</code> with a bit of Jenkins-/Groovy-magic:</p>
 			<pre>for (c in com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
-	com.cloudbees.plugins.credentials.Credentials.class
+  com.cloudbees.plugins.credentials.Credentials.class
 )) {
   println(c.id)
   if (c.properties.description) println("   description: ${c.description}")
