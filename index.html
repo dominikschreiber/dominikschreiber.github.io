@@ -629,9 +629,11 @@
 			<h1>Disable SonarQube Rules</h1>
 			<p>SonarQube Rules can be disabled with a carefully crafted <code>sonar.issue.ignore.multicriteria</code>, which is a list of made-up keys that point to <code>ruleKey</code> (the identifier of the SonarQube Rule) and <code>resourceKey</code> (the glob where the SonarQube Rule should be ignored) entries. E.g.:</p>
 			<pre># filename:sonar-project.properties
-sonar.issue.ignore.multicriteria=js-no-duplicate-string
+sonar.issue.ignore.multicriteria=js-no-duplicate-string,css-no-duplicate-selector
 sonar.issue.ignore.multicriteria.js-no-duplicate-string.ruleKey=javascript:S1192
-sonar.issue.ignore.multicriteria.js-no-duplicate-string.resourceKey=**/*</pre>
+sonar.issue.ignore.multicriteria.js-no-duplicate-string.resourceKey=**/*
+sonar.issue.ignore.multicriteria.css-no-duplicate-selector.ruleKey=css:S4666
+sonar.issue.ignore.multicriteria.css-no-duplicate-selector.resourceKey=**/*</pre>
 		</section>
 	</article>
 	<!-- #region !/en/software-development/2020-03-27_8-performance-quick-tips/ -->
