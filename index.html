@@ -275,6 +275,7 @@
 		<a href="#!/en/audio-engineering/">Audio Engineering</a>
 		<a href="#!/en/software-development/">Software Development</a>
 		<a href="#!/de/predigt/">Predigten</a>
+		<a href="#!/de/musik/">Musik</a>
 		<a href="#!/de/" style="display: inline">🇩🇪</a>
 		<a href="#!/en/" style="display: inline-block; margin-left: 0.5rem">🇺🇸</a>
 	</nav>
@@ -601,6 +602,11 @@
 				ranging from <em>emerging web technologies</em> over <em>performance optimization techniques</em> to
 				<em>debugging tips &amp; tricks</em> and <em>programming languages</em> (I'm a secret lover of lazy evaluation
 				and the functional programming paradigm, so those might show up here &ndash; you have been warned!). </p>
+			<h2>Disable SonarQube Rules</h2>
+			<p>SonarQube Rules can be disabled with a carefully crafted <code>sonar.issue.ignore.multicriteria</code>, which is a list of made-up keys that point to <code>ruleKey</code> (the identifier of the SonarQube Rule) and <code>resourceKey</code> (the glob where the SonarQube Rule should be ignored) entries. E.g.:</p>
+			<p>
+				<a href="#!/en/software-development/2023-08-30_disable-sonarqube-rules/">Read more…</a>
+			</p>
 			<h2>8 Performance Quick Tips</h2>
 			<p>I've been following <a href="https://twitter.com/davidwalshblog">@davidwalshblog</a> on twitter for the better
 				half of a century now, and he just recently asked</p>
@@ -616,6 +622,16 @@
 			<p>
 				<a href="#!/en/software-development/2020-03-27_8-performance-quick-tips/">Read more…</a>
 			</p>
+		</section>
+	</article>
+	<article id="!/en/software-development/2023-08-30_disable-sonarqube-rules/" data-title="Disable SonarQube Rules">
+		<section>
+			<h1>Disable SonarQube Rules</h1>
+			<p>SonarQube Rules can be disabled with a carefully crafted <code>sonar.issue.ignore.multicriteria</code>, which is a list of made-up keys that point to <code>ruleKey</code> (the identifier of the SonarQube Rule) and <code>resourceKey</code> (the glob where the SonarQube Rule should be ignored) entries. E.g.:</p>
+			<pre># filename:sonar-project.properties
+sonar.issue.ignore.multicriteria=js-no-duplicate-string
+sonar.issue.ignore.multicriteria.js-no-duplicate-string.ruleKey=javascript:S1192
+sonar.issue.ignore.multicriteria.js-no-duplicate-string.resourceKey=**/*</pre>
 		</section>
 	</article>
 	<!-- #region !/en/software-development/2020-03-27_8-performance-quick-tips/ -->
@@ -3729,6 +3745,11 @@
 	</article>
 	<!-- #endregion -->
 	<!-- #endregion -->
+	<!-- #endregion -->
+	<!-- #region !/de/musik/ =============================================== -->
+	<article id="!/de/musik/" data-title="Musik">
+		
+	</article>
 	<!-- #endregion -->
 	<script>
 		/** @type {{[id: string]: {title: string}}} */
