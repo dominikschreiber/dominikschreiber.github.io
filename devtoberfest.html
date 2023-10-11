@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" id="variables">
+<style>
+button {
+  appearance: none;
+  cursor: pointer;
+  font-size: var(--sapFontSize);
+  line-height: var(--sapElement_Height);
+  padding: 0 .75rem;
+  background-color: var(--sapButton_Emphasized_Background);
+  color: var(--sapButton_Emphasized_TextColor);
+  border-width: var(--sapButton_BorderWidth);
+  border-style: var(--sapButton_BorderStyle);
+  border-color: var(--sapButton_Emphasized_BorderColor);
+  border-radius: var(--sapButton_BorderCornerRadius);
+}
+
+button:hover {
+  background-color: var(--sapButton_Emphasized_Hover_Background);
+  color: var(--sapButton_Emphasized_Hover_TextColor);
+  border-color: var(--sapButton_Emphasized_Hover_BorderColor);
+}
+
+button:active {
+  background-color: var(--sapButton_Emphasized_Active_Background);
+  color: var(--sapButton_Emphasized_Active_TextColor);
+  border-color: var(--sapButton_Emphasized_Active_BorderColor);
+}
+</style>
+	</head>
+	<body>
+		<button>press me</button>
+<script>
+	const [themeId = 'sap_horizon', themeRepository = 'https://unpkg.com/@sap-theming/theming-base-content/content'] = (new URLSearchParams(location.search).get('sap-theme') || 'sap_horizon').split('@');
+	variables.href = `${themeRepository}/Base/baseLib/${themeId}/css_variables.css`;
+</script>
+	</body>
+</html>
