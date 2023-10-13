@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" id="variables">
+  <style>
+    body {
+      background-color: var(--sapBackgroundColor);
+    }
+
+    button {
+      appearance: none;
+      cursor: pointer;
+
+      line-height: var(--sapElement_Height);
+      font-size: var(--sapFontSize);
+      padding: 0 .75rem;
+      background-color: var(--sapButton_Emphasized_Background);
+      color: var(--sapButton_Emphasized_TextColor);
+      border: var(--sapButton_BorderWidth) var(--sapButton_BorderStyle) var(--sapButton_Emphasized_BorderColor);
+      border-radius: var(--sapButton_BorderCornerRadius);
+    }
+
+    button:hover {
+      background-color: var(--sapButton_Emphasized_Hover_Background);
+      color: var(--sapButton_Emphasized_Hover_TextColor);
+      border-color: var(--sapButton_Emphasized_Hover_BorderColor);
+    }
+  </style>
+</head>
+
+<body>
+  <button>press me!</button>
+  <script>// ?sap-theme=devtoberfest@https://…
+    const [themeid, themerepository = 'https://unpkg.com/@sap-theming/theming-base-content/content'] = (new URLSearchParams(location.search).get('sap-theme') || 'sap_horizon_dark').split('@');
+    variables.href = `${themerepository}/Base/baseLib/${themeid}/css_variables.css`;</script>
+</body>
+
+</html>
