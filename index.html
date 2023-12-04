@@ -603,6 +603,10 @@
 				<em>debugging tips &amp; tricks</em> and <em>programming languages</em> (I'm a secret lover of lazy evaluation
 				and the functional programming paradigm, so those might show up here &ndash; you have been warned!).</p>
 
+			<h2>Shooting Yourself In The Foot With Promises</h2>
+			<p>Promises, especially with <code>async</code>/<code>await</code> made the (asynchronous) life of JavaScript developers so much easier, at least in my experience. However, there are ever-so-subtle ways how you can shoot yourself in the foot with them, that I now overthink every instance of <code>new Promise(…)</code> and <code>Promise.all(…)</code> intensively:</p>
+			<p><a href="#!/en/software-development/2023-12-04_shooting-yourself-in-the-foot-with-promises/">Read more…</a></p>
+
 			<h2>List Jenkins Credentials</h2>
 			<p>Via <code>&lt;jenkins&gt;/manage/credentials</code> you can only manage the credentials of a Jenkins instance,
 				but not see their values (for security, which is good). But occasionally you need to access their values, e.g.
@@ -632,6 +636,75 @@
 			</p>
 		</section>
 	</article>
+	<!-- #region !/en/software-development/2023-12-04_shooting-yourself-in-the-foot-with-promises/ -->
+	<article id="!/en/software-development/2023-12-04_shooting-yourself-in-the-foot-with-promises/" data-title="Shooting Yourself In The Foot With Promises">
+		<section>
+			<h1>Shooting Yourself In The Foot With Promises</h1>
+			<p>Promises, especially with <code>async</code>/<code>await</code> made the (asynchronous) life of JavaScript developers so much easier, at least in my experience. However, there are ever-so-subtle ways how you can shoot yourself in the foot with them, that I now overthink every instance of <code>new Promise(…)</code> and <code>Promise.all(…)</code> intensively:</p>
+			<h2><code>new Promise(…)</code></h2>
+			<p>In theory, <code>new Promise(…)</code> is easy and perfect. Create a new promise, call the <code>resolve()</code> function when you're done, or the <code>reject()</code> function if your execution fails.</p>
+			<p>In practice, I noticed two behaviors that may be obvious but kept me debugging for hours:</p>
+			<h3>Code after <code>resolve()</code></h3>
+			<p><code>resolve()</code> is not <code>return</code>. It resolves the Promise, but you can still execute code afterwards:</p>
+			<pre>// with new Promise()
+() => new Promise(resolve => {
+	resolve('Hello world!');
+	console.log('this gets executed as well!')
+});
+// with async/await, this is not the same
+async () => {
+	return 'Hello world!';
+	console.log('this is never executed!')
+}</pre>
+			<p>I'd say 99.99% of the time this is not intended. I only recognized such behavior when node started complaining about "Asynchrouous activity after the Promise has already resolved".</p>
+			<p>Conclusion: don't use <code>new Promise()</code>, where possible, or <em>always</em> add <code>return</code> after <code>resolve()</code>.</p>
+			<h3>Thrown exceptions don't cause <code>reject()</code></h3>
+			<p>Title. Instead, catch exceptions and reject them:</p>
+			<pre>// bad
+new Promise((resolve, reject) => {
+	throw new Error(); // doesn't call reject()
+});
+// good
+new Promise((resolve, reject) => {
+	try {
+		throw new Error();
+	} catch (e) {
+		reject(e); // now it calls reject();
+	}
+});
+			</pre>
+			<h2><code>Promise.all(…)</code></h2>
+			<p><code>Promise.all(…)</code> is the real performance-benefit of Promises. Things are actually executed in parallel. But parallel execution is not well shielded from each other:</p>
+			<pre>const common = {calls: 0, name: 'name 0'};
+async function changeAndLogName(obj) {
+	obj.name = `name ${++obj.calls}`;
+	console.log(obj.name);
+}
+await Promise.all([
+	changeAndLogName(common),
+	changeAndLogName(common)
+]);
+// prints
+// name 1
+// name 2
+// where I expected
+// name 1
+// name 1
+			</pre>
+			<p>Because JavaScript Objects are only references, one Promise chain may influence the execution of another.</p>
+			<p>To remain safety at the cost of performance, one can always reword a <code>Promise.all(…)</code> as a <code>for…of</code>:</p>
+			<pre>for (const promise of [
+	changeAndLogName(common),
+	changeAndLogName(common)
+]) {
+	await promise;
+}
+			</pre>
+			<h2>Conclusion</h2>
+			<p>Don't shy away from Promises, they're awesome. But overthink "sophisticated" solutions, as you may be shooting yourself in the foot unknowingly.</p>
+		</section>
+	</article>
+	<!-- #endregion -->
 	<!-- #region !/en/software-development/2023-08-30_list-jenkins-credentials/ -->
 	<article id="!/en/software-development/2023-08-30_list-jenkins-credentials/" data-title="List Jenkins Credentials">
 		<section>
