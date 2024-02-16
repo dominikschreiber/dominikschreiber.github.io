@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Cross-Origin Theming</title>
+		<link id="cssVariables" rel="stylesheet"/>
+<style>
+.dsButton {
+	--background: var(--sapButton_Background);
+	--borderColor: var(--sapButton_BorderColor);
+	--textColor: var(--sapButton_TextColor);
+	
+	appearance: none;
+	cursor: pointer;
+	margin: calc(.5 * (var(--sapElement_LineHeight) - var(--sapElement_Height))) 0;
+	padding: 0 .75rem;
+	line-height: var(--sapElement_Height);
+	border: var(--sapButton_BorderWidth) solid var(--borderColor);
+	border-radius: var(--sapButton_BorderCornerRadius);
+	background-color: var(--background);
+	color: var(--textColor);
+	font-family: var(--sapFontFamily);
+	font-size: var(--sapFontSize);
+}
+.dsButton:hover {
+	--borderColor: var(--sapButton_Hover_BorderColor);
+	--background: var(--sapButton_Hover_Background);
+	--textColor: var(--sapButton_Hover_TextColor);
+}
+.dsButton:active {
+	--borderColor: var(--sapButton_Active_BorderColor);
+	--background: var(--sapButton_Active_Background);
+	--textColor: var(--sapButton_Active_TextColor);
+}
+.dsButton--emphasized {
+	--background: var(--sapButton_Emphasized_Background);
+	--borderColor: var(--sapButton_Emphasized_BorderColor);
+	--textColor: var(--sapButton_Emphasized_TextColor);
+}
+.dsButton--emphasized:hover {
+	--background: var(--sapButton_Emphasized_Hover_Background);
+	--borderColor: var(--sapButton_Emphasized_Hover_BorderColor);
+	--textColor: var(--sapButton_Emphasized_Hover_TextColor);
+}
+.dsButton--emphasized:active {
+	--background: var(--sapButton_Emphasized_Active_Background);
+	--borderColor: var(--sapButton_Emphasized_Active_BorderColor);
+	--textColor: var(--sapButton_Emphasized_Active_TextColor);
+}
+</style>
+
+<script>
+const [
+	themeId,
+	themeRoot = 'https://unpkg.com/@sap-theming/theming-base-content/content'
+] = (new URLSearchParams(location.search).get('sap-theme') || 'sap_horizon').split('@');
+cssVariables.href = `${themeRoot}/Base/baseLib/${themeId}/css_variables.css`;
+</script>
+	</head>
+	<body>
+		<button class="dsButton">A Button</button>
+		<button class="dsButton dsButton--emphasized">An Emphasized Button</button>
+	</body>
+</html>
