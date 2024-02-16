@@ -4,6 +4,9 @@
 		<title>Cross-Origin Theming</title>
 		<link id="cssVariables" rel="stylesheet"/>
 <style>
+.dsPage {
+	background: var(--sapBackgroundColor);
+}
 .dsButton {
 	--background: var(--sapButton_Background);
 	--borderColor: var(--sapButton_BorderColor);
@@ -56,7 +59,7 @@ const [
 cssVariables.href = `${themeRoot}/Base/baseLib/${themeId}/css_variables.css`;
 </script>
 	</head>
-	<body>
+	<body class="dsPage">
 		<button class="dsButton">A Button</button>
 		<button class="dsButton dsButton--emphasized">An Emphasized Button</button>
 	</body>
