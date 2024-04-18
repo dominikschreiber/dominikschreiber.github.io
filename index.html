@@ -711,15 +711,27 @@ await Promise.all([
 			<h1>List Jenkins Credentials</h1>
 			<p>Via <code>&lt;jenkins&gt;/manage/credentials</code> you can only manage the credentials of a Jenkins instance, but not see their values (for security, which is good). But occasionally you need to access their values, e.g. to reproduce a script result locally.</p>
 			<p>This can be achieved in the script console <code>&lt;jenkins&gt;/script</code> with a bit of Jenkins-/Groovy-magic:</p>
-			<pre>for (c in com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
+			<pre>import java.nio.charset.StandardCharsets
+import com.cloudbees.plugins.credentials.Credentials
+Set<Credentials> allCredentials = new HashSet<Credentials>();
+
+def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
   com.cloudbees.plugins.credentials.Credentials.class
-)) {
+)
+allCredentials.addAll(creds)
+
+Jenkins.instance.getAllItems(com.cloudbees.hudson.plugins.folder.Folder.class).each{
+  allCredentials.addAll(com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(com.cloudbees.plugins.credentials.Credentials.class, it))
+}
+
+for (c in allCredentials) {
   println(c.id)
   if (c.properties.description) println("   description: ${c.description}")
   if (c.properties.username) println("   username: ${c.username}")
   if (c.properties.password) println("   password: ${c.password}")
   if (c.properties.passphrase) println("   passphrase: ${c.passphrase}")
   if (c.properties.secret) println("   secret: ${c.secret}")
+  if (c.properties.secretBytes) println("   secretBytes: ${new String(c.secretBytes.getPlainData(), StandardCharsets.UTF_8)}")
   if (c.properties.privateKeySource) println("   privateKey: ${c.getPrivateKey()}")
   println("")
 }</pre>
