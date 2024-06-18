@@ -22,10 +22,16 @@
 				}
 			}
 
+			html {
+				height: 100%;
+			}
+
 			.dsPage {
+				height: 100%;
 				margin: 0;
 				padding: 0 var(--dsElement_ResponsivePadding);
-				background: var(--sapBackgroundColor);
+				/*background-image: var(--sapShell_BackgroundImage);*/
+				background-color: var(--sapShell_Background);
 				font-family: var(--sapFontFamily);
 			}
 
@@ -93,15 +99,38 @@
 				background-size: contain;
 				background-repeat: no-repeat;
 			}
+
+			.dsGroup {
+				--_p: 1rem;
+				box-sizing: border-box;	
+				padding: var(--_p);
+				border: var(--sapGroup_BorderWidth) solid var(--sapGroup_ContentBorderColor);
+				border-radius: var(--sapGroup_BorderCornerRadius);
+				background-color: var(--sapGroup_ContentBackground);
+			}
+
+			.dsGroup__title {
+				box-sizing: border-box;
+				margin: calc(-1 * (var(--_p) + var(--sapGroup_BorderWidth))) calc(-1 * (var(--_p) + var(--sapGroup_BorderWidth))) var(--_p);
+				padding: var(--_p);
+				border: var(--sapGroup_BorderWidth) solid var(--sapGroup_TitleBorderColor);
+				border-radius: var(--sapGroup_BorderCornerRadius) var(--sapGroup_BorderCornerRadius) 0 0;
+				background-color: var(--sapGroup_TitleBackground);
+				color: var(--sapGroup_TitleTextColor);
+				font-size: var(--sapGroup_Title_FontSize);
+			}
 		</style>
 	</head>
-	<body class="dsPage">
+	<body class="dsPage background-image--sapShell_BackgroundImage">
 		<nav class="dsShell">
 			<div class="dsCompanyLogo background-image--sapCompanyLogo"></div>
 			The Shell
 		</nav>
-		<button class="dsButton">A Button</button>
-		<button class="dsButton dsButton--emphasized">An Emphasized Button</button>
+		<section class="dsGroup">
+			<header class="dsGroup__title">A Group of Buttons</header>
+			<button class="dsButton">A Button</button>
+			<button class="dsButton dsButton--emphasized">An Emphasized Button</button>
+		</section>
 		<script>
 			// parse sap-theme parameter and load css_variables.css
 			const [
