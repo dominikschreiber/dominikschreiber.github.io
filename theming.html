@@ -150,22 +150,24 @@
 			cssVariablesSapThemeParameter.addEventListener('load', overwriteSapCompanyLogo);
 
 			// optional: handle 3rd-party cookie deprecation
-			cssVariablesSapThemeParameter.addEventListener('error', () => {
-				const rsa = document.getElementById('rsa');
-				rsaButton.addEventListener('click', async() => {
-					const themeRootOrigin = new URL(themeRoot).origin;
-					try {
-						await document.requestStorageAccessFor(themeRootOrigin);
-						cssVariablesSapThemeParameter.href = null;
-						requestAnimationFrame(() => cssVariablesSapThemeParameter.href = href);
-					} catch (e) {
-						console.error(e);
-					} finally {
-						rsa.hidePopover();
-					}
+			if (window.parent === window) { // only works for top-level browsing context
+				cssVariablesSapThemeParameter.addEventListener('error', () => {
+					const rsa = document.getElementById('rsa');
+					rsaButton.addEventListener('click', async() => {
+						const themeRootOrigin = new URL(themeRoot).origin;
+						try {
+							await document.requestStorageAccessFor(themeRootOrigin);
+							cssVariablesSapThemeParameter.href = null;
+							requestAnimationFrame(() => cssVariablesSapThemeParameter.href = href);
+						} catch (e) {
+							console.error(e);
+						} finally {
+							rsa.hidePopover();
+						}
+					});
+					rsa.showPopover();
 				});
-				rsa.showPopover();
-			});
+			}
 
 			// optional: overwrite sapCompanyLogo
 			function overwriteSapCompanyLogo() {
