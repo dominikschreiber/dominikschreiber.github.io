@@ -138,16 +138,14 @@
 			<button id="rsaButton">Request storage access</button>
 		</div>
 		<script>
-			// parse sap-theme parameter and load css_variables.css
+			// necessary: parse sap-theme parameter and load css_variables.css
 			const [
 				themeId,
 				themeRoot = 'https://unpkg.com/@sap-theming/theming-base-content/content'
 			] = (new URLSearchParams(location.search).get('sap-theme') || 'sap_horizon').split('@');
 			const href = `${themeRoot}/Base/baseLib/${themeId}/css_variables.css`;
 			const cssVariablesSapThemeParameter = document.getElementById('cssVariablesSapThemeParameter');
-
 			cssVariablesSapThemeParameter.href = href;
-			cssVariablesSapThemeParameter.addEventListener('load', overwriteSapCompanyLogo);
 
 			// optional: handle 3rd-party cookie deprecation
 			if (window.parent === window) { // only works for top-level browsing context
@@ -170,6 +168,7 @@
 			}
 
 			// optional: overwrite sapCompanyLogo
+			cssVariablesSapThemeParameter.addEventListener('load', overwriteSapCompanyLogo);
 			function overwriteSapCompanyLogo() {
 				document.body.style.removeProperty('--sapCompanyLogo');
 				const sapCompanyLogo = getComputedStyle(document.body).getPropertyValue('--sapCompanyLogo');
