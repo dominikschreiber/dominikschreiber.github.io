@@ -10,6 +10,59 @@
 		content="Dominik is a software architect in the UI Theme Designer team, SAPs cloud service for custom branding of web applications. He's a husband, dad of four, well-versed pianist/bassist, and christ follower." />
 	<title>Dominik Schreiber</title>
 	<style>
+		@font-face {
+			font-family: 'FontWithASyntaxHighlighter';
+			src: url('./FontWithASyntaxHighlighter-Regular.woff2') format('woff2');
+		}
+
+		pre {
+			font-family: 'FontWithASyntaxHighlighter';
+
+			/*workaround for bug in FontWithASyntaxHighlighter: color bleeds to next block, has to be reset*/
+			&::after {
+				content: ' ';
+				color: #000;
+				font-family: monospace;
+			}
+			
+			&.copy-able {
+				position: relative;
+				border-radius: .0625rem;
+	
+				&:hover,
+				&.copy-success {
+					outline: .125rem solid #789;
+					outline-offset: .5rem;
+				}
+	
+				&::before {
+					position: absolute;
+					top: -.5rem;
+					right: -.5rem;
+					display: inline-block;
+					padding: 0 .5rem;
+					line-height: 1.5rem;
+					border-top-right-radius: .25rem;
+					border-bottom-left-radius: .25rem;
+					font-family: Helvetica, Arial, sans-serif;
+				}
+	
+				&:hover::before {
+					content: '📋';
+					background-color: #789;
+				}
+	
+				&.copy-success {
+					outline-color: #7d9;
+	
+					&::before {
+						content: '✓';
+						background-color: #7d9;
+					}
+				}
+			}
+		}
+
 		html {
 			background-color: #fdfeff;
 		}
@@ -250,6 +303,10 @@
 
 			a {
 				color: #cde;
+			}
+
+			p {
+				color: #f0f8ff;
 			}
 
 			a:hover {
@@ -713,7 +770,7 @@ await Promise.all([
 			<p>This can be achieved in the script console <code>&lt;jenkins&gt;/script</code> with a bit of Jenkins-/Groovy-magic:</p>
 			<pre>import java.nio.charset.StandardCharsets
 import com.cloudbees.plugins.credentials.Credentials
-Set<Credentials> allCredentials = new HashSet<Credentials>();
+Set&lt;Credentials&gt; allCredentials = new HashSet&lt;Credentials&gt;();
 
 def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
   com.cloudbees.plugins.credentials.Credentials.class
@@ -721,18 +778,30 @@ def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredenti
 allCredentials.addAll(creds)
 
 Jenkins.instance.getAllItems(com.cloudbees.hudson.plugins.folder.Folder.class).each{
-  allCredentials.addAll(com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(com.cloudbees.plugins.credentials.Credentials.class, it))
+  allCredentials.addAll(
+    com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
+      com.cloudbees.plugins.credentials.Credentials.class,
+      it
+    )
+  )
 }
 
 for (c in allCredentials) {
   println(c.id)
-  if (c.properties.description) println("   description: ${c.description}")
-  if (c.properties.username) println("   username: ${c.username}")
-  if (c.properties.password) println("   password: ${c.password}")
-  if (c.properties.passphrase) println("   passphrase: ${c.passphrase}")
-  if (c.properties.secret) println("   secret: ${c.secret}")
-  if (c.properties.secretBytes) println("   secretBytes: ${new String(c.secretBytes.getPlainData(), StandardCharsets.UTF_8)}")
-  if (c.properties.privateKeySource) println("   privateKey: ${c.getPrivateKey()}")
+  if (c.properties.description)
+    println("   description: ${c.description}")
+  if (c.properties.username)
+    println("   username: ${c.username}")
+  if (c.properties.password)
+    println("   password: ${c.password}")
+  if (c.properties.passphrase)
+    println("   passphrase: ${c.passphrase}")
+  if (c.properties.secret)
+    println("   secret: ${c.secret}")
+  if (c.properties.secretBytes)
+    println("   secretBytes: ${new String(c.secretBytes.getPlainData(), StandardCharsets.UTF_8)}")
+  if (c.properties.privateKeySource)
+    println("   privateKey: ${c.getPrivateKey()}")
   println("")
 }</pre>
 		</section>
@@ -3916,6 +3985,17 @@ sonar.issue.ignore.multicriteria.css-no-duplicate-selector.resourceKey=**/*</pre
 
 		window.addEventListener('hashchange', onhashchange);
 		onhashchange();
+
+		for (const pre of document.querySelectorAll('pre')) {
+			pre.classList.add('copy-able');
+			pre.addEventListener('click', () => {
+				navigator.clipboard.writeText(pre.textContent)
+					.then(() => {
+						pre.classList.add('copy-success');
+						setTimeout(() => pre.classList.remove('copy-success'), 2000);
+					});
+			})
+		}
 	</script>
 </body>
 
