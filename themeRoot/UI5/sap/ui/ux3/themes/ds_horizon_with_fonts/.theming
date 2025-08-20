@@ -1,0 +1,15 @@
+{
+	"mVersionDependency": {
+		"UI5.sap/ui/ux3.sap_horizon": "1.139.0",
+		"UI5.sap/ui/ux3": "1.139.0",
+		"UI5": "1.139.0"
+	},
+	"sEntity": "Theme",
+	"sId": "ds_horizon_with_fonts",
+	"sLabel": "Morning Horizon with fonts",
+	"oExtends": "UI5.sap/ui/ux3.sap_horizon",
+	"sTextDirections": "LTR,RTL",
+	"sType": "STANDARD",
+	"sThemability": "PUBLIC",
+	"sReleaseStage": "GENERAL_AVAILABILITY"
+}

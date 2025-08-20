@@ -1,0 +1,13 @@
+/**
+* Copyright (c) 2012-2025 SAP SE or an SAP affiliate company. All rights reserved.
+*
+* Theming Engine 16.0.13
+* data:{"Path": "UI5.sap/ui/fl.ds_horizon_without_fonts.library", "PathPattern": "/%frameworkId%/%libId%/themes/%themeId%/%fileId%.css", "Extends": ["sap_horizon","base"], "Engine": {"Name": "theming-engine", "Version": "16.0.13"}, "Version": { "Build": "1.139.0.20250820154304", "Source": "1.139.0"}}
+*/
+
+.sapThemeMetaData-UI5-sap-ui-fl{background-image: url('data:text/plain;utf-8,{"Path": "UI5.sap/ui/fl.ds_horizon_without_fonts.library", "PathPattern": "/%frameworkId%/%libId%/themes/%themeId%/%fileId%.css", "Extends": ["sap_horizon","base"], "Engine": {"Name": "theming-engine", "Version": "16.0.13"}, "Version": { "Build": "1.139.0.20250820154304", "Source": "1.139.0"}}');}
+:root{--sapThemeMetaData-UI5-sap-ui-fl:{"Path": "UI5.sap/ui/fl.ds_horizon_without_fonts.library", "PathPattern": "/%frameworkId%/%libId%/themes/%themeId%/%fileId%.css", "Extends": ["sap_horizon","base"], "Engine": {"Name": "theming-engine", "Version": "16.0.13"}, "Version": { "Build": "1.139.0.20250820154304", "Source": "1.139.0"}};}
+.sapUiAccKeysHighlighDom:first-letter{text-decoration:underline 20% black}
+
+/* Inline theming parameters */
+#sap-ui-theme-sap\.ui\.fl{background-image:url('data:text/plain;utf-8,%7B%7D')}

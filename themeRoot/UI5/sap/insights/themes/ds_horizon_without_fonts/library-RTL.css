@@ -1,0 +1,13 @@
+/**
+* Copyright (c) 2012-2025 SAP SE or an SAP affiliate company. All rights reserved.
+*
+* Theming Engine 16.0.13
+* data:{"Path": "UI5.sap/insights.ds_horizon_without_fonts.library", "PathPattern": "/%frameworkId%/%libId%/themes/%themeId%/%fileId%.css", "Extends": ["sap_horizon","base"], "Engine": {"Name": "theming-engine", "Version": "16.0.13"}, "Version": { "Build": "1.139.0.20250820154304", "Source": "1.139.0"}}
+*/
+
+.sapThemeMetaData-UI5-sap-insights{background-image: url('data:text/plain;utf-8,{"Path": "UI5.sap/insights.ds_horizon_without_fonts.library", "PathPattern": "/%frameworkId%/%libId%/themes/%themeId%/%fileId%.css", "Extends": ["sap_horizon","base"], "Engine": {"Name": "theming-engine", "Version": "16.0.13"}, "Version": { "Build": "1.139.0.20250820154304", "Source": "1.139.0"}}');}
+:root{--sapThemeMetaData-UI5-sap-insights:{"Path": "UI5.sap/insights.ds_horizon_without_fonts.library", "PathPattern": "/%frameworkId%/%libId%/themes/%themeId%/%fileId%.css", "Extends": ["sap_horizon","base"], "Engine": {"Name": "theming-engine", "Version": "16.0.13"}, "Version": { "Build": "1.139.0.20250820154304", "Source": "1.139.0"}};}
+.sapUiAccKeysHighlighDom:first-letter{text-decoration:underline 20% black}.editInsightsCardsListHBox .sapMTextMaxWidth{display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.editInsightsCardsListHBox>.sapMFlexItem:first-child:not(:only-child){min-width:0!important}.dialogScrollPadding .sapMDialogScroll{padding-top:0rem!important;padding-bottom:0rem!important}.msgBoxAlign{width:40%}.cardsSubTitleMargin{margin-top:0.5rem}.cardsTitlePadding{padding-top:0.25rem;padding-bottom:0.25rem}.compositeDndIcon{display:block;position:absolute;margin:0 -0.5rem;right:0rem;font-size:14px}.aiDialogText{font-family:"72","72full",Arial,Helvetica,sans-serif;font-size:.875rem;font-style:italic;font-weight:normal}.aiErrorPadding{padding-top:25%}.customPaddingToken{padding-right:0rem!important}.sapUiSizeCompact .customTokenLineHeight.sapMToken.sapMTokenReadOnly{height:1.4rem}.sapUiSizeCompact .customTokenLineHeight.sapMToken.sapMTokenReadOnly .sapMTokenText{line-height:1rem}.aiTextWidth{min-width:6.3rem;max-width:11rem}@media (min-width:320px) and (max-width:599px){.insightsCardTitleFlex{flex-wrap:wrap}}@media screen and (max-width:1024px){.insightsDragIcon{top:32%}.compositeDndIcon{top:14px}}@media screen and (min-width:1025px){.insightsDragIcon{top:25%}.compositeDndIcon{top:7px}}
+
+/* Inline theming parameters */
+#sap-ui-theme-sap\.insights{background-image:url('data:text/plain;utf-8,%7B%7D')}

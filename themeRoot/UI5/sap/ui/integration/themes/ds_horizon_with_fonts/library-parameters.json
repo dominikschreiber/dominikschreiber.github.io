@@ -1,0 +1,4 @@
+{
+	"_sap_ui_integration_ListContentItem_BottomBorderHeight": "1px",
+	"_sap_ui_integration_ListContentItem_TextShadow": "0 0 var(--sapList_TextColor)"
+}
