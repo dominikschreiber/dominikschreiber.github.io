@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Die Grinch Plätzchen-Zutaten Jagd</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #0f4c3a 0%, #1a5c4a 25%, #0f4c3a 50%, #1a5c4a 75%, #0f4c3a 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #ffffff;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Snowflakes decoration */
+        body::before {
+            content: '❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️ ❄️';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            font-size: 24px;
+            opacity: 0.3;
+            animation: snowfall 20s linear infinite;
+            pointer-events: none;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(-50px); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
+                        0 0 0 3px #c41e3a,
+                        0 0 0 6px #2e7d32;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px dashed #c41e3a;
+        }
+
+        .grinch-title {
+            color: #2e7d32;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #c41e3a;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .progress-label {
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .hearts-container {
+            display: flex;
+            gap: 5px;
+        }
+
+        .heart {
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .heart.full {
+            color: #c41e3a;
+            filter: drop-shadow(0 2px 4px rgba(196, 30, 58, 0.5));
+        }
+
+        .heart.broken {
+            color: #999;
+            opacity: 0.5;
+        }
+
+        .question-text {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe6e6 100%);
+            border-radius: 15px;
+            border-left: 5px solid #c41e3a;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            white-space: pre-line;
+        }
+
+        .hint {
+            color: #666;
+            font-size: 14px;
+            font-style: italic;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f0f8ff;
+            border-radius: 10px;
+            border-left: 3px solid #2e7d32;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        .hint:hover {
+            background: #e3f2fd;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .hint-text {
+            display: none;
+        }
+
+        .hint-text.show {
+            display: inline;
+        }
+
+        .hint-toggle {
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .answer-section {
+            margin-bottom: 20px;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: 3px solid #2e7d32;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #333;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #c41e3a;
+            box-shadow: 0 0 0 3px rgba(196, 30, 58, 0.2);
+        }
+
+        .answer-input.wrong {
+            animation: shake 0.5s ease;
+            border-color: #c41e3a;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(135deg, #c41e3a 0%, #a01729 100%);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: inherit;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+
+        .feedback.success {
+            background: #c8e6c9;
+            color: #2e7d32;
+            border: 2px solid #2e7d32;
+            display: block;
+        }
+
+        .feedback.error {
+            background: #ffcdd2;
+            color: #c41e3a;
+            border: 2px solid #c41e3a;
+            display: block;
+        }
+
+        .victory-screen {
+            display: none;
+            text-align: center;
+        }
+
+        .victory-screen.show {
+            display: block;
+        }
+
+        .victory-title {
+            color: #2e7d32;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .victory-message {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .passcode {
+            font-size: 48px;
+            font-weight: bold;
+            color: #c41e3a;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe6e6 100%);
+            border-radius: 15px;
+            border: 3px dashed #2e7d32;
+            margin: 20px 0;
+            letter-spacing: 8px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .cookie-emoji {
+            font-size: 48px;
+            margin: 20px 0;
+        }
+
+        .start-screen {
+            text-align: center;
+        }
+
+        .start-screen.hide {
+            display: none;
+        }
+
+        .start-title {
+            color: #2e7d32;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .start-message {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .start-btn {
+            padding: 20px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            font-family: inherit;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .grinch-emoji {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        @media (max-width: 480px) {
+            .game-container {
+                padding: 20px;
+            }
+
+            .grinch-title {
+                font-size: 24px;
+            }
+
+            .question-text {
+                font-size: 16px;
+            }
+
+            .passcode {
+                font-size: 36px;
+                letter-spacing: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <!-- Start Screen -->
+        <div id="startScreen" class="start-screen">
+            <div class="grinch-emoji">🎅🏼</div>
+            <h1 class="start-title">Die Grinch Plätzchen-Jagd!</h1>
+            <p class="start-message">
+                Oh nein! Der Grinch hat alle Zutaten zum Verzieren der Weihnachtsplätzchen eingesperrt! 🍪<br><br>
+                Er wird dir nur den Code verraten, wenn du seine Rätsel lösen und die versteckten Hinweise in der Stadt finden kannst.<br><br>
+                Bist du bereit für die Herausforderung?
+            </p>
+            <button class="start-btn" onclick="startGame()">Starte die Jagd! 🎄</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" style="display: none;">
+            <div class="header">
+                <h1 class="grinch-title">🎅🏼 Die Rätsel des Grinch 🍪</h1>
+                <p class="subtitle">Finde die Antworten, um die Zutaten freizuschalten!</p>
+            </div>
+
+            <div class="progress-container">
+                <span class="progress-label">Falsche Versuche:</span>
+                <div id="hearts" class="hearts-container"></div>
+            </div>
+
+            <div id="questionText" class="question-text"></div>
+            <div id="hint" class="hint" onclick="toggleHint()">
+                <span class="hint-toggle">💡 <span id="hintToggleText">Hinweis anzeigen</span></span>
+                <span id="hintText" class="hint-text"></span>
+            </div>
+
+            <div class="answer-section">
+                <input 
+                    type="text" 
+                    id="answerInput" 
+                    class="answer-input" 
+                    placeholder="Gib deine Antwort hier ein..."
+                    autocomplete="off"
+                    autocapitalize="off"
+                >
+            </div>
+
+            <button class="submit-btn" onclick="checkAnswer()">Antwort absenden 🎁</button>
+
+            <div id="feedback" class="feedback"></div>
+        </div>
+
+        <!-- Victory Screen -->
+        <div id="victoryScreen" class="victory-screen">
+            <h1 class="victory-title">🎉 Geschafft! 🎉</h1>
+            <div class="cookie-emoji">🍪🎄🍪</div>
+            <p class="victory-message">
+                Herzlichen Glückwunsch! Du hast alle Rätsel des Grinch gelöst!<br><br>
+                Hier ist der Code, um die Plätzchen-Zutaten freizuschalten:
+            </p>
+            <div id="passcode" class="passcode"></div>
+            <p class="victory-message">
+                Jetzt könnt ihr die leckersten Weihnachtsplätzchen aller Zeiten verzieren! 🎅🏼✨
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // GAME CONFIGURATION
+        // Replace this data with your own questions!
+        // ============================================
+        const gameData = {
+            maxWrongGuesses: 3, // Hearts will break after this many wrong answers (set to null for unlimited)
+            passcode: "1882", // Final passcode to reveal
+            questions: [
+                {
+                    question: "Das erste Rätsel des Grinch:\n\n'Wo die Kinder turnen und springen mit Elan,\ndarunter liegen Rollläden, schaut sie euch an!\nZählt sie genau, die unter der Halle versteckt,\nund sagt mir die Zahl, wenn ihr sie entdeckt!'",
+                    hint: "Schaut unterhalb der Turnhalle!",
+                    answer: ["22", "zweiundzwanzig"], // Accept multiple valid answers by using array: ["22", "zweiundzwanzig"]
+                    caseSensitive: false
+                },
+                {
+                    question: "Der Grinch kichert und macht weiter:\n\n'Von Antonius' Kapelle hoch am Berg so steil,\nführen Stufen hinunter - das ist euer Teil!\nBis zum Spielplatz im Tal, zählt jeden Tritt,\nwie viele es sind, das nehmt ihr mit!'",
+                    hint: "Geht zur Antonius-Kapelle und zählt die Stufen hinunter zum Spielplatz!",
+                    answer: ["91", "einundneunzig"],
+                    caseSensitive: false
+                },
+                {
+                    question: "Der Grinch wird jetzt nervös:\n\n'Kurz vor dem Spielplatz, auf einer Garage gemalt,\nfind eine Tafel, die von Geschichte erzählt.\nJosef Scherer, Sattler und Polstermeister fein,\nwelche Hausnummer steht dort - sag mir die Zahl allein!'",
+                    hint: "Sucht die bemalte Garage kurz vor dem Spielplatz!",
+                    answer: ["13", "dreizehn"],
+                    caseSensitive: false
+                },
+                {
+                    question: "Der Grinch wird nachdenklich:\n\n'An der alten Schule, wo Geschichte mahnt,\nfind eine Tafel, die an Menschen erinnern will.\nJüdische Frauen, Männer und Kinder, zählt sie mit Bedacht,\nwie vielen wird dort ehrenvoll gedacht?'",
+                    hint: "Sucht die Gedenktafel an der alten Schule!",
+                    answer: ["22", "zweiundzwanzig"],
+                    caseSensitive: false
+                },
+                {
+                    question: "Der Grinch grummelt widerwillig:\n\n'Die Weyerer Straße erstrahlt im Licht,\nWeihnachtssterne leuchten hell, das übersieht man nicht!\nZählt sie alle, die dort hängen pracht,\nwie viele Sterne schmücken die Nacht?'",
+                    hint: "Geht die Weyerer Straße entlang und zählt die Weihnachtssterne!",
+                    answer: ["12", "zwölf"],
+                    caseSensitive: false
+                },
+                {
+                    question: "Die letzte Herausforderung des Grinch:\n\n'Fast am Ziel, die Reise geht zu Ende bald,\nvon der Weyerer Straße nach Hause, den Berg hinauf mit Gewalt.\nDurchs Wohngebiet führt euer Weg nach oben,\nzählt die Stufen, die ihr müsst erklimmen und loben!'",
+                    hint: "Zählt die Treppenstufen von der Weyerer Straße bis nach Hause!",
+                    answer: ["22", "zweiundzwanzig"],
+                    caseSensitive: false
+                }
+            ]
+        };
+
+        // ============================================
+        // GAME STATE
+        // ============================================
+        let currentQuestionIndex = 0;
+        let wrongGuesses = 0;
+
+        // ============================================
+        // GAME FUNCTIONS
+        // ============================================
+        function toggleHint() {
+            const hintText = document.getElementById('hintText');
+            const hintToggleText = document.getElementById('hintToggleText');
+            
+            if (hintText.classList.contains('show')) {
+                hintText.classList.remove('show');
+                hintToggleText.textContent = 'Hinweis anzeigen';
+            } else {
+                hintText.classList.add('show');
+                hintToggleText.textContent = 'Hinweis verbergen';
+            }
+        }
+
+        function startGame() {
+            document.getElementById('startScreen').classList.add('hide');
+            document.getElementById('gameScreen').style.display = 'block';
+            
+            // Check if there's a hash in URL
+            const hash = window.location.hash.substring(1);
+            if (hash && !isNaN(hash)) {
+                const questionNum = parseInt(hash);
+                if (questionNum >= 0 && questionNum < gameData.questions.length) {
+                    currentQuestionIndex = questionNum;
+                }
+            }
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex >= gameData.questions.length) {
+                showVictory();
+                return;
+            }
+
+            const question = gameData.questions[currentQuestionIndex];
+            
+            // Update URL hash
+            window.location.hash = currentQuestionIndex;
+            
+            // Update question display
+            document.getElementById('questionText').textContent = question.question;
+            document.getElementById('hintText').textContent = question.hint;
+            document.getElementById('hintToggleText').textContent = 'Hinweis anzeigen';
+            document.getElementById('hintText').classList.remove('show');
+            
+            // Clear input and feedback
+            const input = document.getElementById('answerInput');
+            input.value = '';
+            input.classList.remove('wrong');
+            document.getElementById('feedback').className = 'feedback';
+            document.getElementById('feedback').textContent = '';
+            
+            // Update hearts
+            updateHearts();
+            
+            // Focus input
+            input.focus();
+        }
+
+        function updateHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            heartsContainer.innerHTML = '';
+            
+            if (gameData.maxWrongGuesses === null) {
+                // Unlimited guesses mode
+                heartsContainer.innerHTML = '<span class="heart full">∞</span>';
+                return;
+            }
+            
+            const heartsLeft = gameData.maxWrongGuesses - wrongGuesses;
+            
+            // Show remaining hearts
+            for (let i = 0; i < heartsLeft; i++) {
+                const heart = document.createElement('span');
+                heart.className = 'heart full';
+                heart.textContent = '❤️';
+                heartsContainer.appendChild(heart);
+            }
+            
+            // Show broken hearts
+            for (let i = 0; i < wrongGuesses; i++) {
+                const heart = document.createElement('span');
+                heart.className = 'heart broken';
+                heart.textContent = '💔';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        function checkAnswer() {
+            const input = document.getElementById('answerInput');
+            const userAnswer = input.value.trim();
+            const feedback = document.getElementById('feedback');
+            
+            if (!userAnswer) {
+                feedback.className = 'feedback error';
+                feedback.textContent = '❌ Bitte gib eine Antwort ein!';
+                return;
+            }
+            
+            const question = gameData.questions[currentQuestionIndex];
+            const correctAnswers = Array.isArray(question.answer) 
+                ? question.answer 
+                : [question.answer];
+            
+            // Check if answer is correct
+            let isCorrect = false;
+            for (let correctAnswer of correctAnswers) {
+                const compare1 = question.caseSensitive ? userAnswer : userAnswer.toLowerCase();
+                const compare2 = question.caseSensitive ? correctAnswer : correctAnswer.toLowerCase();
+                
+                if (compare1 === compare2) {
+                    isCorrect = true;
+                    break;
+                }
+            }
+            
+            if (isCorrect) {
+                feedback.className = 'feedback success';
+                feedback.textContent = '🎉 Richtig! Weiter zum nächsten Rätsel...';
+                
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    wrongGuesses = 0; // Reset wrong guesses for new question
+                    loadQuestion();
+                }, 2000);
+            } else {
+                wrongGuesses++;
+                
+                if (gameData.maxWrongGuesses !== null && wrongGuesses >= gameData.maxWrongGuesses) {
+                    // All hearts broken - unlimited mode
+                    feedback.className = 'feedback error';
+                    feedback.textContent = '💔 Oh nein! Alle Herzen sind gebrochen! Aber der Grinch lässt euch weiter raten...';
+                    gameData.maxWrongGuesses = null; // Switch to unlimited mode
+                    updateHearts();
+                } else {
+                    feedback.className = 'feedback error';
+                    feedback.textContent = '❌ Nicht ganz richtig! Versuch es nochmal!';
+                }
+                
+                input.classList.add('wrong');
+                setTimeout(() => input.classList.remove('wrong'), 500);
+                updateHearts();
+            }
+        }
+
+        function showVictory() {
+            document.getElementById('gameScreen').style.display = 'none';
+            document.getElementById('victoryScreen').classList.add('show');
+            document.getElementById('passcode').textContent = gameData.passcode;
+            window.location.hash = 'victory';
+        }
+
+        // Handle Enter key for answer submission
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('answerInput');
+            if (input) {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        checkAnswer();
+                    }
+                });
+            }
+
+            // Handle browser back/forward with hash changes
+            window.addEventListener('hashchange', () => {
+                const hash = window.location.hash.substring(1);
+                if (hash === 'victory') {
+                    showVictory();
+                } else if (hash && !isNaN(hash)) {
+                    const questionNum = parseInt(hash);
+                    if (questionNum >= 0 && questionNum < gameData.questions.length) {
+                        currentQuestionIndex = questionNum;
+                        document.getElementById('startScreen').classList.add('hide');
+                        document.getElementById('gameScreen').style.display = 'block';
+                        loadQuestion();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
