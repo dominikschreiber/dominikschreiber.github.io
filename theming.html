@@ -2,8 +2,7 @@
 <html>
 	<head>
 		<title>Cross-Origin Theming</title>
-		<link id="cssVariablesSapThemeParameter" rel="stylesheet"/>
-		<style id="cssVariablesPostMessage"></style>
+		<meta name="sap-allowed-theme-origins" content="https://dominik-test-theming-test-consumer.internal.cfapps.sap.hana.ondemand.com,https://dev-theming-test-consumer.cfapps.sap.hana.ondemand.com,https://theming-test-consumer.cfapps.sap.hana.ondemand.com,https://themingdemo-cf-eu12-canary-kqrt9bqd.cpp.cfapps.eu12.hana.ondemand.com"/>
 		<style>
 			:root {
 				--dsElement_ResponsivePadding: var(--sapContent_Space_S);
@@ -74,6 +73,8 @@
 				--background: var(--sapButton_Background);
 				--borderColor: var(--sapButton_BorderColor);
 				--textColor: var(--sapButton_TextColor);
+
+				--sapContent_IconColor: var(--textColor);
 				
 				appearance: none;
 				cursor: pointer;
@@ -164,6 +165,14 @@
 			.dsSmallMarginBottom {
 				margin-bottom: var(--sapContent_Space_Small);
 			}
+
+			.dsIcon {
+				display: inline-block;
+				width: var(--sapContent_IconHeight);
+				height: var(--sapContent_IconHeight);
+				mask: var(--url) center / contain no-repeat;
+				background-color: var(--sapContent_IconColor);
+			}
 		</style>
 	</head>
 	<body class="dsPage background-image--sapShell_BackgroundImage">
@@ -173,23 +182,51 @@
 		</nav>
 		<section class="dsGroup dsSmallMarginBottom">
 			<header class="dsGroup__title">A group of buttons</header>
-			<button class="dsButton">A button</button>
+			<button class="dsButton">
+				<span class="dsIcon" style="--url: var(--sapIcons_touch)"></span> A button
+			</button>
 			<button class="dsButton dsButton--emphasized">An emphasized button</button>
 		</section>
 		<section class="dsGroup dsGroup--custom-background">
 			<header class="dsGroup__title">A group with a custom background (darker in light themes, lighter in dark themes)</header>
 		</section>
 		<script>
-			// necessary: parse sap-theme parameter and load css_variables.css
-			const [
-				themeId,
-				themeRoot = 'https://unpkg.com/@sap-theming/theming-base-content/content'
-			] = (new URLSearchParams(location.search).get('sap-theme') || 'sap_horizon').split('@');
-			const href = `${themeRoot}/Base/baseLib/${themeId}/css_variables.css`;
-			const cssVariablesSapThemeParameter = document.getElementById('cssVariablesSapThemeParameter');
-			cssVariablesSapThemeParameter.href = href;
+			const DEFAULT_THEME_ID =  'sap_horizon';
+			const DEFAULT_THEME_ROOT = 'https://cdn.jsdelivr.net/npm/@sap-theming/theming-base-content/content';
+			const allowedThemeOrigins = Array.from(new Set([DEFAULT_THEME_ROOT, ...Array.from(document.querySelectorAll('meta[name="sap-allowed-theme-origins"]')).flatMap(meta => meta.content.split(',').map(origin => origin.trim()))].map(url => new URL(url).origin)));
+			
+			const [themeId, themeRoot = DEFAULT_THEME_ROOT] = decodeURIComponent(new URLSearchParams(location.search).get('sap-theme') || DEFAULT_THEME_ID).split('@');
+			const fallbackThemeId = /\(sap_[a-z0-9_]+\)\//.exec(themeRoot)?.[1] || DEFAULT_THEME_ID;
 
-			// optional: react on theming-ui:theme-changed postMessage
+			const fallbackCssVariablesLink = document.createElement('link');
+			fallbackCssVariablesLink.rel = 'stylesheet';
+			fallbackCssVariablesLink.href = `${DEFAULT_THEME_ROOT}/Base/baseLib/${fallbackThemeId}/css_variables.css`;
+			document.head.appendChild(fallbackCssVariablesLink);
+
+			const fallbackIconsLink = document.createElement('link');
+			fallbackIconsLink.rel = 'stylesheet';
+			fallbackIconsLink.href = `${DEFAULT_THEME_ROOT}/Base/icons/${fallbackThemeId}/svg.css`;
+			document.head.appendChild(fallbackIconsLink);
+
+			if (allowedThemeOrigins.includes(new URL(themeRoot).origin)) {
+				const cssVariablesLink = document.createElement('link');
+				cssVariablesLink.rel = 'stylesheet';
+				cssVariablesLink.href = `${themeRoot}/Base/baseLib/${themeId}/css_variables.css`;
+				cssVariablesLink.addEventListener('load', () => requestAnimationFrame(() => {
+					const sapSapThemeId = getComputedStyle(document.documentElement).getPropertyValue('--sapSapThemeId').trim();
+					if (sapSapThemeId !== fallbackThemeId) {
+						fallbackCssVariablesLink.href = `${DEFAULT_THEME_ROOT}/Base/baseLib/${sapSapThemeId}/css_variables.css`;
+						fallbackIconsLink.href = `${DEFAULT_THEME_ROOT}/Base/icons/${sapSapThemeId}/svg.css`;
+					}
+				}));
+				document.head.appendChild(cssVariablesLink);
+
+				const iconsLink = document.createElement('link');
+				iconsLink.rel = 'stylesheet';
+				iconsLink.href = `${themeRoot}/Base/icons/${themeId}/svg.css`;
+				document.head.appendChild(iconsLink);
+			}
+
 			window.addEventListener('message', ({data}) => {
 				if (data.type === 'theming-ui:theme-changed') {
 					document.getElementById('cssVariablesPostMessage').textContent = data.cssVariables;
